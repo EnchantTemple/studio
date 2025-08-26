@@ -12,7 +12,7 @@ export const navItems: NavItem[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    quote: "She helped me bring back my fiancé in just 4 days. I’m in tears of joy! Thank you, Lady Amina.",
+    quote: "SolutionTemple helped me bring back my fiancé in just 4 days. I’m in tears of joy! Thank you, SolutionTemple.",
     name: "Esther",
     location: "UK",
     avatar: "https://i.pravatar.cc/150?img=1",
@@ -28,7 +28,7 @@ export const testimonials: Testimonial[] = [
     date: "1 month ago",
   },
   {
-    quote: "I used to doubt spells, but her rituals are done with love and ethics. She is truly gifted.",
+    quote: "I used to doubt spells, but the rituals from SolutionTemple are done with love and ethics. They are truly gifted.",
     name: "Mike",
     location: "Canada",
     avatar: "https://i.pravatar.cc/150?img=3",
@@ -52,7 +52,7 @@ export const testimonials: Testimonial[] = [
     date: "2 months ago",
   },
   {
-    quote: "Amazingly accurate and compassionate. The consultation alone was worth it. Highly recommend her services.",
+    quote: "Amazingly accurate and compassionate. The consultation alone was worth it. Highly recommend their services.",
     name: "Isabella",
     location: "Brazil",
     avatar: "https://i.pravatar.cc/150?img=6",
