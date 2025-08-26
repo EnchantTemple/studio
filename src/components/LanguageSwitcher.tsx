@@ -1,7 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { Languages } from 'lucide-react';
+import { Languages, ChevronDown } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -22,6 +23,8 @@ const languages = [
 ];
 
 export function LanguageSwitcher() {
+    const pathname = usePathname();
+
     const handleLanguageChange = (langCode: string) => {
         // Basic implementation detail:
         // In a real-world scenario, this would integrate with a library like 'next-intl'
@@ -30,6 +33,35 @@ export function LanguageSwitcher() {
         alert(`Language selected: ${langCode}. Translation integration is required to see changes.`);
         console.log(`Switching language to ${langCode}`);
     };
+
+    // In a real app, you'd get this from your i18n solution
+    const [currentLanguage, setCurrentLanguage] = React.useState(languages[0]); 
+
+    const isFooter = pathname !== '/'; // A simple way to detect if we might be in the footer context
+
+    if (isFooter) {
+        return (
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                     <Button variant="ghost" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                        {currentLanguage.name}
+                        <ChevronDown className="w-4 h-4 ml-1" />
+                    </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                    {languages.map((lang) => (
+                        <DropdownMenuItem key={lang.code} onClick={() => {
+                            handleLanguageChange(lang.code);
+                            setCurrentLanguage(lang);
+                        }}>
+                            {lang.name}
+                        </DropdownMenuItem>
+                    ))}
+                </DropdownMenuContent>
+            </DropdownMenu>
+        )
+    }
+
 
     return (
         <DropdownMenu>
