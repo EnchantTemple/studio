@@ -1,4 +1,4 @@
-import type { NavItem, Testimonial, BlogPost } from '@/lib/types';
+import type { NavItem, Service, Testimonial, BlogPost } from '@/lib/types';
 
 export const navItems: NavItem[] = [
   { href: '/', label: 'Home' },
@@ -131,31 +131,41 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
-export const services = [
+export const services: Service[] = [
   {
     name: 'Reunite Lovers Spell',
     description: 'Bring back an ex-lover or reconnect emotionally.',
     delivery: 'Within 3 days',
+    imageUrl: 'https://picsum.photos/400/300?random=1',
+    dataAiHint: 'reuniting couple'
   },
   {
     name: 'Attract New Love Spell',
     description: 'Manifest a soulmate or serious partner.',
     delivery: 'Within 5 days',
+    imageUrl: 'https://picsum.photos/400/300?random=2',
+    dataAiHint: 'happy couple'
   },
   {
     name: 'Strengthen Relationship Spell',
     description: 'Eliminate third parties, restore peace.',
     delivery: 'Within 48 hours',
+    imageUrl: 'https://picsum.photos/400/300?random=3',
+    dataAiHint: 'holding hands'
   },
   {
     name: 'Stop Break-Up / Divorce Spell',
     description: 'Protect your marriage from falling apart.',
     delivery: 'Within 2–4 days',
+    imageUrl: 'https://picsum.photos/400/300?random=4',
+    dataAiHint: 'sad couple'
   },
   {
     name: 'Custom Spell Work',
     description: 'Tailored to your unique love situation.',
     delivery: 'Time varies',
+    imageUrl: 'https://picsum.photos/400/300?random=5',
+    dataAiHint: 'mystical abstract'
   },
 ];
 

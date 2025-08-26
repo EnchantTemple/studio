@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { services } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { CheckCircle, Sparkles } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -25,34 +25,32 @@ export default function ServicesPage() {
 
       <section className="py-16 md:py-24">
         <div className="container">
-          <Card>
-            <CardHeader>
-              <CardTitle>Love Spell Offerings</CardTitle>
-              <CardDescription>
-                Each spell is cast with precision, care, and the purest intentions for your highest good.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[30%] font-headline">Service</TableHead>
-                    <TableHead className="w-[50%] font-headline">Description</TableHead>
-                    <TableHead className="text-right font-headline">Delivery</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {services.map((service) => (
-                    <TableRow key={service.name}>
-                      <TableCell className="font-medium">{service.name}</TableCell>
-                      <TableCell className="text-muted-foreground">{service.description}</TableCell>
-                      <TableCell className="text-right font-semibold text-primary">{service.delivery}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <Card key={service.name} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
+                 <Image
+                    src={service.imageUrl}
+                    alt={service.name}
+                    data-ai-hint={service.dataAiHint}
+                    width={400}
+                    height={300}
+                    className="w-full h-48 object-cover"
+                  />
+                <CardHeader>
+                  <CardTitle className="font-headline">{service.name}</CardTitle>
+                  <CardDescription>Delivery: <span className="font-semibold text-primary">{service.delivery}</span></CardDescription>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <p className="text-muted-foreground">{service.description}</p>
+                </CardContent>
+                <CardFooter>
+                  <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+                    <Link href="/book-now">Book This Spell</Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -66,17 +64,17 @@ export default function ServicesPage() {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 mt-12 max-w-5xl mx-auto">
-            <div className="flex flex-col items-center space-y-3">
+            <div className="flex flex-col items-center space-y-3 p-4">
               <CheckCircle className="h-10 w-10 text-green-500" />
               <h3 className="font-semibold text-xl font-headline">Personalized Consultation</h3>
               <p className="text-muted-foreground">We begin with a deep dive into your situation to understand the energies at play.</p>
             </div>
-            <div className="flex flex-col items-center space-y-3">
+            <div className="flex flex-col items-center space-y-3 p-4">
               <CheckCircle className="h-10 w-10 text-green-500" />
               <h3 className="font-semibold text-xl font-headline">Custom Ritual</h3>
               <p className="text-muted-foreground">Your spell is performed with your name and photo, focusing intent directly on your needs.</p>
             </div>
-            <div className="flex flex-col items-center space-y-3">
+            <div className="flex flex-col items-center space-y-3 p-4">
               <CheckCircle className="h-10 w-10 text-green-500" />
               <h3 className="font-semibold text-xl font-headline">Post-Spell Support</h3>
               <p className="text-muted-foreground">We provide follow-up support to guide you as the spell's energy manifests.</p>

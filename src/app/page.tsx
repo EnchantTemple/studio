@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CheckCircle, Globe, MessageCircle, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { services, testimonials, faqs } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
@@ -84,14 +84,27 @@ export default function Home() {
             </div>
             <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
               {highlightedServices.map((service) => (
-                <Card key={service.name} className="hover:shadow-lg transition-shadow">
+                <Card key={service.name} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
+                  <Image
+                    src={service.imageUrl}
+                    alt={service.name}
+                    data-ai-hint={service.dataAiHint}
+                    width={400}
+                    height={300}
+                    className="w-full h-48 object-cover"
+                  />
                   <CardHeader>
                     <CardTitle className="font-headline">{service.name}</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-2">
+                  <CardContent className="space-y-2 flex-grow">
                     <p className="text-muted-foreground">{service.description}</p>
                     <p className="text-sm font-semibold text-primary">Delivery: {service.delivery}</p>
                   </CardContent>
+                   <CardFooter>
+                    <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+                      <Link href="/book-now">Book This Spell</Link>
+                    </Button>
+                  </CardFooter>
                 </Card>
               ))}
             </div>
@@ -152,7 +165,7 @@ export default function Home() {
               </p>
             </div>
             <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
+              {faqs.slice(0, 5).map((faq, index) => (
                 <AccordionItem value={`item-${index}`} key={index}>
                   <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
                     {faq.question}

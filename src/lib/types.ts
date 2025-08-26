@@ -3,6 +3,14 @@ export type NavItem = {
   label: string;
 };
 
+export type Service = {
+  name: string;
+  description: string;
+  delivery: string;
+  imageUrl: string;
+  dataAiHint: string;
+};
+
 export type Testimonial = {
   quote: string;
   name: string;
