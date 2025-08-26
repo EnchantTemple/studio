@@ -30,7 +30,10 @@ export function BookingForm() {
       fullName: '',
       whatsappNumber: '',
       email: '',
+      spellType: undefined,
+      targetPersonName: '',
       message: '',
+      photo: undefined,
       termsAccepted: false,
     },
   });
