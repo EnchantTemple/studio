@@ -26,6 +26,6 @@ export async function submitBooking(data: BookingFormValues) {
   // For this example, we'll just return a success message.
   return {
     success: true,
-    message: "Booking Received! You'll be contacted within 12 hours via WhatsApp.",
+    message: "Booking Sent!",
   };
 }
