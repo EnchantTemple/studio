@@ -6,6 +6,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
+import WhatsAppButton from '@/components/layout/WhatsAppButton';
 
 const alegreya = Alegreya({
   subsets: ['latin'],
@@ -38,6 +39,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />
+          <WhatsAppButton />
           <Toaster />
         </ThemeProvider>
       </body>
