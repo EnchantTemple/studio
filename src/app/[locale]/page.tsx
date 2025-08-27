@@ -87,7 +87,7 @@ export default function Home() {
             </div>
             <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
               {highlightedServices.map((service) => {
-                const serviceKey = service.name.toLowerCase().replace(/ /g, '_');
+                const serviceKey = service.name.toLowerCase().replace(/ spell/g, '').replace(/ /g, '_');
                 return (
                 <Card key={service.name} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                   <Image
