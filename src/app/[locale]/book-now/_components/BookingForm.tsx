@@ -21,7 +21,8 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import type { Service } from '@/lib/types';
 import { submitBooking } from '../actions';
-import { Label } from '@/components/ui/label';
+import { useFormField } from "@/components/ui/form"
+
 
 export function BookingForm() {
   const { toast } = useToast();
@@ -65,7 +66,7 @@ export function BookingForm() {
     } else {
       toast({
         title: t('error_title'),
-        description: t('error_desc'),
+        description: result.message || t('error_desc'),
         variant: 'destructive',
       });
     }
@@ -210,11 +211,14 @@ export function BookingForm() {
                       />
                     </FormControl>
                     <div className="space-y-1 leading-none">
-                      <Label>
+                       <label
+                        htmlFor={field.name}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
                         {t.rich('terms_label', {
                           termsLink: (chunks) => <Link href="/privacy-policy" className="underline hover:text-primary">{chunks}</Link>
                         })}
-                      </Label>
+                      </label>
                       <FormDescription>
                         {t('terms_desc')}
                       </FormDescription>
