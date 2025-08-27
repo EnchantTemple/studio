@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { Languages, ChevronDown } from 'lucide-react';
-import { usePathname, useRouter, locales, localeNames } from '@/navigation';
+import { usePathname, locales, localeNames } from '@/navigation';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -14,24 +14,21 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useLocale } from 'next-intl';
 
-
 interface LanguageSwitcherProps {
   location: 'header' | 'footer';
 }
 
 export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
-    const router = useRouter();
     const pathname = usePathname();
     const currentLocale = useLocale();
 
-    const handleLanguageChange = (nextLocale: string) => {
-        // Use window.location.href to ensure a full reload, which helps
-        // server components pick up the new locale.
-        const newUrl = `/${nextLocale}${pathname}`;
-        window.location.href = newUrl;
-    };
-
     const currentLanguageName = localeNames[currentLocale as keyof typeof localeNames];
+
+    const renderMenuItem = (lang: (typeof locales)[number]) => (
+       <DropdownMenuItem key={lang} asChild>
+          <a href={`/${lang}${pathname}`}>{localeNames[lang]}</a>
+       </DropdownMenuItem>
+    )
 
     if (location === 'footer') {
         return (
@@ -44,11 +41,7 @@ export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="start">
-                        {locales.map((lang) => (
-                            <DropdownMenuItem key={lang} onClick={() => handleLanguageChange(lang)}>
-                                {localeNames[lang]}
-                            </DropdownMenuItem>
-                        ))}
+                        {locales.map(renderMenuItem)}
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
@@ -65,11 +58,7 @@ export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                {locales.map((lang) => (
-                    <DropdownMenuItem key={lang} onClick={() => handleLanguageChange(lang)}>
-                         {localeNames[lang]}
-                    </DropdownMenuItem>
-                ))}
+                {locales.map(renderMenuItem)}
             </DropdownMenuContent>
         </DropdownMenu>
     );
