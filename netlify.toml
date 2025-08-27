@@ -1,0 +1,54 @@
+[[redirects]]
+  source = "/"
+  destination = "/en"
+  permanent = false
+  force = true
+  conditions = {Language = ["en"]}
+
+[[redirects]]
+  source = "/"
+  destination = "/es"
+  permanent = false
+  force = true
+  conditions = {Language = ["es"]}
+
+[[redirects]]
+  source = "/"
+  destination = "/pt"
+  permanent = false
+  force = true
+  conditions = {Language = ["pt"]}
+  
+[[redirects]]
+  source = "/"
+  destination = "/it"
+  permanent = false
+  force = true
+  conditions = {Language = ["it"]}
+
+[[redirects]]
+  source = "/"
+  destination = "/fr"
+  permanent = false
+  force = true
+  conditions = {Language = ["fr"]}
+  
+[[redirects]]
+  source = "/"
+  destination = "/de"
+  permanent = false
+  force = true
+  conditions = {Language = ["de"]}
+
+[[redirects]]
+  source = "/"
+  destination = "/zh-CN"
+  permanent = false
+  force = true
+  conditions = {Language = ["zh"]}
+
+# Fallback for browsers with no language preference
+[[redirects]]
+  source = "/"
+  destination = "/en"
+  permanent = false
