@@ -33,10 +33,16 @@ export default function PrivacyPolicyPage() {
         </ul>
         
         <h2>{t('h2_3')}</h2>
-        <div dangerouslySetInnerHTML={{ __html: t.raw('p5') }} />
+         <p>{t.rich('p5', {
+            strong: (chunks) => <strong>{chunks}</strong>
+         })}</p>
         <ul>
-          <li dangerouslySetInnerHTML={{ __html: t.raw('li8') }} />
-          <li dangerouslySetInnerHTML={{ __html: t.raw('li9') }} />
+          <li>{t.rich('li8', {
+            strong: (chunks) => <strong>{chunks}</strong>
+          })}</li>
+          <li>{t.rich('li9', {
+            strong: (chunks) => <strong>{chunks}</strong>
+          })}</li>
         </ul>
 
         <h2>{t('h2_4')}</h2>

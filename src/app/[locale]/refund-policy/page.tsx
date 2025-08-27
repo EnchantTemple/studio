@@ -19,8 +19,12 @@ export default function RefundPolicyPage() {
         <h2>{t('h2_3')}</h2>
         <p>{t('p3')}</p>
         <ul>
-          <li dangerouslySetInnerHTML={{ __html: t.raw('li1') }} />
-          <li dangerouslySetInnerHTML={{ __html: t.raw('li2') }} />
+            <li>{t.rich('li1', {
+                strong: (chunks) => <strong>{chunks}</strong>
+            })}</li>
+            <li>{t.rich('li2', {
+                strong: (chunks) => <strong>{chunks}</strong>
+            })}</li>
         </ul>
         
         <h2>{t('h2_4')}</h2>
