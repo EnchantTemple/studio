@@ -22,7 +22,11 @@ const languages = [
     { code: 'zh-CN', name: 'Chinese' },
 ];
 
-export function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+  location: 'header' | 'footer';
+}
+
+export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
     const pathname = usePathname();
 
     const handleLanguageChange = (langCode: string) => {
@@ -37,11 +41,7 @@ export function LanguageSwitcher() {
     // In a real app, you'd get this from your i18n solution
     const [currentLanguage, setCurrentLanguage] = React.useState(languages[0]); 
 
-    // This is a simple heuristic to detect if we're rendering in the footer.
-    // A more robust solution could involve a context provider.
-    const isFooter = pathname !== '/';
-
-    if (isFooter) {
+    if (location === 'footer') {
         return (
              <div className="pt-2">
                 <DropdownMenu>
@@ -66,6 +66,7 @@ export function LanguageSwitcher() {
         )
     }
 
+    // Default to header version
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -76,7 +77,10 @@ export function LanguageSwitcher() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 {languages.map((lang) => (
-                    <DropdownMenuItem key={lang.code} onClick={() => handleLanguageChange(lang.code)}>
+                    <DropdownMenuItem key={lang.code} onClick={() => {
+                        handleLanguageChange(lang.code)
+                        setCurrentLanguage(languages.find(l => l.code === lang.code) || languages[0]);
+                    }}>
                         {lang.name}
                     </DropdownMenuItem>
                 ))}

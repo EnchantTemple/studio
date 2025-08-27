@@ -17,7 +17,7 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               A sanctuary where love, energy, and intention align for your spiritual well-being.
             </p>
-            <LanguageSwitcher />
+            <LanguageSwitcher location="footer" />
             <div className="flex space-x-2 pt-2">
                 <ShieldCheck className="h-5 w-5 text-green-600" />
                 <span className="text-xs text-muted-foreground">Google Safe Browsing</span>

@@ -40,7 +40,7 @@ export function Header() {
           ))}
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-2">
-          <LanguageSwitcher />
+          <LanguageSwitcher location="header" />
           <ThemeToggle />
           <Button asChild className="hidden md:inline-flex rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
             <Link href="/book-now">Book Your Spell Now</Link>
