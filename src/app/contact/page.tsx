@@ -1,13 +1,8 @@
-import type { Metadata } from 'next';
+'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, MessageCircle, Clock } from 'lucide-react';
-import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: 'Contact Us',
-  description: 'Reach out to SolutionTemple 24/7 for a confidential consultation. Connect with us via WhatsApp live chat or email.',
-};
+import { Link } from '@/navigation';
 
 export default function ContactPage() {
   return (

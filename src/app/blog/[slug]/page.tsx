@@ -1,6 +1,7 @@
+'use client';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { blogPosts } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -10,27 +11,6 @@ import { format, parseISO } from 'date-fns';
 type Props = {
   params: { slug: string };
 };
-
-export async function generateMetadata({ params }: Props) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
-
-  if (!post) {
-    return {
-      title: 'Post Not Found',
-    };
-  }
-
-  return {
-    title: post.title,
-    description: post.excerpt,
-  };
-}
-
-export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
-    slug: post.slug,
-  }));
-}
 
 export default function BlogPostPage({ params }: Props) {
   const post = blogPosts.find((p) => p.slug === params.slug);

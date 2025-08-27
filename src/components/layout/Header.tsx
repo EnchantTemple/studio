@@ -6,18 +6,20 @@ import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { navItems as navItemKeys } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
-import { useTranslations } from 'next-intl';
+import type { NavItem } from '@/lib/types';
 
-export function Header() {
+
+interface HeaderProps {
+    navItems: NavItem[];
+    bookNowLabel: string;
+}
+
+export function Header({ navItems, bookNowLabel }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-  const t = useTranslations('Navigation');
-
-  const navItems = navItemKeys.map(item => ({...item, label: t(item.label as any)}));
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -46,7 +48,7 @@ export function Header() {
           <LanguageSwitcher location="header" />
           <ThemeToggle />
           <Button asChild className="hidden md:inline-flex rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/book-now">{t('bookNow')}</Link>
+            <Link href="/book-now">{bookNowLabel}</Link>
           </Button>
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
@@ -85,7 +87,7 @@ export function Header() {
                 ))}
               </div>
                <Button asChild className="mt-6 w-full rounded-full bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => setIsMenuOpen(false)}>
-                 <Link href="/book-now">{t('bookNow')}</Link>
+                 <Link href="/book-now">{bookNowLabel}</Link>
                </Button>
             </SheetContent>
           </Sheet>

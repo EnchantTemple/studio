@@ -1,14 +1,9 @@
-import type { Metadata } from 'next';
+'use client';
 import { testimonials } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Star } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-
-export const metadata: Metadata = {
-  title: 'Testimonials',
-  description: 'Read authentic testimonials from our happy clients across the globe. See how SolutionTemple has helped reunite lovers and restore relationships.',
-};
 
 export default function TestimonialsPage() {
   return (

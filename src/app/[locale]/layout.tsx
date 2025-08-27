@@ -7,8 +7,10 @@ import { Footer } from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import WhatsAppButton from '@/components/layout/WhatsAppButton';
-import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
+import {NextIntlClientProvider, useMessages} from 'next-intl';
+import {getMessages, getTranslations} from 'next-intl/server';
+import { navItems as navItemKeys } from '@/lib/data';
+
 
 const alegreya = Alegreya({
   subsets: ['latin'],
@@ -32,6 +34,26 @@ export default async function RootLayout({
   params: {locale: string};
 }>) {
   const messages = await getMessages();
+  const t = await getTranslations({locale, namespace: 'Navigation'});
+  const tFooter = await getTranslations({locale, namespace: 'Footer'});
+
+  const navItems = navItemKeys.map(item => ({...item, label: t(item.label as any)}));
+  
+  const footerTranslations = {
+    tagline: tFooter('tagline'),
+    quickLinks: tFooter('quickLinks'),
+    contactUs: tFooter('contactUs'),
+    whatsapp: tFooter('whatsapp'),
+    email: tFooter('email'),
+    workingHours: tFooter('workingHours'),
+    newsletter: tFooter('newsletter'),
+    newsletter_prompt: tFooter('newsletter_prompt'),
+    subscribe: tFooter('subscribe'),
+    copyright: tFooter('copyright', {year: new Date().getFullYear()}),
+    privacyPolicy: tFooter('privacyPolicy'),
+    refundPolicy: tFooter('refundPolicy'),
+    bookNow: t('bookNow')
+  };
 
   return (
     <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
@@ -43,9 +65,9 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
           >
-            <Header />
+            <Header navItems={navItems} bookNowLabel={t('bookNow')} />
             <main className="flex-grow">{children}</main>
-            <Footer />
+            <Footer navItems={navItems} translations={footerTranslations} />
             <WhatsAppButton />
             <Toaster />
           </ThemeProvider>

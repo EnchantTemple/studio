@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+'use client';
 import {
   Accordion,
   AccordionContent,
@@ -6,13 +6,8 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { Mail, MessageCircle } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Frequently Asked Questions',
-  description: 'Find answers to common questions about our services, spells, and process.',
-};
 
 const faqs = [
   {

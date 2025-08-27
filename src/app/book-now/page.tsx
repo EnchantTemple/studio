@@ -1,10 +1,5 @@
-import type { Metadata } from 'next';
+'use client';
 import { BookingForm } from './_components/BookingForm';
-
-export const metadata: Metadata = {
-  title: 'Book Your Spell',
-  description: 'Book your personalized spell casting session. Fill out our confidential form to begin your journey towards love and happiness.',
-};
 
 export default function BookNowPage() {
   return (

@@ -1,16 +1,11 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
+'use client';
+import { Link } from '@/navigation';
 import Image from 'next/image';
 import { blogPosts } from '@/lib/data';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { format, parseISO } from 'date-fns';
-
-export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Read articles on love spells, spiritual energy, and relationship healing. Gain insights from our 12+ years of experience.',
-};
 
 export default function BlogPage() {
   return (

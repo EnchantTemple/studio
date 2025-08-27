@@ -1,14 +1,9 @@
+'use client';
 import Image from 'next/image';
-import type { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check, Shield, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: 'About Us',
-  description: 'Learn about SolutionTemple, our 5th-generation African healer circle, our certifications, and our core values of ethical spell casting.',
-};
+import { Link } from '@/navigation';
 
 const certifications = [
     { name: "Energy Healing License", board: "Holistic Practitioner Board" },

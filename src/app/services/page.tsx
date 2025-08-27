@@ -1,15 +1,11 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
+'use client';
+import { Link } from '@/navigation';
 import Image from 'next/image';
 import { services } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Sparkles } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Our Services',
-  description: 'Explore our range of powerful, ethical love spells, including reuniting lovers, attracting new love, and strengthening relationships. Book your personalized ritual today.',
-};
 
 export default function ServicesPage() {
   return (
