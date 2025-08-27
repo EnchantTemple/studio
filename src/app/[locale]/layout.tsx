@@ -55,23 +55,21 @@ export default async function RootLayout({
   };
 
   return (
-    <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
-      <body className={cn('antialiased font-body', alegreya.variable)}>
-       <NextIntlClientProvider locale={locale} messages={messages}>
-          <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-          >
+    <div lang={locale} className={cn('scroll-smooth antialiased font-body', alegreya.variable)}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+        >
             <Header navItems={navItems} bookNowLabel={t('bookNow')} />
             <main className="flex-grow">{children}</main>
             <Footer navItems={navItems} translations={footerTranslations} />
             <WhatsAppButton />
             <Toaster />
-          </ThemeProvider>
+        </ThemeProvider>
         </NextIntlClientProvider>
-      </body>
-    </html>
+    </div>
   );
 }
