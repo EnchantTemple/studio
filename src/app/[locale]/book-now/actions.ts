@@ -1,13 +1,27 @@
-
 'use server';
 
 import { bookingSchema, type BookingFormValues } from '@/lib/schemas';
-import { getTranslations } from 'next-intl/server';
+import messages from '../../../messages/en.json';
 
+// A simple helper to get nested keys.
+const getErrorMessages = (key: string) => {
+    const path = `BookNowPage.form.errors.${key}`;
+    return path.split('.').reduce((obj: any, k) => (obj && obj[k] !== 'undefined') ? obj[k] : undefined, messages);
+}
 
 export async function submitBooking(data: BookingFormValues) {
-  const t = await getTranslations('BookNowPage');
-  const validationResult = bookingSchema(t).safeParse(data);
+  const schema = bookingSchema({
+      fullName: getErrorMessages('fullName') || 'Full name must be at least 2 characters.',
+      whatsappNumber: getErrorMessages('whatsappNumber') || 'Please enter a valid WhatsApp number.',
+      email: getErrorMessages('email') || 'Please enter a valid email address.',
+      spellType: getErrorMessages('spellType') || 'Please select a valid spell type.',
+      messageLength: getErrorMessages('messageLength') || 'Message must be at least 10 characters.',
+      photoSize: getErrorMessages('photoSize') || 'Max image size is 5MB.',
+      photoType: getErrorMessages('photoType') || 'Only .jpg, .jpeg, .png and .webp formats are supported.',
+      termsAccepted: getErrorMessages('termsAccepted') || 'You must accept the terms and conditions.',
+  });
+  
+  const validationResult = schema.safeParse(data);
 
   if (!validationResult.success) {
     console.error('Validation failed:', validationResult.error.flatten());

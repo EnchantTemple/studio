@@ -1,27 +1,24 @@
 'use client';
 import { BookingForm } from './_components/BookingForm';
-import { useTranslations } from 'next-intl';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useEffect, useState } from 'react';
 
 export default function BookNowPage() {
-  const t = useTranslations('BookNowPage');
   const { translate } = useTranslation();
   const [content, setContent] = useState({
-      hero_title: t('hero_title'),
-      hero_subtitle: t('hero_subtitle'),
+      hero_title: 'Book Your Spell',
+      hero_subtitle: 'Take the first step towards restoring harmony in your life. Your information is 100% confidential.',
   });
 
   useEffect(() => {
     const translateContent = async () => {
-        const translated = {
-            hero_title: await translate(t('hero_title')),
-            hero_subtitle: await translate(t('hero_subtitle')),
-        };
-        setContent(translated);
+        setContent({
+            hero_title: translate('BookNowPage.hero_title', 'Book Your Spell'),
+            hero_subtitle: translate('BookNowPage.hero_subtitle', 'Take the first step towards restoring harmony in your life. Your information is 100% confidential.'),
+        });
     }
     translateContent();
-  }, [translate, t]);
+  }, [translate]);
 
   return (
     <>

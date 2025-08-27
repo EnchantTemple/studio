@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -6,7 +5,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { bookingSchema, type BookingFormValues } from '@/lib/schemas';
 import { getServices } from '@/lib/data';
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -26,8 +24,6 @@ import { useTranslation } from '@/hooks/useTranslation';
 
 export function BookingForm() {
   const { toast } = useToast();
-  const t = useTranslations('BookNowPage');
-  const tServices = useTranslations('HomePage.Services');
   
   const [services, setServices] = useState<Service[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,80 +31,91 @@ export function BookingForm() {
   const { translate } = useTranslation();
 
   const [content, setContent] = useState({
-    form_title: t('form_title'),
-    form_desc: t('form_desc'),
-    fullName_label: t('fullName_label'),
-    fullName_placeholder: t('fullName_placeholder'),
-    whatsapp_label: t('whatsapp_label'),
-    whatsapp_placeholder: t('whatsapp_placeholder'),
-    email_label: t('email_label'),
-    email_placeholder: t('email_placeholder'),
-    spellType_label: t('spellType_label'),
-    spellType_placeholder: t('spellType_placeholder'),
-    targetName_label: t('targetName_label'),
-    targetName_placeholder: t('targetName_placeholder'),
-    photo_label: t('photo_label'),
-    photo_desc: t('photo_desc'),
-    situation_label: t('situation_label'),
-    situation_placeholder: t('situation_placeholder'),
-    terms_label: t.raw('terms_label'),
-    terms_link_text: t('terms_link_text'),
-    terms_desc: t('terms_desc'),
-    recaptcha: t.raw('recaptcha'),
-    submitting: t('submitting'),
-    submit_button: t('submit_button'),
-    success_title: t('success_title'),
-    success_desc: t('success_desc'),
-    error_title: t('error_title'),
-    error_desc: t('error_desc'),
+    form_title: 'Your Confidential Information',
+    form_desc: 'Please fill out the form below to begin your consultation.',
+    fullName_label: 'Full Name',
+    fullName_placeholder: 'Your full name',
+    whatsapp_label: 'WhatsApp Number',
+    whatsapp_placeholder: '+1 123 456 7890',
+    email_label: 'Email Address',
+    email_placeholder: 'you@example.com',
+    spellType_label: 'Type of Spell',
+    spellType_placeholder: 'Select a spell service',
+    targetName_label: 'Target Person’s First Name (Optional)',
+    targetName_placeholder: 'e.g., John',
+    photo_label: 'Upload Photo (Optional)',
+    photo_desc: 'A photo can help focus the spell\'s energy. Max 5MB.',
+    situation_label: 'Describe Your Situation',
+    situation_placeholder: 'Tell us a little bit about your situation...',
+    terms_label: 'I accept the {termsLink}.',
+    terms_link_text: 'Terms & Conditions',
+    terms_desc: 'Your data is safe and will never be shared.',
+    recaptcha: 'This site is protected by reCAPTCHA and the Google {privacyLink} and {termsServiceLink} apply.',
+    submitting: 'Submitting...',
+    submit_button: 'Book Your Spell',
+    success_title: 'Booking Sent!',
+    success_desc: 'You will be contacted via WhatsApp within 12 hours.',
+    error_title: 'Error',
+    error_desc: 'There was a problem with your submission. Please check the form and try again.',
   });
 
+  const t = (key: string, defaultText: string) => translate(`BookNowPage.${key}`, defaultText);
+  const tErrors = (key: string, defaultText: string) => translate(`BookNowPage.form.errors.${key}`, defaultText);
+  
   useEffect(() => {
     const translateContent = async () => {
-      const translated = {
-        form_title: await translate(t('form_title')),
-        form_desc: await translate(t('form_desc')),
-        fullName_label: await translate(t('fullName_label')),
-        fullName_placeholder: await translate(t('fullName_placeholder')),
-        whatsapp_label: await translate(t('whatsapp_label')),
-        whatsapp_placeholder: await translate(t('whatsapp_placeholder')),
-        email_label: await translate(t('email_label')),
-        email_placeholder: await translate(t('email_placeholder')),
-        spellType_label: await translate(t('spellType_label')),
-        spellType_placeholder: await translate(t('spellType_placeholder')),
-        targetName_label: await translate(t('targetName_label')),
-        targetName_placeholder: await translate(t('targetName_placeholder')),
-        photo_label: await translate(t('photo_label')),
-        photo_desc: await translate(t('photo_desc')),
-        situation_label: await translate(t('situation_label')),
-        situation_placeholder: await translate(t('situation_placeholder')),
-        terms_label: await translate(t.raw('terms_label')),
-        terms_link_text: await translate(t('terms_link_text')),
-        terms_desc: await translate(t('terms_desc')),
-        recaptcha: await translate(t.raw('recaptcha')),
-        submitting: await translate(t('submitting')),
-        submit_button: await translate(t('submit_button')),
-        success_title: await translate(t('success_title')),
-        success_desc: await translate(t('success_desc')),
-        error_title: await translate(t('error_title')),
-        error_desc: await translate(t('error_desc')),
-      };
-      setContent(translated);
+      setContent({
+        form_title: t('form_title', 'Your Confidential Information'),
+        form_desc: t('form_desc', 'Please fill out the form below to begin your consultation.'),
+        fullName_label: t('fullName_label', 'Full Name'),
+        fullName_placeholder: t('fullName_placeholder', 'Your full name'),
+        whatsapp_label: t('whatsapp_label', 'WhatsApp Number'),
+        whatsapp_placeholder: t('whatsapp_placeholder', '+1 123 456 7890'),
+        email_label: t('email_label', 'Email Address'),
+        email_placeholder: t('email_placeholder', 'you@example.com'),
+        spellType_label: t('spellType_label', 'Type of Spell'),
+        spellType_placeholder: t('spellType_placeholder', 'Select a spell service'),
+        targetName_label: t('targetName_label', 'Target Person’s First Name (Optional)'),
+        targetName_placeholder: t('targetName_placeholder', 'e.g., John'),
+        photo_label: t('photo_label', 'Upload Photo (Optional)'),
+        photo_desc: t('photo_desc', "A photo can help focus the spell's energy. Max 5MB."),
+        situation_label: t('situation_label', 'Describe Your Situation'),
+        situation_placeholder: t('situation_placeholder', 'Tell us a little bit about your situation...'),
+        terms_label: t('terms_label', 'I accept the {termsLink}.'),
+        terms_link_text: t('terms_link_text', 'Terms & Conditions'),
+        terms_desc: t('terms_desc', 'Your data is safe and will never be shared.'),
+        recaptcha: t('recaptcha', 'This site is protected by reCAPTCHA and the Google {privacyLink} and {termsServiceLink} apply.'),
+        submitting: t('submitting', 'Submitting...'),
+        submit_button: t('submit_button', 'Book Your Spell'),
+        success_title: t('success_title', 'Booking Sent!'),
+        success_desc: t('success_desc', 'You will be contacted via WhatsApp within 12 hours.'),
+        error_title: t('error_title', 'Error'),
+        error_desc: t('error_desc', 'There was a problem with your submission. Please check the form and try again.'),
+      });
     };
     translateContent();
-  }, [translate, t]);
+  }, [translate]);
 
 
   useEffect(() => {
     const fetchServices = async () => {
-      const fetchedServices = await getServices(tServices);
+      const fetchedServices = getServices();
       setServices(fetchedServices);
     };
     fetchServices();
-  }, [tServices]);
+  }, []);
 
   const form = useForm<BookingFormValues>({
-    resolver: zodResolver(bookingSchema(t)),
+    resolver: zodResolver(bookingSchema({
+      fullName: tErrors('fullName', 'Full name must be at least 2 characters.'),
+      whatsappNumber: tErrors('whatsappNumber', 'Please enter a valid WhatsApp number.'),
+      email: tErrors('email', 'Please enter a valid email address.'),
+      spellType: tErrors('spellType', 'Please select a valid spell type.'),
+      messageLength: tErrors('messageLength', 'Message must be at least 10 characters.'),
+      photoSize: tErrors('photoSize', 'Max image size is 5MB.'),
+      photoType: tErrors('photoType', 'Only .jpg, .jpeg, .png and .webp formats are supported.'),
+      termsAccepted: tErrors('termsAccepted', 'You must accept the terms and conditions.'),
+    })),
     defaultValues: {
       fullName: '',
       whatsappNumber: '',
@@ -206,7 +213,7 @@ export function BookingForm() {
                       <SelectContent>
                         {services.map((service) => (
                           <SelectItem key={service.key} value={service.name}>
-                            {service.name}
+                            {translate(`HomePage.Services.${service.key}_name`, service.name)}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -281,9 +288,8 @@ export function BookingForm() {
                         htmlFor={field.name}
                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
-                        {t.rich('terms_label', {
-                          termsLink: (chunks) => <Link href="/privacy-policy" className="underline hover:text-primary">{chunks}</Link>
-                        })}
+                        {content.terms_label.replace('{termsLink}', '')}
+                        <Link href="/privacy-policy" className="underline hover:text-primary">{content.terms_link_text}</Link>
                       </label>
                       <FormDescription>
                         {content.terms_desc}
@@ -294,12 +300,13 @@ export function BookingForm() {
                 )}
               />
 
-               <div className="text-xs text-muted-foreground">
-                  {t.rich('recaptcha', {
-                    privacyLink: (chunks) => <a href="https://policies.google.com/privacy" className="underline">{chunks}</a>,
-                    termsServiceLink: (chunks) => <a href="https://policies.google.com/terms" className="underline">{chunks}</a>
-                  })}
-              </div>
+               <div className="text-xs text-muted-foreground"
+                    dangerouslySetInnerHTML={{
+                        __html: content.recaptcha
+                            .replace('{privacyLink}', `<a href="https://policies.google.com/privacy" class="underline">Privacy Policy</a>`)
+                            .replace('{termsServiceLink}', `<a href="https://policies.google.com/terms" class="underline">Terms of Service</a>`)
+                    }}
+                />
             </CardContent>
             <CardFooter>
               <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" disabled={isSubmitting}>

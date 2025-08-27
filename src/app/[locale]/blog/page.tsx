@@ -5,40 +5,37 @@ import { getBlogPosts } from '@/lib/data';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { format, parseISO } from 'date-fns';
-import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import type { BlogPost } from '@/lib/types';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function BlogPage() {
-  const t = useTranslations('BlogPage');
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const { translate } = useTranslation();
   const [content, setContent] = useState({
-      hero_title: t('hero_title'),
-      hero_subtitle: t('hero_subtitle'),
-      read_more: t('read_more'),
+      hero_title: 'Spiritual Insights',
+      hero_subtitle: 'Explore articles on love, energy, and the art of ethical spell casting.',
+      read_more: 'Read More →',
   });
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const blogPosts = await getBlogPosts(t);
+      const blogPosts = getBlogPosts();
       setPosts(blogPosts);
     };
     fetchPosts();
-  }, [t]);
+  }, []);
 
   useEffect(() => {
       const translateContent = async () => {
-          const translated = {
-              hero_title: await translate(t('hero_title')),
-              hero_subtitle: await translate(t('hero_subtitle')),
-              read_more: await translate(t('read_more')),
-          };
-          setContent(translated);
+          setContent({
+              hero_title: translate('BlogPage.hero_title', 'Spiritual Insights'),
+              hero_subtitle: translate('BlogPage.hero_subtitle', 'Explore articles on love, energy, and the art of ethical spell casting.'),
+              read_more: translate('BlogPage.read_more', 'Read More →'),
+          });
       };
       translateContent();
-  }, [translate, t]);
+  }, [translate]);
 
 
   return (
@@ -69,7 +66,7 @@ export default function BlogPage() {
                 </Link>
                 <CardHeader>
                   <CardTitle className="font-headline text-xl">
-                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                    <Link href={`/blog/${post.slug}`}>{translate(`BlogPage.${post.key}_title`, post.title)}</Link>
                   </CardTitle>
                   <CardDescription>
                     <time dateTime={post.date}>
@@ -78,7 +75,7 @@ export default function BlogPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <p className="text-muted-foreground">{post.excerpt}</p>
+                  <p className="text-muted-foreground">{translate(`BlogPage.${post.key}_excerpt`, post.excerpt)}</p>
                 </CardContent>
                 <CardFooter>
                   <Button asChild variant="link" className="p-0">

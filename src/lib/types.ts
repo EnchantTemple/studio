@@ -13,6 +13,7 @@ export type Service = {
 };
 
 export type Testimonial = {
+  key: string;
   quote: string;
   name: string;
   location: string;
@@ -22,6 +23,7 @@ export type Testimonial = {
 };
 
 export type BlogPost = {
+  key: string;
   slug: string;
   title: string;
   excerpt: string;
@@ -31,6 +33,7 @@ export type BlogPost = {
 };
 
 export type FaqItem = {
+  key: string;
   question: string;
   answer: string;
 };

@@ -10,16 +10,17 @@ import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import type { NavItem } from '@/lib/types';
+import { useTranslation } from '@/hooks/useTranslation';
 
 
 interface HeaderProps {
     navItems: NavItem[];
-    bookNowLabel: string;
 }
 
-export function Header({ navItems, bookNowLabel }: HeaderProps) {
+export function Header({ navItems }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { translate } = useTranslation();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -40,7 +41,7 @@ export function Header({ navItems, bookNowLabel }: HeaderProps) {
                 pathname === item.href ? 'text-primary' : 'text-foreground/60'
               )}
             >
-              {item.label}
+              {translate(`Navigation.${item.label}`, item.label)}
             </Link>
           ))}
         </nav>
@@ -48,7 +49,7 @@ export function Header({ navItems, bookNowLabel }: HeaderProps) {
           <LanguageSwitcher location="header" />
           <ThemeToggle />
           <Button asChild className="hidden md:inline-flex rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/book-now">{bookNowLabel}</Link>
+            <Link href="/book-now">{translate('Navigation.bookNow', 'Book Now')}</Link>
           </Button>
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
@@ -82,12 +83,12 @@ export function Header({ navItems, bookNowLabel }: HeaderProps) {
                         pathname === item.href ? "text-primary font-semibold" : "text-foreground/70"
                     )}
                   >
-                    {item.label}
+                    {translate(`Navigation.${item.label}`, item.label)}
                   </Link>
                 ))}
               </div>
                <Button asChild className="mt-6 w-full rounded-full bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => setIsMenuOpen(false)}>
-                 <Link href="/book-now">{bookNowLabel}</Link>
+                 <Link href="/book-now">{translate('Navigation.bookNow', 'Book Now')}</Link>
                </Button>
             </SheetContent>
           </Sheet>

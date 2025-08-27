@@ -1,51 +1,49 @@
 'use client';
 import ClientOnlyDate from '@/components/ClientOnlyDate';
-import { useTranslations } from 'next-intl';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useEffect, useState } from 'react';
 
 export default function RefundPolicyPage() {
-  const t = useTranslations('RefundPolicyPage');
   const { translate } = useTranslation();
 
   const [content, setContent] = useState({
-    title: t('title'),
-    last_updated: t('last_updated'),
-    h2_1: t('h2_1'),
-    p1: t('p1'),
-    h2_2: t('h2_2'),
-    p2: t('p2'),
-    h2_3: t('h2_3'),
-    p3: t('p3'),
-    li1: t.raw('li1'),
-    li2: t.raw('li2'),
-    h2_4: t('h2_4'),
-    p4: t('p4'),
-    h2_5: t('h2_5'),
-    p5: t('p5'),
+    title: 'Refund Policy',
+    last_updated: 'Last updated: ',
+    h2_1: 'Nature of Our Services',
+    p1: "At SolutionTemple, we provide spiritual services that involve the casting of spells and rituals. These services require significant time, energy, and the use of specialized materials for each client's unique situation. The work we perform is spiritual in nature, and the outcomes are influenced by a multitude of energetic factors.",
+    h2_2: 'Our Commitment',
+    p2: 'We are committed to performing each and every ritual with the highest level of care, expertise, and ethical consideration. We pour our energy and our resources into your case to create the most favorable conditions for your desired outcome.',
+    h2_3: 'Refunds',
+    p3: 'Due to the nature of our work, we have a strict no-refund policy once a ritual has begun.',
+    li1: '<strong>Before the Ritual:</strong> If you wish to cancel your service before any work has commenced, you may be eligible for a partial or full refund, minus any consultation fees or processing charges. Please contact us immediately if you wish to cancel.',
+    li2: '<strong>After the Ritual Has Begun:</strong> Once we have started the ritual process, which includes the consultation, preparation of materials, and the spell casting itself, we cannot offer any refunds. At this point, our time, energy, and resources have already been fully committed to your case.',
+    h2_4: 'No Guarantees of Specific Outcomes',
+    p4: 'While we have a high success rate and countless satisfied clients, the laws of the universe and individual free will mean that we cannot guarantee specific results or timelines. Spiritual work is about influencing energies, not controlling them. By purchasing our services, you acknowledge and agree that you are paying for our time, expertise, and the performance of the ritual itself, not a guaranteed outcome.',
+    h2_5: 'Contact Us',
+    p5: 'If you have any questions about our Refund Policy, please contact us before booking a service at: hello@solutiontemple.com',
   });
 
   useEffect(() => {
     const translateContent = async () => {
       setContent({
-        title: await translate(t('title')),
-        last_updated: await translate(t('last_updated')),
-        h2_1: await translate(t('h2_1')),
-        p1: await translate(t('p1')),
-        h2_2: await translate(t('h2_2')),
-        p2: await translate(t('p2')),
-        h2_3: await translate(t('h2_3')),
-        p3: await translate(t('p3')),
-        li1: await translate(t.raw('li1')),
-        li2: await translate(t.raw('li2')),
-        h2_4: await translate(t('h2_4')),
-        p4: await translate(t('p4')),
-        h2_5: await translate(t('h2_5')),
-        p5: await translate(t('p5')),
+        title: translate('RefundPolicyPage.title', 'Refund Policy'),
+        last_updated: translate('RefundPolicyPage.last_updated', 'Last updated: '),
+        h2_1: translate('RefundPolicyPage.h2_1', 'Nature of Our Services'),
+        p1: translate('RefundPolicyPage.p1', "At SolutionTemple, we provide spiritual services that involve the casting of spells and rituals. These services require significant time, energy, and the use of specialized materials for each client's unique situation. The work we perform is spiritual in nature, and the outcomes are influenced by a multitude of energetic factors."),
+        h2_2: translate('RefundPolicyPage.h2_2', 'Our Commitment'),
+        p2: translate('RefundPolicyPage.p2', 'We are committed to performing each and every ritual with the highest level of care, expertise, and ethical consideration. We pour our energy and our resources into your case to create the most favorable conditions for your desired outcome.'),
+        h2_3: translate('RefundPolicyPage.h2_3', 'Refunds'),
+        p3: translate('RefundPolicyPage.p3', 'Due to the nature of our work, we have a strict no-refund policy once a ritual has begun.'),
+        li1: translate('RefundPolicyPage.li1', '<strong>Before the Ritual:</strong> If you wish to cancel your service before any work has commenced, you may be eligible for a partial or full refund, minus any consultation fees or processing charges. Please contact us immediately if you wish to cancel.'),
+        li2: translate('RefundPolicyPage.li2', '<strong>After the Ritual Has Begun:</strong> Once we have started the ritual process, which includes the consultation, preparation of materials, and the spell casting itself, we cannot offer any refunds. At this point, our time, energy, and resources have already been fully committed to your case.'),
+        h2_4: translate('RefundPolicyPage.h2_4', 'No Guarantees of Specific Outcomes'),
+        p4: translate('RefundPolicyPage.p4', 'While we have a high success rate and countless satisfied clients, the laws of the universe and individual free will mean that we cannot guarantee specific results or timelines. Spiritual work is about influencing energies, not controlling them. By purchasing our services, you acknowledge and agree that you are paying for our time, expertise, and the performance of the ritual itself, not a guaranteed outcome.'),
+        h2_5: translate('RefundPolicyPage.h2_5', 'Contact Us'),
+        p5: translate('RefundPolicyPage.p5', 'If you have any questions about our Refund Policy, please contact us before booking a service at: hello@solutiontemple.com'),
       });
     };
     translateContent();
-  }, [translate, t]);
+  }, [translate]);
 
   return (
     <div className="container max-w-4xl mx-auto py-16 md:py-24">

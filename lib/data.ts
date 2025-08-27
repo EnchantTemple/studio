@@ -1,5 +1,5 @@
 import type { NavItem, Service, Testimonial, BlogPost, FaqItem } from '@/lib/types';
-import messages from '../../messages/en.json';
+import messages from '../messages/en.json';
 
 export const navItems: NavItem[] = [
   { href: '/', label: 'home' },
@@ -30,6 +30,7 @@ export const getTestimonials = (): Testimonial[] => {
     const testimonialKeys = ['testimonial1', 'testimonial2', 'testimonial3', 'testimonial4', 'testimonial5', 'testimonial6'];
     
     return testimonialKeys.map((key, index) => ({
+        key,
         quote: getNestedValue(messages, `TestimonialsPage.${key}_quote`) || 'Great service!',
         name: getNestedValue(messages, `TestimonialsPage.${key}_name`) || `Client ${index + 1}`,
         location: getNestedValue(messages, `TestimonialsPage.${key}_location`) || 'Earth',
@@ -43,6 +44,7 @@ export const getBlogPosts = (): BlogPost[] => {
      const postKeys = ['post1', 'post2', 'post3', 'post4'];
 
      return postKeys.map((key, index) => ({
+        key,
         slug: `slug-${key}`,
         title: getNestedValue(messages, `BlogPage.${key}_title`) || `Blog Post ${index + 1}`,
         excerpt: getNestedValue(messages, `BlogPage.${key}_excerpt`) || 'Excerpt...',
@@ -56,15 +58,8 @@ export const getFaqs = (): FaqItem[] => {
     const faqKeys = ['faq1', 'faq2', 'faq3', 'faq4', 'faq5', 'faq6'];
 
     return faqKeys.map((key, index) => ({
+        key,
         question: getNestedValue(messages, `FaqPage.${key}_question`) || `Question ${index + 1}?`,
         answer: getNestedValue(messages, `FaqPage.${key}_answer`) || 'Answer.'
     }));
 };
-
-export const getMessages = async (locale: string) => {
-    try {
-        return (await import(`../../messages/${locale}.json`)).default;
-    } catch (e) {
-        return (await import(`../../messages/en.json`)).default;
-    }
-}

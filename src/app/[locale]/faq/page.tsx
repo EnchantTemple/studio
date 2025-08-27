@@ -7,47 +7,44 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Mail, MessageCircle } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { getFaqs } from '@/lib/data';
 import { useEffect, useState } from 'react';
 import type { FaqItem } from '@/lib/types';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function FaqPage() {
-  const t = useTranslations('FaqPage');
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
   const { translate } = useTranslation();
   const [content, setContent] = useState({
-      hero_title: t('hero_title'),
-      hero_subtitle: t('hero_subtitle'),
-      cta_title: t('cta_title'),
-      cta_p: t('cta_p'),
-      cta_whatsapp_button: t('cta_whatsapp_button'),
-      cta_email_button: t('cta_email_button'),
+      hero_title: 'Frequently Asked Questions',
+      hero_subtitle: 'Find answers to common questions about our services, spells, and process.',
+      cta_title: 'Still Have Questions?',
+      cta_p: "If you can't find the answer you're looking for, please don't hesitate to reach out to us directly.",
+      cta_whatsapp_button: 'Chat on WhatsApp',
+      cta_email_button: 'Email Us',
   });
 
   useEffect(() => {
     const fetchFaqs = async () => {
-      const allFaqs = await getFaqs(t);
+      const allFaqs = getFaqs();
       setFaqs(allFaqs);
     };
     fetchFaqs();
-  }, [t]);
+  }, []);
 
   useEffect(() => {
     const translateContent = async () => {
-        const translated = {
-            hero_title: await translate(t('hero_title')),
-            hero_subtitle: await translate(t('hero_subtitle')),
-            cta_title: await translate(t('cta_title')),
-            cta_p: await translate(t('cta_p')),
-            cta_whatsapp_button: await translate(t('cta_whatsapp_button')),
-            cta_email_button: await translate(t('cta_email_button')),
-        };
-        setContent(translated);
+        setContent({
+            hero_title: translate('FaqPage.hero_title', 'Frequently Asked Questions'),
+            hero_subtitle: translate('FaqPage.hero_subtitle', 'Find answers to common questions about our services, spells, and process.'),
+            cta_title: translate('FaqPage.cta_title', 'Still Have Questions?'),
+            cta_p: translate('FaqPage.cta_p', "If you can't find the answer you're looking for, please don't hesitate to reach out to us directly."),
+            cta_whatsapp_button: translate('FaqPage.cta_whatsapp_button', 'Chat on WhatsApp'),
+            cta_email_button: translate('FaqPage.cta_email_button', 'Email Us'),
+        });
     }
     translateContent();
-  }, [translate, t]);
+  }, [translate]);
 
   return (
     <>
@@ -66,10 +63,10 @@ export default function FaqPage() {
             {faqs.map((faq, index) => (
               <AccordionItem value={`item-${index}`} key={index}>
                 <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
-                  {faq.question}
+                  {translate(`FaqPage.faq${index+1}_question`, faq.question)}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  {faq.answer}
+                  {translate(`FaqPage.faq${index+1}_answer`, faq.answer)}
                 </AccordionContent>
               </AccordionItem>
             ))}

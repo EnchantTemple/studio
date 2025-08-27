@@ -9,18 +9,12 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getServices, getTestimonials, getFaqs } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
 import type { Service, Testimonial, FaqItem } from '@/lib/types';
 import { useTranslation } from '@/hooks/useTranslation';
 
 
 export default function Home() {
-  const t = useTranslations('HomePage');
-  const tServices = useTranslations('HomePage.Services');
-  const tTestimonials = useTranslations('TestimonialsPage');
-  const tFaqs = useTranslations('FaqPage');
-  
   const [highlightedServices, setHighlightedServices] = useState<Service[]>([]);
   const [highlightedTestimonials, setHighlightedTestimonials] = useState<Testimonial[]>([]);
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
@@ -28,94 +22,94 @@ export default function Home() {
   const { translate } = useTranslation();
   const [content, setContent] = useState({
       Hero: {
-          title: t('Hero.title'),
-          subtitle: t('Hero.subtitle'),
-          button: t('Hero.button')
+          title: 'Restore Your Love Today 🌹',
+          subtitle: 'A sanctuary where love, energy, and intention align to reunite you with your true partner.',
+          button: 'Book Your Spell Now'
       },
       Intro: {
-          title: t('Intro.title'),
-          description: t('Intro.description'),
-          stat1_value: t('Intro.stat1_value'),
-          stat1_label: t('Intro.stat1_label'),
-          stat2_value: t('Intro.stat2_value'),
-          stat2_label: t('Intro.stat2_label'),
-          stat3_value: t('Intro.stat3_value'),
-          stat3_label: t('Intro.stat3_label')
+          title: 'Welcome to SolutionTemple',
+          description: 'I’m a licensed spiritual consultant with over 12 years of experience helping souls reunite with their true partners through ancient, ethical, and natural spell casting.',
+          stat1_value: '1200+',
+          stat1_label: 'Happy Clients',
+          stat2_value: '20+',
+          stat2_label: 'Countries Served',
+          stat3_value: '24/7',
+          stat3_label: 'WhatsApp Support'
       },
       Services: {
-          badge: t('Services.badge'),
-          title: t('Services.title'),
-          subtitle: t('Services.subtitle'),
-          button: t('Services.button'),
-          viewAllButton: t('Services.viewAllButton')
+          badge: 'Our Services',
+          title: 'Spells for Every Heart\'s Need',
+          subtitle: 'Each ritual is performed with utmost care, personalized to your unique situation.',
+          button: 'Book This Spell',
+          viewAllButton: 'View All Services'
       },
       Testimonials: {
-          title: t('Testimonials.title'),
-          subtitle: t('Testimonials.subtitle'),
-          readMoreButton: t('Testimonials.readMoreButton')
+          title: 'Trusted by Souls Worldwide',
+          subtitle: 'Read what my clients have to say about their experiences.',
+          readMoreButton: 'Read More Testimonials'
       },
       FAQ: {
-          title: t('FAQ.title'),
-          subtitle: t('FAQ.subtitle'),
-          moreQuestionsButton: t('FAQ.moreQuestionsButton')
+          title: 'Frequently Asked Questions',
+          subtitle: 'Find quick answers to common questions about our spiritual services.',
+          moreQuestionsButton: 'More Questions?'
       }
   });
 
   useEffect(() => {
     const fetchAndSetData = async () => {
-      const allServices = await getServices(tServices);
+      const allServices = getServices();
       setHighlightedServices(allServices.slice(0, 3));
       
-      const allTestimonials = await getTestimonials(tTestimonials);
+      const allTestimonials = getTestimonials();
       setHighlightedTestimonials(allTestimonials.slice(0, 2));
 
-      const allFaqs = await getFaqs(tFaqs);
+      const allFaqs = getFaqs();
       setFaqs(allFaqs.slice(0, 5));
     };
     
     fetchAndSetData();
-  }, [tServices, tTestimonials, tFaqs]);
+  }, []);
 
   useEffect(() => {
     const translateContent = async () => {
         const translatedContent = {
             Hero: {
-                title: await translate(t('Hero.title')),
-                subtitle: await translate(t('Hero.subtitle')),
-                button: await translate(t('Hero.button'))
+                title: translate('HomePage.Hero.title', 'Restore Your Love Today 🌹'),
+                subtitle: translate('HomePage.Hero.subtitle', 'A sanctuary where love, energy, and intention align to reunite you with your true partner.'),
+                button: translate('HomePage.Hero.button', 'Book Your Spell Now')
             },
             Intro: {
-                title: await translate(t('Intro.title')),
-                description: await translate(t('Intro.description')),
-                stat1_value: await translate(t('Intro.stat1_value')),
-                stat1_label: await translate(t('Intro.stat1_label')),
-                stat2_value: await translate(t('Intro.stat2_value')),
-                stat2_label: await translate(t('Intro.stat2_label')),
-                stat3_value: await translate(t('Intro.stat3_value')),
-                stat3_label: await translate(t('Intro.stat3_label'))
+                title: translate('HomePage.Intro.title', 'Welcome to SolutionTemple'),
+                description: translate('HomePage.Intro.description', 'I’m a licensed spiritual consultant with over 12 years of experience helping souls reunite with their true partners through ancient, ethical, and natural spell casting.'),
+                stat1_value: translate('HomePage.Intro.stat1_value', '1200+'),
+                stat1_label: translate('HomePage.Intro.stat1_label', 'Happy Clients'),
+                stat2_value: translate('HomePage.Intro.stat2_value', '20+'),
+                stat2_label: translate('HomePage.Intro.stat2_label', 'Countries Served'),
+                stat3_value: translate('HomePage.Intro.stat3_value', '24/7'),
+                stat3_label: translate('HomePage.Intro.stat3_label', 'WhatsApp Support')
             },
             Services: {
-                badge: await translate(t('Services.badge')),
-                title: await translate(t('Services.title')),
-                subtitle: await translate(t('Services.subtitle')),
-                button: await translate(t('Services.button')),
-                viewAllButton: await translate(t('Services.viewAllButton'))
+                badge: translate('HomePage.Services.badge', 'Our Services'),
+                title: translate('HomePage.Services.title', 'Spells for Every Heart\'s Need'),
+                subtitle: translate('HomePage.Services.subtitle', 'Each ritual is performed with utmost care, personalized to your unique situation.'),
+                button: translate('HomePage.Services.button', 'Book This Spell'),
+                viewAllButton: translate('HomePage.Services.viewAllButton', 'View All Services')
             },
             Testimonials: {
-                title: await translate(t('Testimonials.title')),
-                subtitle: await translate(t('Testimonials.subtitle')),
-                readMoreButton: await translate(t('Testimonials.readMoreButton'))
+                title: translate('HomePage.Testimonials.title', 'Trusted by Souls Worldwide'),
+                subtitle: translate('HomePage.Testimonials.subtitle', 'Read what my clients have to say about their experiences.'),
+                readMoreButton: translate('HomePage.Testimonials.readMoreButton', 'Read More Testimonials')
             },
             FAQ: {
-                title: await translate(t('FAQ.title')),
-                subtitle: await translate(t('FAQ.subtitle')),
-                moreQuestionsButton: await translate(t('FAQ.moreQuestionsButton'))
+                title: translate('HomePage.FAQ.title', 'Frequently Asked Questions'),
+                subtitle: translate('HomePage.FAQ.subtitle', 'Find quick answers to common questions about our spiritual services.'),
+                moreQuestionsButton: translate('HomePage.FAQ.moreQuestionsButton', 'More Questions?')
             }
         };
         setContent(translatedContent);
     };
     translateContent();
-  }, [translate, t]);
+  }, [translate]);
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
@@ -198,11 +192,11 @@ export default function Home() {
                     className="w-full h-48 object-cover"
                   />
                   <CardHeader>
-                    <CardTitle className="font-headline">{service.name}</CardTitle>
+                    <CardTitle className="font-headline">{translate(`HomePage.Services.${service.key}_name`, service.name)}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2 flex-grow">
-                    <p className="text-muted-foreground">{service.description}</p>
-                    <p className="text-sm font-semibold text-primary">{service.delivery}</p>
+                    <p className="text-muted-foreground">{translate(`HomePage.Services.${service.key}_desc`, service.description)}</p>
+                    <p className="text-sm font-semibold text-primary">{translate(`HomePage.Services.${service.key}_delivery`, service.delivery)}</p>
                   </CardContent>
                    <CardFooter>
                     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
@@ -238,8 +232,8 @@ export default function Home() {
                         <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-semibold">{testimonial.name}</p>
-                        <p className="text-sm text-muted-foreground">{testimonial.location}</p>
+                        <p className="font-semibold">{translate(`TestimonialsPage.testimonial${index+1}_name`, testimonial.name)}</p>
+                        <p className="text-sm text-muted-foreground">{translate(`TestimonialsPage.testimonial${index+1}_location`, testimonial.location)}</p>
                       </div>
                     </div>
                     <div className="flex mb-2">
@@ -247,7 +241,7 @@ export default function Home() {
                         <Star key={i} className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-gray-300'}`} />
                       ))}
                     </div>
-                    <blockquote className="text-lg italic text-foreground">&quot;{testimonial.quote}&quot;</blockquote>
+                    <blockquote className="text-lg italic text-foreground">&quot;{translate(`TestimonialsPage.testimonial${index+1}_quote`, testimonial.quote)}&quot;</blockquote>
                   </CardContent>
                 </Card>
               ))}
@@ -272,10 +266,10 @@ export default function Home() {
               {faqs.map((faq, index) => (
                 <AccordionItem value={`item-${index}`} key={index}>
                   <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
-                    {faq.question}
+                    {translate(`FaqPage.faq${index+1}_question`, faq.question)}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                    {faq.answer}
+                    {translate(`FaqPage.faq${index+1}_answer`, faq.answer)}
                   </AccordionContent>
                 </AccordionItem>
               ))}

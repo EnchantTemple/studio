@@ -4,38 +4,67 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check, Shield, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/navigation';
-import { useTranslations } from 'next-intl';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useEffect, useState } from 'react';
 
 export default function AboutPage() {
-    const t = useTranslations('AboutPage');
     const { translate } = useTranslation();
-
-    const content = {
-        hero_title: translate('AboutPage.hero_title', t('hero_title')),
-        hero_subtitle: translate('AboutPage.hero_subtitle', t('hero_subtitle')),
-        lineage_title: translate('AboutPage.lineage_title', t('lineage_title')),
-        lineage_p1: translate('AboutPage.lineage_p1', t('lineage_p1')),
-        lineage_p2: translate('AboutPage.lineage_p2', t('lineage_p2')),
-        credentials_title: translate('AboutPage.credentials_title', t('credentials_title')),
-        certifications_title: translate('AboutPage.certifications_title', t('certifications_title')),
-        cert1_name: translate('AboutPage.cert1_name', t('cert1_name')),
-        cert1_board: translate('AboutPage.cert1_board', t('cert1_board')),
-        cert2_name: translate('AboutPage.cert2_name', t('cert2_name')),
-        cert2_board: translate('AboutPage.cert2_board', t('cert2_board')),
-        cert3_name: translate('AboutPage.cert3_name', t('cert3_name')),
-        cert3_board: translate('AboutPage.cert3_board', t('cert3_board')),
-        values_title: translate('AboutPage.values_title', t('values_title')),
-        value1_name: translate('AboutPage.value1_name', t('value1_name')),
-        value1_desc: translate('AboutPage.value1_desc', t('value1_desc')),
-        value2_name: translate('AboutPage.value2_name', t('value2_name')),
-        value2_desc: translate('AboutPage.value2_desc', t('value2_desc')),
-        value3_name: translate('AboutPage.value3_name', t('value3_name')),
-        value3_desc: translate('AboutPage.value3_desc', t('value3_desc')),
-        cta_title: translate('AboutPage.cta_title', t('cta_title')),
-        cta_p: translate('AboutPage.cta_p', t('cta_p')),
-        cta_button: translate('AboutPage.cta_button', t('cta_button')),
-    };
+    const [content, setContent] = useState({
+        hero_title: 'Our Sacred Heritage',
+        hero_subtitle: 'A legacy of healing passed down through five generations.',
+        lineage_title: 'A Lineage of Divine Gifts',
+        lineage_p1: 'SolutionTemple is a 5th-generation African healer circle. Each spiritual consultant in the circle is born with the divine gift of energetic alignment and emotional healing. Our journey began in the sacred lands of Benin, where our elders passed down secret ancestral rituals for love and harmony.',
+        lineage_p2: 'We combine ancient wisdom with a modern understanding of energy dynamics to provide effective, ethical, and compassionate guidance to souls across the globe.',
+        credentials_title: 'Our Credentials & Guarantees',
+        certifications_title: 'Certifications',
+        cert1_name: 'Energy Healing License',
+        cert1_board: 'Holistic Practitioner Board',
+        cert2_name: 'Spiritual Wellness Certification',
+        cert2_board: 'Global Occult Council (G.O.C.)',
+        cert3_name: 'Registered Member',
+        cert3_board: 'Spiritual Advisors Network (SAN)',
+        values_title: 'Core Values',
+        value1_name: 'Ethical Spell Casting',
+        value1_desc: 'All rituals are performed with pure intentions, ensuring no harm comes to anyone.',
+        value2_name: '100% Confidentiality',
+        value2_desc: 'Your privacy is paramount. All consultations and work are kept strictly confidential.',
+        value3_name: 'No Black Magic',
+        value3_desc: 'We strictly avoid any harmful intent or dark arts, focusing only on positive, light-based energy.',
+        cta_title: 'Ready to Change Your Life?',
+        cta_p: 'Let us guide you on your journey to love and happiness. Your confidential consultation awaits.',
+        cta_button: 'Book Your Spell Now',
+    });
+    
+    useEffect(() => {
+        const translateContent = () => {
+            setContent({
+                hero_title: translate('AboutPage.hero_title', 'Our Sacred Heritage'),
+                hero_subtitle: translate('AboutPage.hero_subtitle', 'A legacy of healing passed down through five generations.'),
+                lineage_title: translate('AboutPage.lineage_title', 'A Lineage of Divine Gifts'),
+                lineage_p1: translate('AboutPage.lineage_p1', 'SolutionTemple is a 5th-generation African healer circle. Each spiritual consultant in the circle is born with the divine gift of energetic alignment and emotional healing. Our journey began in the sacred lands of Benin, where our elders passed down secret ancestral rituals for love and harmony.'),
+                lineage_p2: translate('AboutPage.lineage_p2', 'We combine ancient wisdom with a modern understanding of energy dynamics to provide effective, ethical, and compassionate guidance to souls across the globe.'),
+                credentials_title: translate('AboutPage.credentials_title', 'Our Credentials & Guarantees'),
+                certifications_title: translate('AboutPage.certifications_title', 'Certifications'),
+                cert1_name: translate('AboutPage.cert1_name', 'Energy Healing License'),
+                cert1_board: translate('AboutPage.cert1_board', 'Holistic Practitioner Board'),
+                cert2_name: translate('AboutPage.cert2_name', 'Spiritual Wellness Certification'),
+                cert2_board: translate('AboutPage.cert2_board', 'Global Occult Council (G.O.C.)'),
+                cert3_name: translate('AboutPage.cert3_name', 'Registered Member'),
+                cert3_board: translate('AboutPage.cert3_board', 'Spiritual Advisors Network (SAN)'),
+                values_title: translate('AboutPage.values_title', 'Core Values'),
+                value1_name: translate('AboutPage.value1_name', 'Ethical Spell Casting'),
+                value1_desc: translate('AboutPage.value1_desc', 'All rituals are performed with pure intentions, ensuring no harm comes to anyone.'),
+                value2_name: translate('AboutPage.value2_name', '100% Confidentiality'),
+                value2_desc: translate('AboutPage.value2_desc', 'Your privacy is paramount. All consultations and work are kept strictly confidential.'),
+                value3_name: translate('AboutPage.value3_name', 'No Black Magic'),
+                value3_desc: translate('AboutPage.value3_desc', 'We strictly avoid any harmful intent or dark arts, focusing only on positive, light-based energy.'),
+                cta_title: translate('AboutPage.cta_title', 'Ready to Change Your Life?'),
+                cta_p: translate('AboutPage.cta_p', 'Let us guide you on your journey to love and happiness. Your confidential consultation awaits.'),
+                cta_button: translate('AboutPage.cta_button', 'Book Your Spell Now'),
+            });
+        };
+        translateContent();
+    }, [translate]);
 
     const certifications = [
         { name: content.cert1_name, board: content.cert1_board },

@@ -5,63 +5,60 @@ import { getServices } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Sparkles } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
 import type { Service } from '@/lib/types';
 import { useTranslation } from '@/hooks/useTranslation';
 
 
 export default function ServicesPage() {
-  const t = useTranslations('ServicesPage');
-  const tServices = useTranslations('HomePage.Services');
-  const tNav = useTranslations('Navigation');
   const [services, setServices] = useState<Service[]>([]);
   const { translate } = useTranslation();
     const [content, setContent] = useState({
-    hero_title: t('hero_title'),
-    hero_subtitle: t('hero_subtitle'),
-    includes_title: t('includes_title'),
-    includes_p: t('includes_p'),
-    include1_title: t('include1_title'),
-    include1_desc: t('include1_desc'),
-    include2_title: t('include2_title'),
-    include2_desc: t('include2_desc'),
-    include3_title: t('include3_title'),
-    include3_desc: t('include3_desc'),
-    cta_title: t('cta_title'),
-    cta_p: t('cta_p'),
-    cta_button: tNav('bookNow')
+    hero_title: 'Our Spiritual Services',
+    hero_subtitle: 'Ethical and powerful spells tailored to your unique love situation.',
+    includes_title: 'What Each Spell Includes',
+    includes_p: 'To ensure the best results, every spell casting is a comprehensive spiritual service.',
+    include1_title: 'Personalized Consultation',
+    include1_desc: 'We begin with a deep dive into your situation to understand the energies at play.',
+    include2_title: 'Custom Ritual',
+    include2_desc: "Your spell is performed with your name and photo, focusing intent directly on your needs.",
+    include3_title: 'Post-Spell Support',
+    include3_desc: "We provide follow-up support to guide you as the spell's energy manifests.",
+    cta_title: 'Begin Your Journey to Happiness',
+    cta_p: "Choose the spell that resonates with your heart's desire and let us help you find a path to peace and love.",
+    cta_button: 'Book Your Spell Now',
+    book_this_spell: 'Book This Spell',
   });
   
   useEffect(() => {
     const fetchServices = async () => {
-        const servicesData = await getServices(tServices);
+        const servicesData = getServices();
         setServices(servicesData);
     };
     fetchServices();
-  }, [tServices]);
+  }, []);
 
   useEffect(() => {
     const translateContent = async () => {
-      const translated = {
-        hero_title: await translate(t('hero_title')),
-        hero_subtitle: await translate(t('hero_subtitle')),
-        includes_title: await translate(t('includes_title')),
-        includes_p: await translate(t('includes_p')),
-        include1_title: await translate(t('include1_title')),
-        include1_desc: await translate(t('include1_desc')),
-        include2_title: await translate(t('include2_title')),
-        include2_desc: await translate(t('include2_desc')),
-        include3_title: await translate(t('include3_title')),
-        include3_desc: await translate(t('include3_desc')),
-        cta_title: await translate(t('cta_title')),
-        cta_p: await translate(t('cta_p')),
-        cta_button: await translate(tNav('bookNow'))
-      };
-      setContent(translated);
+      setContent({
+        hero_title: translate('ServicesPage.hero_title', 'Our Spiritual Services'),
+        hero_subtitle: translate('ServicesPage.hero_subtitle', 'Ethical and powerful spells tailored to your unique love situation.'),
+        includes_title: translate('ServicesPage.includes_title', 'What Each Spell Includes'),
+        includes_p: translate('ServicesPage.includes_p', 'To ensure the best results, every spell casting is a comprehensive spiritual service.'),
+        include1_title: translate('ServicesPage.include1_title', 'Personalized Consultation'),
+        include1_desc: translate('ServicesPage.include1_desc', 'We begin with a deep dive into your situation to understand the energies at play.'),
+        include2_title: translate('ServicesPage.include2_title', 'Custom Ritual'),
+        include2_desc: translate('ServicesPage.include2_desc', "Your spell is performed with your name and photo, focusing intent directly on your needs."),
+        include3_title: translate('ServicesPage.include3_title', 'Post-Spell Support'),
+        include3_desc: translate('ServicesPage.include3_desc', "We provide follow-up support to guide you as the spell's energy manifests."),
+        cta_title: translate('ServicesPage.cta_title', 'Begin Your Journey to Happiness'),
+        cta_p: translate('ServicesPage.cta_p', "Choose the spell that resonates with your heart's desire and let us help you find a path to peace and love."),
+        cta_button: translate('Navigation.bookNow', 'Book Your Spell Now'),
+        book_this_spell: translate('HomePage.Services.button', 'Book This Spell'),
+      });
     };
     translateContent();
-  }, [translate, t, tNav]);
+  }, [translate]);
 
 
   return (
@@ -89,15 +86,15 @@ export default function ServicesPage() {
                     className="w-full h-48 object-cover"
                   />
                 <CardHeader>
-                  <CardTitle className="font-headline">{service.name}</CardTitle>
-                  <CardDescription>{service.delivery}</CardDescription>
+                  <CardTitle className="font-headline">{translate(`HomePage.Services.${service.key}_name`, service.name)}</CardTitle>
+                  <CardDescription>{translate(`HomePage.Services.${service.key}_delivery`, service.delivery)}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <p className="text-muted-foreground">{service.description}</p>
+                  <p className="text-muted-foreground">{translate(`HomePage.Services.${service.key}_desc`, service.description)}</p>
                 </CardContent>
                 <CardFooter>
                   <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                    <Link href="/book-now">{tServices('button')}</Link>
+                    <Link href="/book-now">{content.book_this_spell}</Link>
                   </Button>
                 </CardFooter>
               </Card>

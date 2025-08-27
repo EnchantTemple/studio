@@ -1,3 +1,4 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -6,27 +7,14 @@ import { ShieldCheck, Mail, MessageCircle } from 'lucide-react';
 import { Link } from '@/navigation';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import type { NavItem } from '@/lib/types';
-
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface FooterProps {
     navItems: NavItem[];
-    translations: {
-        tagline: string;
-        quickLinks: string;
-        contactUs: string;
-        whatsapp: string;
-        email: string;
-        workingHours: string;
-        newsletter: string;
-        newsletter_prompt: string;
-        subscribe: string;
-        copyright: string;
-        privacyPolicy: string;
-        refundPolicy: string;
-    }
 }
 
-export function Footer({ navItems, translations: t }: FooterProps) {
+export function Footer({ navItems }: FooterProps) {
+  const { translate } = useTranslation();
   
   return (
     <footer className="bg-card text-card-foreground">
@@ -35,7 +23,7 @@ export function Footer({ navItems, translations: t }: FooterProps) {
           <div className="space-y-4">
             <h3 className="text-lg font-headline font-semibold">SolutionTemple</h3>
             <p className="text-sm text-muted-foreground">
-              {t.tagline}
+              {translate('Footer.tagline', "A sanctuary where love, energy, and intention align for your spiritual well-being.")}
             </p>
             <LanguageSwitcher location="footer" />
             <div className="flex space-x-2 pt-2">
@@ -49,12 +37,12 @@ export function Footer({ navItems, translations: t }: FooterProps) {
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-semibold font-headline">{t.quickLinks}</h4>
+            <h4 className="font-semibold font-headline">{translate('Footer.quickLinks', 'Quick Links')}</h4>
             <ul className="space-y-2">
               {navItems.map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {item.label}
+                    {translate(`Navigation.${item.label}`, item.label)}
                   </Link>
                 </li>
               ))}
@@ -62,30 +50,30 @@ export function Footer({ navItems, translations: t }: FooterProps) {
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-semibold font-headline">{t.contactUs}</h4>
+            <h4 className="font-semibold font-headline">{translate('Footer.contactUs', 'Contact Us')}</h4>
              <ul className="space-y-2">
               <li>
                 <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                   <MessageCircle className="w-4 h-4" />
-                  <span>{t.whatsapp}</span>
+                  <span>{translate('Footer.whatsapp', 'WhatsApp Live Chat')}</span>
                 </a>
               </li>
                <li>
                 <a href="mailto:hello@solutiontemple.com" className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                   <Mail className="w-4 h-4" />
-                  <span>{t.email}</span>
+                  <span>{translate('Footer.email', 'hello@solutiontemple.com')}</span>
                 </a>
               </li>
             </ul>
-            <p className="text-sm text-muted-foreground">{t.workingHours}</p>
+            <p className="text-sm text-muted-foreground">{translate('Footer.workingHours', '24/7 Remote Spell Work')}</p>
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-semibold font-headline">{t.newsletter}</h4>
-            <p className="text-sm text-muted-foreground">{t.newsletter_prompt}</p>
+            <h4 className="font-semibold font-headline">{translate('Footer.newsletter', 'Newsletter')}</h4>
+            <p className="text-sm text-muted-foreground">{translate('Footer.newsletter_prompt', 'Subscribe for spiritual insights and offers.')}</p>
             <form className="flex space-x-2">
               <Input type="email" placeholder="Your email" className="flex-1" />
-              <Button type="submit" variant="secondary">{t.subscribe}</Button>
+              <Button type="submit" variant="secondary">{translate('Footer.subscribe', 'Subscribe')}</Button>
             </form>
           </div>
         </div>
@@ -93,13 +81,13 @@ export function Footer({ navItems, translations: t }: FooterProps) {
         <Separator className="my-8" />
         
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-sm text-muted-foreground">{t.copyright}</p>
+          <p className="text-sm text-muted-foreground">{translate('Footer.copyright', `© ${new Date().getFullYear()} SolutionTemple. All Rights Reserved.`).replace('{year}', new Date().getFullYear().toString())}</p>
           <div className="flex items-center space-x-4">
             <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              {t.privacyPolicy}
+              {translate('Footer.privacyPolicy', 'Privacy Policy')}
             </Link>
             <Link href="/refund-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              {t.refundPolicy}
+              {translate('Footer.refundPolicy', 'Refund Policy')}
             </Link>
           </div>
         </div>

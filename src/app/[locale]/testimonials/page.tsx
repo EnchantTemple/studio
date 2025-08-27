@@ -4,30 +4,28 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Star } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import type { Testimonial } from '@/lib/types';
 import { useTranslation } from '@/hooks/useTranslation';
 
 
 export default function TestimonialsPage() {
-  const t = useTranslations('TestimonialsPage');
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const { translate } = useTranslation();
   const [content, setContent] = useState({
-      hero_title: t('hero_title'),
-      hero_subtitle: t('hero_subtitle'),
-      success_title: t('success_title'),
-      rating_text: t('rating_text', {rating: '5.0'}),
+      hero_title: 'Words of Gratitude',
+      hero_subtitle: "Discover how we've helped others find love and happiness.",
+      success_title: 'Client Success Stories',
+      rating_text: '5.0 / 5 Star Rating',
   });
   
   useEffect(() => {
     const fetchTestimonials = async () => {
-      const allTestimonials = await getTestimonials(t);
+      const allTestimonials = getTestimonials();
       setTestimonials(allTestimonials);
     };
     fetchTestimonials();
-  }, [t]);
+  }, []);
 
   const averageRating = testimonials.length > 0
     ? (testimonials.reduce((acc, t) => acc + t.rating, 0) / testimonials.length).toFixed(1)
@@ -35,16 +33,15 @@ export default function TestimonialsPage() {
 
   useEffect(() => {
     const translateContent = async () => {
-        const translated = {
-            hero_title: await translate(t('hero_title')),
-            hero_subtitle: await translate(t('hero_subtitle')),
-            success_title: await translate(t('success_title')),
-            rating_text: await translate(t('rating_text', {rating: averageRating})),
-        };
-        setContent(translated);
+        setContent({
+            hero_title: translate('TestimonialsPage.hero_title', 'Words of Gratitude'),
+            hero_subtitle: translate('TestimonialsPage.hero_subtitle', "Discover how we've helped others find love and happiness."),
+            success_title: translate('TestimonialsPage.success_title', 'Client Success Stories'),
+            rating_text: translate('TestimonialsPage.rating_text', '{rating} / 5 Star Rating').replace('{rating}', averageRating),
+        });
     }
     translateContent();
-  }, [translate, t, averageRating]);
+  }, [translate, averageRating]);
 
   return (
     <>
@@ -88,7 +85,7 @@ export default function TestimonialsPage() {
                       ))}
                     </div>
                     <blockquote className="text-lg italic text-foreground mb-4">
-                      &quot;{testimonial.quote}&quot;
+                      &quot;{translate(`TestimonialsPage.testimonial${index+1}_quote`, testimonial.quote)}&quot;
                     </blockquote>
                   </div>
                   <div className="mt-auto pt-4 border-t">
@@ -99,11 +96,11 @@ export default function TestimonialsPage() {
                                 <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                             </Avatar>
                             <div>
-                                <p className="font-semibold">{testimonial.name}</p>
-                                <p className="text-sm text-muted-foreground">{testimonial.location}</p>
+                                <p className="font-semibold">{translate(`TestimonialsPage.testimonial${index+1}_name`, testimonial.name)}</p>
+                                <p className="text-sm text-muted-foreground">{translate(`TestimonialsPage.testimonial${index+1}_location`, testimonial.location)}</p>
                             </div>
                         </div>
-                        <Badge variant="secondary">{testimonial.date}</Badge>
+                        <Badge variant="secondary">{translate(`TestimonialsPage.testimonial${index+1}_date`, testimonial.date)}</Badge>
                     </div>
                   </div>
                 </CardContent>

@@ -3,50 +3,47 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, MessageCircle, Clock } from 'lucide-react';
 import { Link } from '@/navigation';
-import { useTranslations } from 'next-intl';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useEffect, useState } from 'react';
 
 export default function ContactPage() {
-  const t = useTranslations('ContactPage');
   const { translate } = useTranslation();
   const [content, setContent] = useState({
-      hero_title: t('hero_title'),
-      hero_subtitle: t('hero_subtitle'),
-      whatsapp_title: t('whatsapp_title'),
-      whatsapp_desc: t('whatsapp_desc'),
-      whatsapp_button: t('whatsapp_button'),
-      email_title: t('email_title'),
-      email_desc: t('email_desc'),
-      email_address: t('email_address'),
-      hours_title: t('hours_title'),
-      hours_desc: t('hours_desc'),
-      cta_title: t('cta_title'),
-      cta_p: t('cta_p'),
-      cta_button: t('cta_button'),
+      hero_title: 'Get in Touch',
+      hero_subtitle: 'We are here for you 24/7. Your journey to healing starts with a simple message.',
+      whatsapp_title: 'WhatsApp Live Chat',
+      whatsapp_desc: 'For immediate assistance and consultation.',
+      whatsapp_button: 'Chat Now',
+      email_title: 'Email Support',
+      email_desc: 'Send us your questions and concerns.',
+      email_address: 'hello@solutiontemple.com',
+      hours_title: 'Working Hours',
+      hours_desc: '24/7 Remote Spell Work',
+      cta_title: 'Ready for a Personalised Solution?',
+      cta_p: 'Your unique situation requires a unique approach. Book a session to get a spell tailored just for you.',
+      cta_button: 'Book Your Custom Spell',
   });
 
   useEffect(() => {
     const translateContent = async () => {
-        const translated = {
-            hero_title: await translate(t('hero_title')),
-            hero_subtitle: await translate(t('hero_subtitle')),
-            whatsapp_title: await translate(t('whatsapp_title')),
-            whatsapp_desc: await translate(t('whatsapp_desc')),
-            whatsapp_button: await translate(t('whatsapp_button')),
-            email_title: await translate(t('email_title')),
-            email_desc: await translate(t('email_desc')),
-            email_address: await translate(t('email_address')),
-            hours_title: await translate(t('hours_title')),
-            hours_desc: await translate(t('hours_desc')),
-            cta_title: await translate(t('cta_title')),
-            cta_p: await translate(t('cta_p')),
-            cta_button: await translate(t('cta_button')),
-        };
-        setContent(translated);
+        setContent({
+            hero_title: translate('ContactPage.hero_title', 'Get in Touch'),
+            hero_subtitle: translate('ContactPage.hero_subtitle', 'We are here for you 24/7. Your journey to healing starts with a simple message.'),
+            whatsapp_title: translate('ContactPage.whatsapp_title', 'WhatsApp Live Chat'),
+            whatsapp_desc: translate('ContactPage.whatsapp_desc', 'For immediate assistance and consultation.'),
+            whatsapp_button: translate('ContactPage.whatsapp_button', 'Chat Now'),
+            email_title: translate('ContactPage.email_title', 'Email Support'),
+            email_desc: translate('ContactPage.email_desc', 'Send us your questions and concerns.'),
+            email_address: translate('ContactPage.email_address', 'hello@solutiontemple.com'),
+            hours_title: translate('ContactPage.hours_title', 'Working Hours'),
+            hours_desc: translate('ContactPage.hours_desc', '24/7 Remote Spell Work'),
+            cta_title: translate('ContactPage.cta_title', 'Ready for a Personalised Solution?'),
+            cta_p: translate('ContactPage.cta_p', 'Your unique situation requires a unique approach. Book a session to get a spell tailored just for you.'),
+            cta_button: translate('ContactPage.cta_button', 'Book Your Custom Spell'),
+        });
     }
     translateContent();
-  }, [translate, t]);
+  }, [translate]);
 
   return (
     <>
