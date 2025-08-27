@@ -1,3 +1,4 @@
+'use client';
 import type { Metadata } from 'next';
 import ClientOnlyDate from '@/components/ClientOnlyDate';
 
