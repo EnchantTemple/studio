@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { bookingSchema, type BookingFormValues } from '@/lib/schemas';
 import { services } from '@/lib/data';
 import { useState } from 'react';
+import { submitBooking } from '../actions';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,29 +18,6 @@ import { Loader2, CheckCircle, X } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
-
-async function submitBooking(data: BookingFormValues) {
-  'use server';
-
-  const validationResult = bookingSchema.safeParse(data);
-
-  if (!validationResult.success) {
-    return {
-      success: false,
-      errors: validationResult.error.flatten().fieldErrors,
-    };
-  }
-  
-  console.log('Booking submitted:', validationResult.data);
-
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  
-  return {
-    success: true,
-    message: "Booking Sent!",
-  };
-}
-
 
 export function BookingForm() {
   const { toast } = useToast();
@@ -266,5 +244,3 @@ export function BookingForm() {
     </>
   );
 }
-
-    
