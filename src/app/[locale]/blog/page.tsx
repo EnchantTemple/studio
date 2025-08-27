@@ -1,20 +1,35 @@
 'use client';
 import { Link } from '@/navigation';
 import Image from 'next/image';
-import { blogPosts } from '@/lib/data';
+import { getBlogPosts } from '@/lib/data';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { format, parseISO } from 'date-fns';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+import type { BlogPost } from '@/lib/types';
 
 export default function BlogPage() {
+  const t = useTranslations('BlogPage');
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const blogPosts = await getBlogPosts(t);
+      setPosts(blogPosts);
+    };
+    fetchPosts();
+  }, [t]);
+
+
   return (
     <>
       <section className="bg-primary text-primary-foreground py-20 text-center">
         <div className="container">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline">Spiritual Insights</h1>
+          <h1 className="text-4xl md:text-6xl font-bold font-headline">{t('hero_title')}</h1>
           <p className="mt-4 text-xl max-w-3xl mx-auto">
-            Explore articles on love, energy, and the art of ethical spell casting.
+            {t('hero_subtitle')}
           </p>
         </div>
       </section>
@@ -22,7 +37,7 @@ export default function BlogPage() {
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
+            {posts.map((post) => (
               <Card key={post.slug} className="flex flex-col overflow-hidden">
                 <Link href={`/blog/${post.slug}`} className="block">
                   <Image
@@ -49,7 +64,7 @@ export default function BlogPage() {
                 </CardContent>
                 <CardFooter>
                   <Button asChild variant="link" className="p-0">
-                    <Link href={`/blog/${post.slug}`}>Read More →</Link>
+                    <Link href={`/blog/${post.slug}`}>{t('read_more')}</Link>
                   </Button>
                 </CardFooter>
               </Card>

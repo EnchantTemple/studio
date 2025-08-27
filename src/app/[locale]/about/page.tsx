@@ -4,27 +4,30 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check, Shield, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/navigation';
-
-const certifications = [
-    { name: "Energy Healing License", board: "Holistic Practitioner Board" },
-    { name: "Spiritual Wellness Certification", board: "Global Occult Council (G.O.C.)" },
-    { name: "Registered Member", board: "Spiritual Advisors Network (SAN)" }
-];
-
-const coreValues = [
-    { name: "Ethical Spell Casting", description: "All rituals are performed with pure intentions, ensuring no harm comes to anyone." },
-    { name: "100% Confidentiality", description: "Your privacy is paramount. All consultations and work are kept strictly confidential." },
-    { name: "No Black Magic", description: "We strictly avoid any harmful intent or dark arts, focusing only on positive, light-based energy." }
-];
+import { useTranslations } from 'next-intl';
 
 export default function AboutPage() {
+  const t = useTranslations('AboutPage');
+
+  const certifications = [
+    { name: t('cert1_name'), board: t('cert1_board') },
+    { name: t('cert2_name'), board: t('cert2_board') },
+    { name: t('cert3_name'), board: t('cert3_board') }
+  ];
+
+  const coreValues = [
+    { name: t('value1_name'), description: t('value1_desc') },
+    { name: t('value2_name'), description: t('value2_desc') },
+    { name: t('value3_name'), description: t('value3_desc') }
+  ];
+
   return (
     <>
       <section className="bg-primary text-primary-foreground py-20 text-center">
         <div className="container">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline">Our Sacred Heritage</h1>
+          <h1 className="text-4xl md:text-6xl font-bold font-headline">{t('hero_title')}</h1>
           <p className="mt-4 text-xl max-w-3xl mx-auto">
-            A legacy of healing passed down through five generations.
+            {t('hero_subtitle')}
           </p>
         </div>
       </section>
@@ -33,12 +36,12 @@ export default function AboutPage() {
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold font-headline">A Lineage of Divine Gifts</h2>
+              <h2 className="text-3xl md:text-4xl font-bold font-headline">{t('lineage_title')}</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                SolutionTemple is a 5th-generation African healer circle. Each spiritual consultant in the circle is born with the divine gift of energetic alignment and emotional healing. Our journey began in the sacred lands of Benin, where our elders passed down secret ancestral rituals for love and harmony.
+                {t('lineage_p1')}
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We combine ancient wisdom with a modern understanding of energy dynamics to provide effective, ethical, and compassionate guidance to souls across the globe.
+                {t('lineage_p2')}
               </p>
             </div>
             <div>
@@ -57,11 +60,11 @@ export default function AboutPage() {
 
       <section className="bg-card py-16 md:py-24">
         <div className="container text-center">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-12">Our Credentials & Guarantees</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-12">{t('credentials_title')}</h2>
             <div className="grid md:grid-cols-2 gap-8">
                 <Card>
                     <CardHeader>
-                        <CardTitle className="font-headline flex items-center justify-center gap-2"><Zap className="text-accent"/> Certifications</CardTitle>
+                        <CardTitle className="font-headline flex items-center justify-center gap-2"><Zap className="text-accent"/> {t('certifications_title')}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <ul className="space-y-4 text-left">
@@ -79,7 +82,7 @@ export default function AboutPage() {
                 </Card>
                  <Card>
                     <CardHeader>
-                        <CardTitle className="font-headline flex items-center justify-center gap-2"><Shield className="text-accent"/> Core Values</CardTitle>
+                        <CardTitle className="font-headline flex items-center justify-center gap-2"><Shield className="text-accent"/> {t('values_title')}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <ul className="space-y-4 text-left">
@@ -101,12 +104,12 @@ export default function AboutPage() {
       
       <section className="py-16 md:py-24 text-center">
         <div className="container">
-          <h2 className="text-3xl font-bold font-headline">Ready to Change Your Life?</h2>
+          <h2 className="text-3xl font-bold font-headline">{t('cta_title')}</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Let us guide you on your journey to love and happiness. Your confidential consultation awaits.
+            {t('cta_p')}
           </p>
           <Button asChild size="lg" className="mt-8 rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/book-now">Book Your Spell Now</Link>
+            <Link href="/book-now">{t('cta_button')}</Link>
           </Button>
         </div>
       </section>

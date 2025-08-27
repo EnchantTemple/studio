@@ -6,15 +6,39 @@ import { CheckCircle, Globe, MessageCircle, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { services, testimonials, faqs } from '@/lib/data';
+import { getServices, getTestimonials, getFaqs } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useTranslations } from 'next-intl';
+import { useState, useEffect } from 'react';
+import type { Service, Testimonial, FaqItem } from '@/lib/types';
+
 
 export default function Home() {
   const t = useTranslations('HomePage');
-  const highlightedServices = services.slice(0, 3);
-  const highlightedTestimonials = testimonials.slice(0, 2);
+  const tServices = useTranslations('HomePage.Services');
+  const tTestimonials = useTranslations('TestimonialsPage');
+  const tFaqs = useTranslations('FaqPage');
+  
+  const [highlightedServices, setHighlightedServices] = useState<Service[]>([]);
+  const [highlightedTestimonials, setHighlightedTestimonials] = useState<Testimonial[]>([]);
+  const [faqs, setFaqs] = useState<FaqItem[]>([]);
+
+  useEffect(() => {
+    const fetchAndSetData = async () => {
+      const allServices = await getServices(tServices);
+      setHighlightedServices(allServices.slice(0, 3));
+      
+      const allTestimonials = await getTestimonials(tTestimonials);
+      setHighlightedTestimonials(allTestimonials.slice(0, 2));
+
+      const allFaqs = await getFaqs(tFaqs);
+      setFaqs(allFaqs.slice(0, 5));
+    };
+    
+    fetchAndSetData();
+  }, [tServices, tTestimonials, tFaqs]);
+
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
@@ -90,18 +114,18 @@ export default function Home() {
                 <Card key={service.key} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                   <Image
                     src={service.imageUrl}
-                    alt={t(`Services.${service.key}_name` as any)}
+                    alt={service.name}
                     data-ai-hint={service.dataAiHint}
                     width={400}
                     height={300}
                     className="w-full h-48 object-cover"
                   />
                   <CardHeader>
-                    <CardTitle className="font-headline">{t(`Services.${service.key}_name` as any)}</CardTitle>
+                    <CardTitle className="font-headline">{service.name}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2 flex-grow">
-                    <p className="text-muted-foreground">{t(`Services.${service.key}_desc` as any)}</p>
-                    <p className="text-sm font-semibold text-primary">{t(`Services.${service.key}_delivery` as any)}</p>
+                    <p className="text-muted-foreground">{service.description}</p>
+                    <p className="text-sm font-semibold text-primary">{service.delivery}</p>
                   </CardContent>
                    <CardFooter>
                     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
@@ -133,12 +157,12 @@ export default function Home() {
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-4 mb-4">
                       <Avatar>
-                        <AvatarImage src={testimonial.avatar} alt={t(`Testimonials.testimonial${index + 1}_name` as any)} />
-                        <AvatarFallback>{t(`Testimonials.testimonial${index + 1}_name` as any).charAt(0)}</AvatarFallback>
+                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                        <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-semibold">{t(`Testimonials.testimonial${index + 1}_name` as any)}</p>
-                        <p className="text-sm text-muted-foreground">{t(`Testimonials.testimonial${index + 1}_location` as any)}</p>
+                        <p className="font-semibold">{testimonial.name}</p>
+                        <p className="text-sm text-muted-foreground">{testimonial.location}</p>
                       </div>
                     </div>
                     <div className="flex mb-2">
@@ -146,7 +170,7 @@ export default function Home() {
                         <Star key={i} className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-gray-300'}`} />
                       ))}
                     </div>
-                    <blockquote className="text-lg italic text-foreground">&quot;{t(`Testimonials.testimonial${index + 1}_quote` as any)}&quot;</blockquote>
+                    <blockquote className="text-lg italic text-foreground">&quot;{testimonial.quote}&quot;</blockquote>
                   </CardContent>
                 </Card>
               ))}
@@ -168,7 +192,7 @@ export default function Home() {
               </p>
             </div>
             <Accordion type="single" collapsible className="w-full">
-              {faqs.slice(0, 5).map((faq, index) => (
+              {faqs.map((faq, index) => (
                 <AccordionItem value={`item-${index}`} key={index}>
                   <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
                     {faq.question}

@@ -2,26 +2,44 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Link } from '@/navigation';
-import { blogPosts } from '@/lib/data';
+import { getBlogPosts } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { format, parseISO } from 'date-fns';
+import { useTranslations, useMessages } from 'next-intl';
+import { useEffect, useState } from 'react';
+import type { BlogPost } from '@/lib/types';
 
 type Props = {
   params: { slug: string };
 };
 
 export default function BlogPostPage({ params }: Props) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+  const t = useTranslations('BlogPage');
+  const [post, setPost] = useState<BlogPost | undefined>(undefined);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const allPosts = await getBlogPosts(t);
+      const currentPost = allPosts.find((p) => p.slug === params.slug);
+      if (currentPost) {
+        setPost(currentPost);
+        const related = allPosts
+          .filter((p) => p.slug !== currentPost.slug)
+          .slice(0, 2);
+        setRelatedPosts(related);
+      } else {
+        notFound();
+      }
+    };
+    fetchPosts();
+  }, [params.slug, t]);
 
   if (!post) {
-    notFound();
+    return null; // or a loading spinner
   }
-
-  const relatedPosts = blogPosts
-    .filter((p) => p.slug !== post.slug)
-    .slice(0, 2);
 
   return (
     <article>
@@ -54,7 +72,7 @@ export default function BlogPostPage({ params }: Props) {
         <Separator className="my-12 md:my-16" />
 
         <div className="text-center">
-          <h2 className="text-3xl font-bold font-headline mb-8">Related Articles</h2>
+          <h2 className="text-3xl font-bold font-headline mb-8">{t('related_articles')}</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {relatedPosts.map((relatedPost) => (
               <Card key={relatedPost.slug}>

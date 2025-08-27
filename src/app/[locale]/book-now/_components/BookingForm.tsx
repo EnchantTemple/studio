@@ -3,9 +3,10 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { bookingSchema, type BookingFormValues } from '@/lib/schemas';
-import { services } from '@/lib/data';
-import { useState } from 'react';
+import { getServices } from '@/lib/data';
+import { useState, useEffect } from 'react';
 import { submitBooking } from '../actions';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,14 +19,28 @@ import { Loader2, CheckCircle, X } from 'lucide-react';
 import { Link } from '@/navigation';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
+import type { Service } from '@/lib/types';
+
 
 export function BookingForm() {
   const { toast } = useToast();
+  const t = useTranslations('BookNowPage');
+  const tServices = useTranslations('HomePage.Services');
+  
+  const [services, setServices] = useState<Service[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
+  useEffect(() => {
+    const fetchServices = async () => {
+      const fetchedServices = await getServices(tServices);
+      setServices(fetchedServices);
+    };
+    fetchServices();
+  }, [tServices]);
+
   const form = useForm<BookingFormValues>({
-    resolver: zodResolver(bookingSchema),
+    resolver: zodResolver(bookingSchema(t)),
     defaultValues: {
       fullName: '',
       whatsappNumber: '',
@@ -48,8 +63,8 @@ export function BookingForm() {
       form.reset();
     } else {
       toast({
-        title: 'Error',
-        description: 'There was a problem with your submission. Please check the form and try again.',
+        title: t('error_title'),
+        description: t('error_desc'),
         variant: 'destructive',
       });
     }
@@ -59,8 +74,8 @@ export function BookingForm() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle className="font-headline text-2xl">Your Confidential Information</CardTitle>
-          <CardDescription>Please fill out the form below to begin your consultation.</CardDescription>
+          <CardTitle className="font-headline text-2xl">{t('form_title')}</CardTitle>
+          <CardDescription>{t('form_desc')}</CardDescription>
         </CardHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -71,9 +86,9 @@ export function BookingForm() {
                   name="fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Full Name</FormLabel>
+                      <FormLabel>{t('fullName_label')}</FormLabel>
                       <FormControl>
-                        <Input placeholder="Your full name" {...field} />
+                        <Input placeholder={t('fullName_placeholder')} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -84,9 +99,9 @@ export function BookingForm() {
                   name="whatsappNumber"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>WhatsApp Number</FormLabel>
+                      <FormLabel>{t('whatsapp_label')}</FormLabel>
                       <FormControl>
-                        <Input placeholder="+1 123 456 7890" {...field} />
+                        <Input placeholder={t('whatsapp_placeholder')} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -99,9 +114,9 @@ export function BookingForm() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email Address</FormLabel>
+                    <FormLabel>{t('email_label')}</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="you@example.com" {...field} />
+                      <Input type="email" placeholder={t('email_placeholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -113,11 +128,11 @@ export function BookingForm() {
                 name="spellType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Type of Spell</FormLabel>
+                    <FormLabel>{t('spellType_label')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a spell service" />
+                          <SelectValue placeholder={t('spellType_placeholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -138,9 +153,9 @@ export function BookingForm() {
                 name="targetPersonName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Target Person’s First Name (Optional)</FormLabel>
+                    <FormLabel>{t('targetName_label')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., John" {...field} />
+                      <Input placeholder={t('targetName_placeholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -152,12 +167,12 @@ export function BookingForm() {
                 name="photo"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Upload Photo (Optional)</FormLabel>
+                    <FormLabel>{t('photo_label')}</FormLabel>
                     <FormControl>
                       <Input type="file" onChange={(e) => field.onChange(e.target.files)} />
                     </FormControl>
                      <FormDescription>
-                      A photo can help focus the spell's energy. Max 5MB.
+                      {t('photo_desc')}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -169,10 +184,10 @@ export function BookingForm() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Describe Your Situation</FormLabel>
+                    <FormLabel>{t('situation_label')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Tell us a little bit about your situation..."
+                        placeholder={t('situation_placeholder')}
                         className="resize-y min-h-[120px]"
                         {...field}
                       />
@@ -195,23 +210,23 @@ export function BookingForm() {
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>
-                        I accept the <Link href="/privacy-policy" className="underline hover:text-primary">Terms & Conditions</Link>.
+                        {t.rich('terms_label', {
+                            termsLink: (chunks) => <Link href="/privacy-policy" className="underline hover:text-primary">{chunks}</Link>
+                        })}
                       </FormLabel>
                        <FormDescription>
-                        Your data is safe and will never be shared.
+                        {t('terms_desc')}
                       </FormDescription>
                       <FormMessage />
                     </div>
                   </FormItem>
                 )}
               />
-              {/* A placeholder for reCAPTCHA integration as requested.
-                  To implement, you would use a library like 'react-google-recaptcha'
-                  and include its component here, passing the site key via props.
-                  The token received would then be sent with the form data for server-side verification.
-              */}
                <div className="text-xs text-muted-foreground">
-                  This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" className="underline">Privacy Policy</a> and <a href="https://policies.google.com/terms" className="underline">Terms of Service</a> apply.
+                  {t.rich('recaptcha', {
+                    privacyLink: (chunks) => <a href="https://policies.google.com/privacy" className="underline">{chunks}</a>,
+                    termsServiceLink: (chunks) => <a href="https://policies.google.com/terms" className="underline">{chunks}</a>
+                  })}
               </div>
             </CardContent>
             <CardFooter>
@@ -219,10 +234,10 @@ export function BookingForm() {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Submitting...
+                    {t('submitting')}
                   </>
                 ) : (
-                  'Book Your Spell'
+                  t('submit_button')
                 )}
               </Button>
             </CardFooter>
@@ -236,8 +251,8 @@ export function BookingForm() {
           </button>
           <div className="flex flex-col items-center">
             <CheckCircle className="w-20 h-20 text-green-500 mb-4" />
-            <h2 className="text-2xl font-bold font-headline mb-2">Booking Sent!</h2>
-            <p className="text-muted-foreground">You will be contacted via WhatsApp within 12 hours.</p>
+            <h2 className="text-2xl font-bold font-headline mb-2">{t('success_title')}</h2>
+            <p className="text-muted-foreground">{t('success_desc')}</p>
           </div>
         </DialogContent>
       </Dialog>

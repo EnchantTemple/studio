@@ -3,15 +3,17 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, MessageCircle, Clock } from 'lucide-react';
 import { Link } from '@/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function ContactPage() {
+  const t = useTranslations('ContactPage');
   return (
     <>
       <section className="bg-primary text-primary-foreground py-20 text-center">
         <div className="container">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline">Get in Touch</h1>
+          <h1 className="text-4xl md:text-6xl font-bold font-headline">{t('hero_title')}</h1>
           <p className="mt-4 text-xl max-w-3xl mx-auto">
-            We are here for you 24/7. Your journey to healing starts with a simple message.
+            {t('hero_subtitle')}
           </p>
         </div>
       </section>
@@ -22,13 +24,13 @@ export default function ContactPage() {
             <Card className="flex flex-col items-center text-center p-8">
               <MessageCircle className="w-16 h-16 text-accent mb-4" />
               <CardHeader>
-                <CardTitle className="font-headline text-2xl">WhatsApp Live Chat</CardTitle>
-                <CardDescription>For immediate assistance and consultation.</CardDescription>
+                <CardTitle className="font-headline text-2xl">{t('whatsapp_title')}</CardTitle>
+                <CardDescription>{t('whatsapp_desc')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button asChild size="lg" className="rounded-full bg-green-500 hover:bg-green-600 text-white">
                   <a href="https://wa.me/1234567890?text=Hello%20SolutionTemple,%20I%20need%20your%20help." target="_blank" rel="noopener noreferrer">
-                    Chat Now
+                    {t('whatsapp_button')}
                   </a>
                 </Button>
               </CardContent>
@@ -36,13 +38,13 @@ export default function ContactPage() {
             <Card className="flex flex-col items-center text-center p-8">
               <Mail className="w-16 h-16 text-accent mb-4" />
               <CardHeader>
-                <CardTitle className="font-headline text-2xl">Email Support</CardTitle>
-                <CardDescription>Send us your questions and concerns.</CardDescription>
+                <CardTitle className="font-headline text-2xl">{t('email_title')}</CardTitle>
+                <CardDescription>{t('email_desc')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button asChild size="lg" variant="outline" className="rounded-full">
                   <a href="mailto:hello@solutiontemple.com">
-                    hello@solutiontemple.com
+                    {t('email_address')}
                   </a>
                 </Button>
               </CardContent>
@@ -53,11 +55,11 @@ export default function ContactPage() {
                 <CardHeader className="p-0">
                     <div className="flex items-center justify-center gap-2">
                         <Clock className="w-6 h-6 text-primary"/>
-                        <CardTitle className="font-headline">Working Hours</CardTitle>
+                        <CardTitle className="font-headline">{t('hours_title')}</CardTitle>
                     </div>
                 </CardHeader>
                 <CardContent className="p-0 mt-2">
-                    <p className="text-lg text-muted-foreground">24/7 Remote Spell Work</p>
+                    <p className="text-lg text-muted-foreground">{t('hours_desc')}</p>
                 </CardContent>
              </Card>
           </div>
@@ -65,12 +67,12 @@ export default function ContactPage() {
       </section>
        <section className="py-16 md:py-24 text-center bg-card">
         <div className="container">
-          <h2 className="text-3xl font-bold font-headline">Ready for a Personalised Solution?</h2>
+          <h2 className="text-3xl font-bold font-headline">{t('cta_title')}</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-           Your unique situation requires a unique approach. Book a session to get a spell tailored just for you.
+           {t('cta_p')}
           </p>
           <Button asChild size="lg" className="mt-8 rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/book-now">Book Your Custom Spell</Link>
+            <Link href="/book-now">{t('cta_button')}</Link>
           </Button>
         </div>
       </section>
