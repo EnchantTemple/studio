@@ -8,7 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import WhatsAppButton from '@/components/layout/WhatsAppButton';
 import {NextIntlClientProvider, useMessages} from 'next-intl';
-import {getMessages, getTranslations} from 'next-intl/server';
+import {getLocale, getMessages, getTranslations} from 'next-intl/server';
 import { navItems as navItemKeys } from '@/lib/data';
 
 
@@ -52,7 +52,6 @@ export default async function RootLayout({
     copyright: tFooter('copyright', {year: new Date().getFullYear()}),
     privacyPolicy: tFooter('privacyPolicy'),
     refundPolicy: tFooter('refundPolicy'),
-    bookNow: t('bookNow')
   };
 
   return (
