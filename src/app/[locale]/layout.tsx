@@ -55,7 +55,8 @@ export default async function RootLayout({
   };
 
   return (
-    <div lang={locale} className={cn('scroll-smooth antialiased font-body', alegreya.variable)}>
+    <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
+      <body className={cn('antialiased font-body', alegreya.variable)}>
         <NextIntlClientProvider locale={locale} messages={messages}>
         <ThemeProvider
             attribute="class"
@@ -70,6 +71,7 @@ export default async function RootLayout({
             <Toaster />
         </ThemeProvider>
         </NextIntlClientProvider>
-    </div>
+      </body>
+    </html>
   );
 }
