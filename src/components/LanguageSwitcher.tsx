@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -24,7 +25,10 @@ export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
     const currentLocale = useLocale();
 
     const handleLanguageChange = (nextLocale: string) => {
-        router.push(pathname, {locale: nextLocale});
+        // Use window.location.href to ensure a full reload, which helps
+        // server components pick up the new locale.
+        const newUrl = `/${nextLocale}${pathname}`;
+        window.location.href = newUrl;
     };
 
     const currentLanguageName = localeNames[currentLocale as keyof typeof localeNames];
