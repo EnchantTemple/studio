@@ -21,6 +21,7 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import type { Service } from '@/lib/types';
 import { submitBooking } from '../actions';
+import { Label } from '@/components/ui/label';
 
 export function BookingForm() {
   const { toast } = useToast();
@@ -209,15 +210,15 @@ export function BookingForm() {
                       />
                     </FormControl>
                     <div className="space-y-1 leading-none">
-                      <FormLabel>
+                      <Label>
                         {t.rich('terms_label', {
                           termsLink: (chunks) => <Link href="/privacy-policy" className="underline hover:text-primary">{chunks}</Link>
                         })}
-                      </FormLabel>
+                      </Label>
                       <FormDescription>
                         {t('terms_desc')}
                       </FormDescription>
-                      <FormMessage />
+                       <FormMessage />
                     </div>
                   </FormItem>
                 )}
