@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { Link } from '@/navigation';
 import { CheckCircle, Globe, MessageCircle, Star } from 'lucide-react';
