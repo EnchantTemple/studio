@@ -4,6 +4,7 @@ export type NavItem = {
 };
 
 export type Service = {
+  key: string;
   name: string;
   description: string;
   delivery: string;

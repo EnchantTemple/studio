@@ -133,6 +133,7 @@ export const blogPosts: BlogPost[] = [
 
 export const services: Service[] = [
   {
+    key: 'reunite_lovers',
     name: 'Reunite Lovers Spell',
     description: 'Bring back an ex-lover or reconnect emotionally.',
     delivery: 'Within 3 days',
@@ -140,6 +141,7 @@ export const services: Service[] = [
     dataAiHint: 'reuniting couple'
   },
   {
+    key: 'attract_love',
     name: 'Attract New Love Spell',
     description: 'Manifest a soulmate or serious partner.',
     delivery: 'Within 5 days',
@@ -147,6 +149,7 @@ export const services: Service[] = [
     dataAiHint: 'happy couple'
   },
   {
+    key: 'strengthen_relationship',
     name: 'Strengthen Relationship Spell',
     description: 'Eliminate third parties, restore peace.',
     delivery: 'Within 48 hours',
@@ -155,6 +158,7 @@ export const services: Service[] = [
   },
   {
     name: 'Stop Break-Up / Divorce Spell',
+    key: 'stop_breakup',
     description: 'Protect your marriage from falling apart.',
     delivery: 'Within 2–4 days',
     imageUrl: 'https://picsum.photos/400/300?random=4',
@@ -162,6 +166,7 @@ export const services: Service[] = [
   },
   {
     name: 'Custom Spell Work',
+    key: 'custom_spell',
     description: 'Tailored to your unique love situation.',
     delivery: 'Time varies',
     imageUrl: 'https://picsum.photos/400/300?random=5',

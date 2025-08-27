@@ -40,7 +40,13 @@
       "attract_love_delivery": "Delivery: Within 5 days",
       "strengthen_relationship_name": "Strengthen Relationship Spell",
       "strengthen_relationship_desc": "Eliminate third parties, restore peace.",
-      "strengthen_relationship_delivery": "Delivery: Within 48 hours"
+      "strengthen_relationship_delivery": "Delivery: Within 48 hours",
+      "stop_breakup_name": "Stop Break-Up / Divorce Spell",
+      "stop_breakup_desc": "Protect your marriage from falling apart.",
+      "stop_breakup_delivery": "Delivery: Within 2–4 days",
+      "custom_spell_name": "Custom Spell Work",
+      "custom_spell_desc": "Tailored to your unique love situation.",
+      "custom_spell_delivery": "Delivery: Time varies"
     },
     "Testimonials": {
       "title": "Trusted by Souls Worldwide",

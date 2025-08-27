@@ -40,7 +40,13 @@
       "attract_love_delivery": "Entrega: Em 5 dias",
       "strengthen_relationship_name": "Feitiço para Fortalecer Relacionamento",
       "strengthen_relationship_desc": "Elimine terceiros, restaure a paz.",
-      "strengthen_relationship_delivery": "Entrega: Em 48 horas"
+      "strengthen_relationship_delivery": "Entrega: Em 48 horas",
+      "stop_breakup_name": "Feitiço para Parar Separação / Divórcio",
+      "stop_breakup_desc": "Proteja seu casamento de desmoronar.",
+      "stop_breakup_delivery": "Entrega: Em 2–4 dias",
+      "custom_spell_name": "Trabalho de Feitiço Personalizado",
+      "custom_spell_desc": "Adaptado à sua situação amorosa única.",
+      "custom_spell_delivery": "Entrega: O tempo varia"
     },
     "Testimonials": {
       "title": "Confiado por Almas em Todo o Mundo",

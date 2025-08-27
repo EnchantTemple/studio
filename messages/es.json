@@ -40,7 +40,13 @@
       "attract_love_delivery": "Entrega: En 5 días",
       "strengthen_relationship_name": "Hechizo para Fortalecer la Relación",
       "strengthen_relationship_desc": "Elimina a terceros, restaura la paz.",
-      "strengthen_relationship_delivery": "Entrega: En 48 horas"
+      "strengthen_relationship_delivery": "Entrega: En 48 horas",
+      "stop_breakup_name": "Hechizo para Detener Ruptura / Divorcio",
+      "stop_breakup_desc": "Protege tu matrimonio de desmoronarse.",
+      "stop_breakup_delivery": "Entrega: En 2–4 días",
+      "custom_spell_name": "Trabajo de Hechizo Personalizado",
+      "custom_spell_desc": "Adaptado a tu situación amorosa única.",
+      "custom_spell_delivery": "Entrega: El tiempo varía"
     },
     "Testimonials": {
       "title": "Confiado por Almas de Todo el Mundo",

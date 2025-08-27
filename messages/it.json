@@ -40,7 +40,13 @@
       "attract_love_delivery": "Consegna: Entro 5 giorni",
       "strengthen_relationship_name": "Incantesimo per Rafforzare la Relazione",
       "strengthen_relationship_desc": "Elimina terze parti, ripristina la pace.",
-      "strengthen_relationship_delivery": "Consegna: Entro 48 ore"
+      "strengthen_relationship_delivery": "Consegna: Entro 48 ore",
+      "stop_breakup_name": "Incantesimo per Fermare la Rottura / il Divorzio",
+      "stop_breakup_desc": "Proteggi il tuo matrimonio dal fallimento.",
+      "stop_breakup_delivery": "Consegna: Entro 2–4 giorni",
+      "custom_spell_name": "Lavoro di Incantesimo Personalizzato",
+      "custom_spell_desc": "Su misura per la tua situazione d'amore unica.",
+      "custom_spell_delivery": "Consegna: Il tempo varia"
     },
     "Testimonials": {
       "title": "Scelto da Anime in Tutto il Mondo",

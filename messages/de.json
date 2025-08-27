@@ -40,7 +40,13 @@
       "attract_love_delivery": "Lieferung: Innerhalb von 5 Tagen",
       "strengthen_relationship_name": "Beziehung Stärken Zauber",
       "strengthen_relationship_desc": "Beseitigen Sie Dritte, stellen Sie den Frieden wieder her.",
-      "strengthen_relationship_delivery": "Lieferung: Innerhalb von 48 Stunden"
+      "strengthen_relationship_delivery": "Lieferung: Innerhalb von 48 Stunden",
+      "stop_breakup_name": "Trennung / Scheidung Stoppen Zauber",
+      "stop_breakup_desc": "Schützen Sie Ihre Ehe vor dem Scheitern.",
+      "stop_breakup_delivery": "Lieferung: Innerhalb von 2–4 Tagen",
+      "custom_spell_name": "Individuelle Zauberarbeit",
+      "custom_spell_desc": "Maßgeschneidert für Ihre einzigartige Liebessituation.",
+      "custom_spell_delivery": "Lieferung: Zeit variiert"
     },
     "Testimonials": {
       "title": "Vertraut von Seelen weltweit",

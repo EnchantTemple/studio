@@ -40,7 +40,13 @@
       "attract_love_delivery": "Livraison : En 5 jours",
       "strengthen_relationship_name": "Sortilège pour Renforcer la Relation",
       "strengthen_relationship_desc": "Éliminez les tierces parties, restaurez la paix.",
-      "strengthen_relationship_delivery": "Livraison : En 48 heures"
+      "strengthen_relationship_delivery": "Livraison : En 48 heures",
+      "stop_breakup_name": "Sortilège pour Arrêter la Rupture / le Divorce",
+      "stop_breakup_desc": "Protégez votre mariage de l'effondrement.",
+      "stop_breakup_delivery": "Livraison : En 2–4 jours",
+      "custom_spell_name": "Travail de Sortilège sur Mesure",
+      "custom_spell_desc": "Adapté à votre situation amoureuse unique.",
+      "custom_spell_delivery": "Livraison : Le temps varie"
     },
     "Testimonials": {
       "title": "Approuvé par des Âmes du Monde Entier",

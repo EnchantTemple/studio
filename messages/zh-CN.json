@@ -40,7 +40,13 @@
       "attract_love_delivery": "交付：5天内",
       "strengthen_relationship_name": "巩固关系法术",
       "strengthen_relationship_desc": "消除第三方，恢复和平。",
-      "strengthen_relationship_delivery": "交付：48小时内"
+      "strengthen_relationship_delivery": "交付：48小时内",
+      "stop_breakup_name": "停止分手/离婚法术",
+      "stop_breakup_desc": "保护您的婚姻免于破裂。",
+      "stop_breakup_delivery": "交付：2-4天内",
+      "custom_spell_name": "定制法术工作",
+      "custom_spell_desc": "根据您独特的爱情状况量身定制。",
+      "custom_spell_delivery": "交付：时间不等"
     },
     "Testimonials": {
       "title": "深受全球灵魂信赖",
