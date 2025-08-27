@@ -26,9 +26,8 @@ export default function Home() {
       <main className="flex-1">
         <section className="relative w-full h-[80vh] min-h-[600px] flex items-center justify-center text-center text-white">
           <Image
-            src="https://picsum.photos/1920/1080"
+            src="https://i.etsystatic.com/31850186/r/il/47cbfe/6915496760/il_fullxfull.6915496760_45sr.jpg"
             alt="Mystical background with candles and stars"
-            data-ai-hint="spiritual candles"
             fill
             className="object-cover -z-10"
             priority
