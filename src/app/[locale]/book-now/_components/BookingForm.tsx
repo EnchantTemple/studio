@@ -15,7 +15,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, CheckCircle, X } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 

@@ -1,11 +1,5 @@
 'use client';
-import type { Metadata } from 'next';
 import ClientOnlyDate from '@/components/ClientOnlyDate';
-
-export const metadata: Metadata = {
-  title: 'Refund Policy',
-  description: 'Read the Refund Policy for SolutionTemple. Understand the terms regarding our spiritual services and spell casting work.',
-};
 
 export default function RefundPolicyPage() {
   return (

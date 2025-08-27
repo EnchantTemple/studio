@@ -1,11 +1,5 @@
 'use client';
-import type { Metadata } from 'next';
 import ClientOnlyDate from '@/components/ClientOnlyDate';
-
-export const metadata: Metadata = {
-  title: 'Privacy Policy',
-  description: 'Read the Privacy Policy for SolutionTemple. We are committed to protecting your data and ensuring 100% confidentiality.',
-};
 
 export default function PrivacyPolicyPage() {
   return (
@@ -43,7 +37,7 @@ export default function PrivacyPolicyPage() {
         
         <h2>3. Data Confidentiality</h2>
         <p>
-          <strong>Your privacy is our utmost priority.</strong> All information you share with us, including your name, contact details, and personal situation, is held in the strictest confidence.
+          <strong>Your privacy is our utmost priority.</strong> All information you share with us, including your name, contact details, and your personal situation, is held in the strictest confidence.
         </p>
         <ul>
           <li><strong>Data is never shared:</strong> We will not sell, rent, or share your personal information with any third parties for marketing purposes or any other reason, unless required by law.</li>
