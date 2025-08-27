@@ -105,19 +105,16 @@ export const getTestimonials = async (t: (key: string) => string): Promise<Testi
     },
 ];
 
-export const getBlogPosts = async (t: (key: string) => string): Promise<BlogPost[]> => [
+export const getBlogPosts = async (t: any): Promise<BlogPost[]> => [
     {
         slug: '5-signs-you-need-a-love-spell',
         title: t('post1_title'),
         excerpt: t('post1_excerpt'),
-        content: t('post1_content', {
-            p1: t('post1_content_p1'),
-            ol_li1: t('post1_content_ol_li1'),
-            ol_li2: t('post1_content_ol_li2'),
-            ol_li3: t('post1_content_ol_li3'),
-            ol_li4: t('post1_content_ol_li4'),
-            ol_li5: t('post1_content_ol_li5'),
-            p2: t('post1_content_p2'),
+        content: t.rich('post1_content', {
+            p: (chunks: any) => `<p>${chunks}</p>`,
+            ol: (chunks: any) => `<ol>${chunks}</ol>`,
+            li: (chunks: any) => `<li>${chunks}</li>`,
+            strong: (chunks: any) => `<strong>${chunks}</strong>`,
         }),
         imageUrl: 'https://picsum.photos/800/600',
         date: '2024-05-15T10:00:00Z',
@@ -126,12 +123,11 @@ export const getBlogPosts = async (t: (key: string) => string): Promise<BlogPost
         slug: 'how-the-full-moon-affects-spell-energy',
         title: t('post2_title'),
         excerpt: t('post2_excerpt'),
-        content: t('post2_content', {
-            p1: t('post2_content_p1'),
-            ul_li1: t('post2_content_ul_li1'),
-            ul_li2: t('post2_content_ul_li2'),
-            ul_li3: t('post2_content_ul_li3'),
-            p2: t('post2_content_p2'),
+         content: t.rich('post2_content', {
+            p: (chunks: any) => `<p>${chunks}</p>`,
+            ul: (chunks: any) => `<ul>${chunks}</ul>`,
+            li: (chunks: any) => `<li>${chunks}</li>`,
+            strong: (chunks: any) => `<strong>${chunks}</strong>`,
         }),
         imageUrl: 'https://picsum.photos/800/600',
         date: '2024-05-22T12:30:00Z',
@@ -140,12 +136,11 @@ export const getBlogPosts = async (t: (key: string) => string): Promise<BlogPost
         slug: 'why-african-love-spells-are-so-powerful',
         title: t('post3_title'),
         excerpt: t('post3_excerpt'),
-        content: t('post3_content', {
-            p1: t('post3_content_p1'),
-            ul_li1: t('post3_content_ul_li1'),
-            ul_li2: t('post3_content_ul_li2'),
-            ul_li3: t('post3_content_ul_li3'),
-            p2: t('post3_content_p2'),
+        content: t.rich('post3_content', {
+            p: (chunks: any) => `<p>${chunks}</p>`,
+            ul: (chunks: any) => `<ul>${chunks}</ul>`,
+            li: (chunks: any) => `<li>${chunks}</li>`,
+            strong: (chunks: any) => `<strong>${chunks}</strong>`,
         }),
         imageUrl: 'https://picsum.photos/800/600',
         date: '2024-06-01T09:00:00Z',
@@ -154,13 +149,11 @@ export const getBlogPosts = async (t: (key: string) => string): Promise<BlogPost
         slug: 'truth-about-black-magic',
         title: t('post4_title'),
         excerpt: t('post4_excerpt'),
-        content: t('post4_content', {
-            p1: t('post4_content_p1'),
-            p2: t('post4_content_p2'),
-            ul_li1: t('post4_content_ul_li1'),
-            ul_li2: t('post4_content_ul_li2'),
-            ul_li3: t('post4_content_ul_li3'),
-            p3: t('post4_content_p3'),
+        content: t.rich('post4_content', {
+            p: (chunks: any) => `<p>${chunks}</p>`,
+            ul: (chunks: any) => `<ul>${chunks}</ul>`,
+            li: (chunks: any) => `<li>${chunks}</li>`,
+            strong: (chunks: any) => `<strong>${chunks}</strong>`,
         }),
         imageUrl: 'https://picsum.photos/800/600',
         date: '2024-06-10T15:00:00Z',
