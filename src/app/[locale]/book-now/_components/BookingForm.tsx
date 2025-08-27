@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, useFormField } from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, CheckCircle, X } from 'lucide-react';
 import { Link } from '@/navigation';
@@ -21,35 +21,6 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import type { Service } from '@/lib/types';
 import { submitBooking } from '../actions';
-
-
-const TermsField = () => {
-    const t = useTranslations('BookNowPage');
-    const { id, field } = useFormField();
-    return (
-        <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-            <FormControl>
-                <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    id={id}
-                />
-            </FormControl>
-            <div className="space-y-1 leading-none">
-                 <label htmlFor={id} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                    {t.rich('terms_label', {
-                        termsLink: (chunks) => <Link href="/privacy-policy" className="underline hover:text-primary">{chunks}</Link>
-                    })}
-                </label>
-                <FormDescription>
-                    {t('terms_desc')}
-                </FormDescription>
-                <FormMessage />
-            </div>
-        </FormItem>
-    )
-}
-
 
 export function BookingForm() {
   const { toast } = useToast();
@@ -194,11 +165,11 @@ export function BookingForm() {
               <FormField
                 control={form.control}
                 name="photo"
-                render={({ field }) => (
+                render={({ field: { onChange, value, ...rest } }) => (
                   <FormItem>
                     <FormLabel>{t('photo_label')}</FormLabel>
                     <FormControl>
-                      <Input type="file" onChange={(e) => field.onChange(e.target.files)} />
+                      <Input type="file" onChange={(e) => onChange(e.target.files)} {...rest} />
                     </FormControl>
                      <FormDescription>
                       {t('photo_desc')}
@@ -229,8 +200,29 @@ export function BookingForm() {
               <FormField
                 control={form.control}
                 name="termsAccepted"
-                render={({ field }) => <TermsField />}
+                render={({ field }) => (
+                  <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                    <div className="space-y-1 leading-none">
+                      <FormLabel>
+                        {t.rich('terms_label', {
+                          termsLink: (chunks) => <Link href="/privacy-policy" className="underline hover:text-primary">{chunks}</Link>
+                        })}
+                      </FormLabel>
+                      <FormDescription>
+                        {t('terms_desc')}
+                      </FormDescription>
+                      <FormMessage />
+                    </div>
+                  </FormItem>
+                )}
               />
+
                <div className="text-xs text-muted-foreground">
                   {t.rich('recaptcha', {
                     privacyLink: (chunks) => <a href="https://policies.google.com/privacy" className="underline">{chunks}</a>,
