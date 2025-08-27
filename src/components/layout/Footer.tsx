@@ -17,7 +17,8 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               A sanctuary where love, energy, and intention align for your spiritual well-being.
             </p>
-            <div className="flex space-x-2">
+            <LanguageSwitcher />
+            <div className="flex space-x-2 pt-2">
                 <ShieldCheck className="h-5 w-5 text-green-600" />
                 <span className="text-xs text-muted-foreground">Google Safe Browsing</span>
             </div>
@@ -74,7 +75,6 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} SolutionTemple. All Rights Reserved.</p>
           <div className="flex items-center space-x-4">
-            <LanguageSwitcher />
             <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Privacy Policy
             </Link>

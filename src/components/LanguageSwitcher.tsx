@@ -37,31 +37,34 @@ export function LanguageSwitcher() {
     // In a real app, you'd get this from your i18n solution
     const [currentLanguage, setCurrentLanguage] = React.useState(languages[0]); 
 
-    const isFooter = pathname !== '/'; // A simple way to detect if we might be in the footer context
+    // This is a simple heuristic to detect if we're rendering in the footer.
+    // A more robust solution could involve a context provider.
+    const isFooter = pathname !== '/';
 
     if (isFooter) {
         return (
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                     <Button variant="ghost" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                        {currentLanguage.name}
-                        <ChevronDown className="w-4 h-4 ml-1" />
-                    </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                    {languages.map((lang) => (
-                        <DropdownMenuItem key={lang.code} onClick={() => {
-                            handleLanguageChange(lang.code);
-                            setCurrentLanguage(lang);
-                        }}>
-                            {lang.name}
-                        </DropdownMenuItem>
-                    ))}
-                </DropdownMenuContent>
-            </DropdownMenu>
+             <div className="pt-2">
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="text-sm justify-start p-0 h-auto font-normal text-muted-foreground hover:text-primary transition-colors hover:bg-transparent">
+                            {currentLanguage.name}
+                            <ChevronDown className="w-4 h-4 ml-1" />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start">
+                        {languages.map((lang) => (
+                            <DropdownMenuItem key={lang.code} onClick={() => {
+                                handleLanguageChange(lang.code);
+                                setCurrentLanguage(lang);
+                            }}>
+                                {lang.name}
+                            </DropdownMenuItem>
+                        ))}
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
         )
     }
-
 
     return (
         <DropdownMenu>
