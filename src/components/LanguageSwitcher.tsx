@@ -22,8 +22,12 @@ export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
 
     const currentLanguageName = localeNames[language as keyof typeof localeNames];
 
+    const handleLanguageChange = (lang: (typeof locales)[number]) => {
+      setLanguage(lang);
+    };
+
     const renderMenuItem = (lang: (typeof locales)[number]) => (
-       <DropdownMenuItem key={lang} onSelect={() => setLanguage(lang)}>
+       <DropdownMenuItem key={lang} onSelect={() => handleLanguageChange(lang)}>
           {localeNames[lang]}
        </DropdownMenuItem>
     )
