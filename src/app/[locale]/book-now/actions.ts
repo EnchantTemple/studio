@@ -1,9 +1,13 @@
+
 'use server';
 
 import { bookingSchema, type BookingFormValues } from '@/lib/schemas';
+import { getTranslations } from 'next-intl/server';
+
 
 export async function submitBooking(data: BookingFormValues) {
-  const validationResult = bookingSchema.safeParse(data);
+  const t = await getTranslations('BookNowPage');
+  const validationResult = bookingSchema(t).safeParse(data);
 
   if (!validationResult.success) {
     return {
@@ -21,3 +25,4 @@ export async function submitBooking(data: BookingFormValues) {
     message: "Booking Sent!",
   };
 }
+

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -5,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { bookingSchema, type BookingFormValues } from '@/lib/schemas';
 import { getServices } from '@/lib/data';
 import { useState, useEffect } from 'react';
-import { submitBooking } from '../actions';
 import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
@@ -13,13 +13,69 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, useFormField } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, CheckCircle, X } from 'lucide-react';
 import { Link } from '@/navigation';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import type { Service } from '@/lib/types';
+
+
+// We define the server action here as it cannot be in a separate 'use client' file.
+async function submitBooking(data: BookingFormValues) {
+  'use server';
+  
+  const validationResult = bookingSchema.safeParse(data);
+
+  if (!validationResult.success) {
+    // This is a basic error handling. In a real app, you'd want to
+    // return the detailed error messages to the form.
+    return {
+      success: false,
+      errors: validationResult.error.flatten().fieldErrors,
+    };
+  }
+
+  // The data is valid. You can now process it.
+  // e.g., send it to your database, an email service, etc.
+  console.log('Booking submitted:', validationResult.data);
+
+  // Simulate an API call
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  
+  // Return a success response
+  return {
+    success: true,
+    message: "Booking Sent!",
+  };
+}
+
+const TermsField = () => {
+    const t = useTranslations('BookNowPage');
+    const { id } = useFormField();
+    return (
+        <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+            <FormControl>
+                <Checkbox
+                    checked={useFormField().field.value}
+                    onCheckedChange={useFormField().field.onChange}
+                />
+            </FormControl>
+            <div className="space-y-1 leading-none">
+                 <label htmlFor={id} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                    {t.rich('terms_label', {
+                        termsLink: (chunks) => <Link href="/privacy-policy" className="underline hover:text-primary">{chunks}</Link>
+                    })}
+                </label>
+                <FormDescription>
+                    {t('terms_desc')}
+                </FormDescription>
+                <FormMessage />
+            </div>
+        </FormItem>
+    )
+}
 
 
 export function BookingForm() {
@@ -200,27 +256,7 @@ export function BookingForm() {
               <FormField
                 control={form.control}
                 name="termsAccepted"
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel>
-                        {t.rich('terms_label', {
-                            termsLink: (chunks) => <Link href="/privacy-policy" className="underline hover:text-primary">{chunks}</Link>
-                        })}
-                      </FormLabel>
-                       <FormDescription>
-                        {t('terms_desc')}
-                      </FormDescription>
-                      <FormMessage />
-                    </div>
-                  </FormItem>
-                )}
+                render={() => <TermsField />}
               />
                <div className="text-xs text-muted-foreground">
                   {t.rich('recaptcha', {
@@ -259,3 +295,4 @@ export function BookingForm() {
     </>
   );
 }
+
