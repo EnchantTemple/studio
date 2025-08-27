@@ -132,7 +132,19 @@
     "success_title": "Agendamento Enviado!",
     "success_desc": "Você será contatado via WhatsApp em até 12 horas.",
     "error_title": "Erro",
-    "error_desc": "Houve um problema com seu envio. Por favor, verifique o formulário e tente novamente."
+    "error_desc": "Houve um problema com seu envio. Por favor, verifique o formulário e tente novamente.",
+    "form": {
+        "errors": {
+          "fullName": "O nome completo deve ter pelo menos 2 caracteres.",
+          "whatsappNumber": "Por favor, insira um número de WhatsApp válido.",
+          "email": "Por favor, insira um endereço de e-mail válido.",
+          "spellType": "Por favor, selecione um tipo de feitiço válido.",
+          "messageLength": "A mensagem deve ter pelo menos 10 caracteres.",
+          "photoSize": "O tamanho máximo da imagem é de 5 MB.",
+          "photoType": "Apenas os formatos .jpg, .jpeg, .png e .webp são suportados.",
+          "termsAccepted": "Você deve aceitar os termos e condições."
+        }
+      }
   },
   "ContactPage": {
     "hero_title": "Entre em Contato",

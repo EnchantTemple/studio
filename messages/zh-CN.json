@@ -132,7 +132,19 @@
     "success_title": "预订已发送！",
     "success_desc": "我们将在 12 小时内通过 WhatsApp 与您联系。",
     "error_title": "错误",
-    "error_desc": "您的提交出现了问题。请检查表格并重试。"
+    "error_desc": "您的提交出现了问题。请检查表格并重试。",
+    "form": {
+        "errors": {
+          "fullName": "全名必须至少包含 2 个字符。",
+          "whatsappNumber": "请输入有效的 WhatsApp 号码。",
+          "email": "请输入有效的电子邮件地址。",
+          "spellType": "请选择有效的法术类型。",
+          "messageLength": "消息必须至少包含 10 个字符。",
+          "photoSize": "最大图片大小为 5MB。",
+          "photoType": "仅支持 .jpg、.jpeg、.png 和 .webp 格式。",
+          "termsAccepted": "您必须接受条款和条件。"
+        }
+      }
   },
   "ContactPage": {
     "hero_title": "联系我们",

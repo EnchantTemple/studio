@@ -132,7 +132,19 @@
     "success_title": "Buchung gesendet!",
     "success_desc": "Sie werden innerhalb von 12 Stunden per WhatsApp kontaktiert.",
     "error_title": "Fehler",
-    "error_desc": "Bei Ihrer Übermittlung ist ein Problem aufgetreten. Bitte überprüfen Sie das Formular und versuchen Sie es erneut."
+    "error_desc": "Bei Ihrer Übermittlung ist ein Problem aufgetreten. Bitte überprüfen Sie das Formular und versuchen Sie es erneut.",
+    "form": {
+        "errors": {
+          "fullName": "Der vollständige Name muss mindestens 2 Zeichen lang sein.",
+          "whatsappNumber": "Bitte geben Sie eine gültige WhatsApp-Nummer ein.",
+          "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+          "spellType": "Bitte wählen Sie einen gültigen Zaubertyp aus.",
+          "messageLength": "Die Nachricht muss mindestens 10 Zeichen lang sein.",
+          "photoSize": "Die maximale Bildgröße beträgt 5 MB.",
+          "photoType": "Es werden nur die Formate .jpg, .jpeg, .png und .webp unterstützt.",
+          "termsAccepted": "Sie müssen die Allgemeinen Geschäftsbedingungen akzeptieren."
+        }
+      }
   },
   "ContactPage": {
     "hero_title": "Nehmen Sie Kontakt auf",

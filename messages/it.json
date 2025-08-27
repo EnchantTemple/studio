@@ -63,7 +63,7 @@
     "hero_title": "La Nostra Sacra Eredità",
     "hero_subtitle": "Un'eredità di guarigione tramandata da cinque generazioni.",
     "lineage_title": "Una Lignaggio di Doni Divini",
-    "lineage_p1": "SolutionTemple è un cerchio di guaritori africani di quinta generazione. Ogni consulente spirituale nel cerchio nasce con il dono divino dell'allineamento energetico e della guarigione emotiva. Il nostro viaggio è iniziato nelle terre sacre del Benin, dove i nostri anziani hanno tramandato rituali ancestrali segreti per l'amore e l'armonia.",
+    "lineage_p1": "SolutionTemple è un cerchio di guaritori africani di quinta generazione. Ogni consulente spirituale nel cerchio nasce con il dono divino dell'allineamento energetico e della guarigione emotiva. Il nostro viaggio è iniziato nelle terre sacre del Benin, where i nostri anziani hanno tramandato rituali ancestrali segreti per l'amore e l'armonia.",
     "lineage_p2": "Combiniamo la saggezza antica con una comprensione moderna delle dinamiche energetiche per fornire una guida efficace, etica e compassionevole alle anime di tutto il mondo.",
     "credentials_title": "Le Nostre Credenziali e Garanzie",
     "certifications_title": "Certificazioni",
@@ -132,7 +132,19 @@
     "success_title": "Prenotazione Inviata!",
     "success_desc": "Sarai contattato tramite WhatsApp entro 12 ore.",
     "error_title": "Errore",
-    "error_desc": "Si è verificato un problema con il tuo invio. Controlla il modulo e riprova."
+    "error_desc": "Si è verificato un problema con il tuo invio. Controlla il modulo e riprova.",
+    "form": {
+        "errors": {
+          "fullName": "Il nome completo deve contenere almeno 2 caratteri.",
+          "whatsappNumber": "Inserisci un numero WhatsApp valido.",
+          "email": "Inserisci un indirizzo email valido.",
+          "spellType": "Seleziona un tipo di incantesimo valido.",
+          "messageLength": "Il messaggio deve contenere almeno 10 caratteri.",
+          "photoSize": "La dimensione massima dell'immagine è 5MB.",
+          "photoType": "Sono supportati solo i formati .jpg, .jpeg, .png e .webp.",
+          "termsAccepted": "Devi accettare i termini e le condizioni."
+        }
+      }
   },
   "ContactPage": {
     "hero_title": "Mettiti in Contatto",

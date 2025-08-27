@@ -132,7 +132,19 @@
     "success_title": "Réservation Envoyée !",
     "success_desc": "Vous serez contacté via WhatsApp dans les 12 heures.",
     "error_title": "Erreur",
-    "error_desc": "Un problème est survenu lors de votre soumission. Veuillez vérifier le formulaire et réessayer."
+    "error_desc": "Un problème est survenu lors de votre soumission. Veuillez vérifier le formulaire et réessayer.",
+    "form": {
+        "errors": {
+          "fullName": "Le nom complet doit comporter au moins 2 caractères.",
+          "whatsappNumber": "Veuillez saisir un numéro WhatsApp valide.",
+          "email": "Veuillez saisir une adresse e-mail valide.",
+          "spellType": "Veuillez sélectionner un type de sort valide.",
+          "messageLength": "Le message doit comporter au moins 10 caractères.",
+          "photoSize": "La taille maximale de l'image est de 5 Mo.",
+          "photoType": "Seuls les formats .jpg, .jpeg, .png et .webp sont pris en charge.",
+          "termsAccepted": "Vous devez accepter les termes et conditions."
+        }
+      }
   },
   "ContactPage": {
     "hero_title": "Prenez Contact",

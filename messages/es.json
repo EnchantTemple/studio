@@ -132,7 +132,19 @@
     "success_title": "¡Reserva Enviada!",
     "success_desc": "Serás contactado por WhatsApp en un plazo de 12 horas.",
     "error_title": "Error",
-    "error_desc": "Hubo un problema con tu envío. Por favor, revisa el formulario e inténtalo de nuevo."
+    "error_desc": "Hubo un problema con tu envío. Por favor, revisa el formulario e inténtalo de nuevo.",
+    "form": {
+        "errors": {
+          "fullName": "El nombre completo debe tener al menos 2 caracteres.",
+          "whatsappNumber": "Por favor, introduce un número de WhatsApp válido.",
+          "email": "Por favor, introduce una dirección de correo electrónico válida.",
+          "spellType": "Por favor, selecciona un tipo de hechizo válido.",
+          "messageLength": "El mensaje debe tener al menos 10 caracteres.",
+          "photoSize": "El tamaño máximo de la imagen es de 5MB.",
+          "photoType": "Solo se admiten los formatos .jpg, .jpeg, .png y .webp.",
+          "termsAccepted": "Debes aceptar los términos y condiciones."
+        }
+      }
   },
   "ContactPage": {
     "hero_title": "Ponte en Contacto",
