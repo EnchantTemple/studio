@@ -1,29 +1,19 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getServices } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Sparkles } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import type { Service } from '@/lib/types';
 import { useTranslations, useLocale } from 'next-intl';
 
 
 export default function ServicesPage() {
-  const [services, setServices] = useState<Omit<Service, 'name' | 'description' | 'delivery'>[]>([]);
   const t = useTranslations('ServicesPage');
   const tShared = useTranslations('HomePage.Services');
   const tNav = useTranslations('Navigation');
   const locale = useLocale();
   
-  useEffect(() => {
-    const fetchServices = () => {
-        const servicesData = getServices();
-        setServices(servicesData);
-    };
-    fetchServices();
-  }, []);
+  const services = ['reunite_lovers', 'attract_love', 'strengthen_relationship', 'stop_breakup', 'custom_spell'];
 
   return (
     <>
@@ -39,22 +29,22 @@ export default function ServicesPage() {
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <Card key={service.key} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
+            {services.map((serviceKey, index) => (
+              <Card key={serviceKey} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                  <Image
-                    src={service.imageUrl}
-                    alt={tShared(`${service.key}_name`)}
-                    data-ai-hint={service.dataAiHint}
+                    src={`https://picsum.photos/400/300?random=${index + 1}`}
+                    alt={tShared(`${serviceKey}_name`)}
+                    data-ai-hint="spiritual love"
                     width={400}
                     height={300}
                     className="w-full h-48 object-cover"
                   />
                 <CardHeader>
-                  <CardTitle className="font-headline">{tShared(`${service.key}_name`)}</CardTitle>
-                  <CardDescription>{tShared(`${service.key}_delivery`)}</CardDescription>
+                  <CardTitle className="font-headline">{tShared(`${serviceKey}_name`)}</CardTitle>
+                  <CardDescription>{tShared(`${serviceKey}_delivery`)}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <p className="text-muted-foreground">{tShared(`${service.key}_desc`)}</p>
+                  <p className="text-muted-foreground">{tShared(`${serviceKey}_desc`)}</p>
                 </CardContent>
                 <CardFooter>
                   <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">

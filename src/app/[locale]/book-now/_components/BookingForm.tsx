@@ -3,8 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { bookingSchema, type BookingFormValues } from '@/lib/schemas';
-import { getServices } from '@/lib/data';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,28 +16,19 @@ import { Loader2, CheckCircle, X } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
-import type { Service } from '@/lib/types';
 import { submitBooking } from '../actions';
 import { useTranslations, useLocale } from 'next-intl';
-
 
 export function BookingForm() {
   const { toast } = useToast();
   
-  const [services, setServices] = useState<Omit<Service, 'name' | 'description' | 'delivery'>[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const t = useTranslations('BookNowPage');
   const tServices = useTranslations('HomePage.Services');
   const locale = useLocale();
 
-  useEffect(() => {
-    const fetchServices = () => {
-      const fetchedServices = getServices();
-      setServices(fetchedServices);
-    };
-    fetchServices();
-  }, []);
+  const services = ['reunite_lovers', 'attract_love', 'strengthen_relationship', 'stop_breakup', 'custom_spell'];
 
   const form = useForm<BookingFormValues>({
     resolver: zodResolver(bookingSchema({
@@ -146,9 +136,9 @@ export function BookingForm() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {services.map((service) => (
-                          <SelectItem key={service.key} value={tServices(`${service.key}_name`)}>
-                            {tServices(`${service.key}_name`)}
+                        {services.map((serviceKey) => (
+                          <SelectItem key={serviceKey} value={tServices(`${serviceKey}_name`)}>
+                            {tServices(`${serviceKey}_name`)}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -238,8 +228,8 @@ export function BookingForm() {
 
                <div className="text-xs text-muted-foreground"
                     dangerouslySetInnerHTML={{ __html: t.raw('recaptcha', {
-                      privacyLink: `<a href="https://policies.google.com/privacy" class="underline">Privacy Policy</a>`,
-                      termsServiceLink: `<a href="https://policies.google.com/terms" class="underline">Terms of Service</a>`,
+                      privacyLink: `<a href="https://policies.google.com/privacy" class="underline">${t('recaptcha_privacy_text')}</a>`,
+                      termsServiceLink: `<a href="https://policies.google.com/terms" class="underline">${t('recaptcha_terms_text')}</a>`,
                     })}}
                 />
             </CardContent>

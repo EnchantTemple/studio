@@ -7,22 +7,11 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Mail, MessageCircle } from 'lucide-react';
-import { getFaqs } from '@/lib/data';
-import { useEffect, useState } from 'react';
-import type { FaqItem } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
 export default function FaqPage() {
-  const [faqs, setFaqs] = useState<Omit<FaqItem, 'question' | 'answer'>[]>([]);
   const t = useTranslations('FaqPage');
-
-  useEffect(() => {
-    const fetchFaqs = () => {
-      const allFaqs = getFaqs();
-      setFaqs(allFaqs);
-    };
-    fetchFaqs();
-  }, []);
+  const faqs = ['faq1', 'faq2', 'faq3', 'faq4', 'faq5', 'faq6'];
 
   return (
     <>
@@ -38,13 +27,13 @@ export default function FaqPage() {
       <section className="py-16 md:py-24">
         <div className="container max-w-4xl mx-auto">
           <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq) => (
-              <AccordionItem value={faq.key} key={faq.key}>
+            {faqs.map((faqKey) => (
+              <AccordionItem value={faqKey} key={faqKey}>
                 <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
-                  {t(`${faq.key}_question`)}
+                  {t(`${faqKey}_question`)}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                  {t(`${faq.key}_answer`)}
+                  {t(`${faqKey}_answer`)}
                 </AccordionContent>
               </AccordionItem>
             ))}

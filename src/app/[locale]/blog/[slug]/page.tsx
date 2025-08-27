@@ -2,51 +2,42 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getBlogPosts } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { format, parseISO } from 'date-fns';
-import { useEffect, useState } from 'react';
-import type { BlogPost } from '@/lib/types';
 import { useTranslations, useLocale } from 'next-intl';
 
 type Props = {
   params: { slug: string };
 };
 
+const allPosts = [
+    { key: 'post1', slug: '5-signs-you-need-a-love-spell', date: new Date(2024, 5, 15).toISOString() },
+    { key: 'post2', slug: 'how-the-full-moon-affects-spell-energy', date: new Date(2024, 5, 10).toISOString() },
+    { key: 'post3', slug: 'why-african-love-spells-are-so-powerful', date: new Date(2024, 5, 5).toISOString() },
+    { key: 'post4', slug: 'the-truth-about-black-magic', date: new Date(2024, 5, 1).toISOString() }
+];
+
 export default function BlogPostPage({ params }: Props) {
-  const [post, setPost] = useState<Omit<BlogPost, 'title'|'excerpt'|'content'> | undefined>(undefined);
-  const [relatedPosts, setRelatedPosts] = useState<Omit<BlogPost, 'title'|'excerpt'|'content'>[]>([]);
   const t = useTranslations('BlogPage');
   const locale = useLocale();
 
-  useEffect(() => {
-    const fetchPosts = () => {
-      const allPosts = getBlogPosts();
-      const currentPost = allPosts.find((p) => p.slug === params.slug);
-      if (currentPost) {
-        setPost(currentPost);
-        const related = allPosts
-          .filter((p) => p.slug !== currentPost.slug)
-          .slice(0, 2);
-        setRelatedPosts(related);
-      } else {
-        notFound();
-      }
-    };
-    fetchPosts();
-  }, [params.slug]);
+  const post = allPosts.find((p) => p.slug === params.slug);
 
   if (!post) {
-    return null; // or a loading spinner
+    notFound();
   }
+
+  const relatedPosts = allPosts
+    .filter((p) => p.slug !== post.slug)
+    .slice(0, 2);
 
   return (
     <article>
       <header className="relative h-[50vh] min-h-[400px]">
         <Image
-          src={`${post.imageUrl}?${post.slug}`}
+          src={`https://picsum.photos/1920/1080?random=${post.key}`}
           alt={t(`${post.key}_title`)}
           data-ai-hint="mystical abstract"
           fill

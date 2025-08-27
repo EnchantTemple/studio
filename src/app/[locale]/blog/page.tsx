@@ -1,26 +1,21 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getBlogPosts } from '@/lib/data';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { format, parseISO } from 'date-fns';
-import { useEffect, useState } from 'react';
-import type { BlogPost } from '@/lib/types';
 import { useTranslations, useLocale } from 'next-intl';
 
 export default function BlogPage() {
-  const [posts, setPosts] = useState<Omit<BlogPost, 'title'|'excerpt'|'content'>[]>([]);
   const t = useTranslations('BlogPage');
   const locale = useLocale();
+  const posts = [
+    { key: 'post1', slug: '5-signs-you-need-a-love-spell', date: new Date(2024, 5, 15).toISOString() },
+    { key: 'post2', slug: 'how-the-full-moon-affects-spell-energy', date: new Date(2024, 5, 10).toISOString() },
+    { key: 'post3', slug: 'why-african-love-spells-are-so-powerful', date: new Date(2024, 5, 5).toISOString() },
+    { key: 'post4', slug: 'the-truth-about-black-magic', date: new Date(2024, 5, 1).toISOString() }
+  ];
 
-  useEffect(() => {
-    const fetchPosts = () => {
-      const blogPosts = getBlogPosts();
-      setPosts(blogPosts);
-    };
-    fetchPosts();
-  }, []);
 
   return (
     <>
@@ -36,11 +31,11 @@ export default function BlogPage() {
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
+            {posts.map((post, index) => (
               <Card key={post.slug} className="flex flex-col overflow-hidden">
                 <Link href={`/${locale}/blog/${post.slug}`} className="block">
                   <Image
-                    src={`${post.imageUrl}?${post.slug}`}
+                    src={`https://picsum.photos/800/600?random=${index + 10}`}
                     alt={t(`${post.key}_title`)}
                     data-ai-hint="mystical abstract"
                     width={800}

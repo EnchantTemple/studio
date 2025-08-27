@@ -6,36 +6,20 @@ import { CheckCircle, Globe, MessageCircle, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { getServices, getTestimonials, getFaqs } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { useState, useEffect } from 'react';
-import type { Service, Testimonial, FaqItem } from '@/lib/types';
 import { useTranslations, useLocale } from 'next-intl';
 
 export default function Home() {
-  const [highlightedServices, setHighlightedServices] = useState<Omit<Service, 'name' | 'description' | 'delivery'>[]>([]);
-  const [highlightedTestimonials, setHighlightedTestimonials] = useState<Omit<Testimonial, 'quote'|'name'|'location'|'date'>[]>([]);
-  const [faqs, setFaqs] = useState<Omit<FaqItem, 'question' | 'answer'>[]>([]);
-
   const locale = useLocale();
   const t = useTranslations('HomePage');
   const tFaq = useTranslations('FaqPage');
+  const tServices = useTranslations('HomePage.Services');
+  const tTestimonials = useTranslations('HomePage.Testimonials');
 
-  useEffect(() => {
-    const fetchAndSetData = () => {
-      const allServices = getServices();
-      setHighlightedServices(allServices.slice(0, 3));
-      
-      const allTestimonials = getTestimonials();
-      setHighlightedTestimonials(allTestimonials.slice(0, 3));
-
-      const allFaqs = getFaqs();
-      setFaqs(allFaqs.slice(0, 5));
-    };
-    
-    fetchAndSetData();
-  }, []);
+  const highlightedServices = ['reunite_lovers', 'attract_love', 'strengthen_relationship'];
+  const highlightedTestimonials = ['testimonial1', 'testimonial2', 'testimonial3'];
+  const faqs = ['faq1', 'faq2', 'faq3', 'faq4', 'faq5'];
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
@@ -107,22 +91,22 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
-              {highlightedServices.map((service) => (
-                <Card key={service.key} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
+              {highlightedServices.map((serviceKey, index) => (
+                <Card key={serviceKey} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                   <Image
-                    src={service.imageUrl}
-                    alt={t(`Services.${service.key}_name`)}
-                    data-ai-hint={service.dataAiHint}
+                    src={`https://picsum.photos/400/300?random=${index + 1}`}
+                    alt={tServices(`${serviceKey}_name`)}
+                    data-ai-hint="spiritual love"
                     width={400}
                     height={300}
                     className="w-full h-48 object-cover"
                   />
                   <CardHeader>
-                    <CardTitle className="font-headline">{t(`Services.${service.key}_name`)}</CardTitle>
+                    <CardTitle className="font-headline">{tServices(`${serviceKey}_name`)}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2 flex-grow">
-                    <p className="text-muted-foreground">{t(`Services.${service.key}_desc`)}</p>
-                    <p className="text-sm font-semibold text-primary">{t(`Services.${service.key}_delivery`)}</p>
+                    <p className="text-muted-foreground">{tServices(`${serviceKey}_desc`)}</p>
+                    <p className="text-sm font-semibold text-primary">{tServices(`${serviceKey}_delivery`)}</p>
                   </CardContent>
                    <CardFooter>
                     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
@@ -149,25 +133,25 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto grid max-w-5xl grid-cols-1 lg:grid-cols-2 gap-8">
-              {highlightedTestimonials.map((testimonial) => (
-                <Card key={testimonial.key}>
+              {highlightedTestimonials.map((testimonialKey, index) => (
+                <Card key={testimonialKey}>
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-4 mb-4">
                       <Avatar>
-                        <AvatarImage src={testimonial.avatar} alt={t(`Testimonials.${testimonial.key}_name`)} />
-                        <AvatarFallback>{t(`Testimonials.${testimonial.key}_name`).charAt(0)}</AvatarFallback>
+                        <AvatarImage src={`https://i.pravatar.cc/150?img=${index + 1}`} alt={tTestimonials(`${testimonialKey}_name`)} />
+                        <AvatarFallback>{tTestimonials(`${testimonialKey}_name`).charAt(0)}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-semibold">{t(`Testimonials.${testimonial.key}_name`)}</p>
-                        <p className="text-sm text-muted-foreground">{t(`Testimonials.${testimonial.key}_location`)}</p>
+                        <p className="font-semibold">{tTestimonials(`${testimonialKey}_name`)}</p>
+                        <p className="text-sm text-muted-foreground">{tTestimonials(`${testimonialKey}_location`)}</p>
                       </div>
                     </div>
                     <div className="flex mb-2">
                       {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-gray-300'}`} />
+                        <Star key={i} className={`w-5 h-5 ${i < 5 ? 'text-accent fill-accent' : 'text-gray-300'}`} />
                       ))}
                     </div>
-                    <blockquote className="text-lg italic text-foreground">&quot;{t(`Testimonials.${testimonial.key}_quote`)}&quot;</blockquote>
+                    <blockquote className="text-lg italic text-foreground">&quot;{tTestimonials(`${testimonialKey}_quote`)}&quot;</blockquote>
                   </CardContent>
                 </Card>
               ))}
@@ -189,13 +173,13 @@ export default function Home() {
               </p>
             </div>
             <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem value={`item-${index}`} key={faq.key}>
+              {faqs.map((faqKey, index) => (
+                <AccordionItem value={`item-${index}`} key={faqKey}>
                   <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
-                    {tFaq(`${faq.key}_question`)}
+                    {tFaq(`${faqKey}_question`)}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                    {tFaq(`${faq.key}_answer`)}
+                    {tFaq(`${faqKey}_answer`)}
                   </AccordionContent>
                 </AccordionItem>
               ))}
