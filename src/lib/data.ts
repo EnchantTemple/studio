@@ -1,5 +1,4 @@
 import type { NavItem, Service, Testimonial, BlogPost, FaqItem } from '@/lib/types';
-import { getTranslations } from 'next-intl/server';
 
 export const navItems: NavItem[] = [
   { href: '/', label: 'home' },
@@ -11,178 +10,65 @@ export const navItems: NavItem[] = [
   { href: '/contact', label: 'contact' },
 ];
 
-export const getServices = async (t: (key: string) => string): Promise<Service[]> => [
-  {
-    key: 'reunite_lovers',
-    name: t('reunite_lovers_name'),
-    description: t('reunite_lovers_desc'),
-    delivery: t('reunite_lovers_delivery'),
-    imageUrl: 'https://picsum.photos/400/300?random=1',
-    dataAiHint: 'reuniting couple'
-  },
-  {
-    key: 'attract_love',
-    name: t('attract_love_name'),
-    description: t('attract_love_desc'),
-    delivery: t('attract_love_delivery'),
-    imageUrl: 'https://picsum.photos/400/300?random=2',
-    dataAiHint: 'happy couple'
-  },
-  {
-    key: 'strengthen_relationship',
-    name: t('strengthen_relationship_name'),
-    description: t('strengthen_relationship_desc'),
-    delivery: t('strengthen_relationship_delivery'),
-    imageUrl: 'https://picsum.photos/400/300?random=3',
-    dataAiHint: 'holding hands'
-  },
-  {
-    key: 'stop_breakup',
-    name: t('stop_breakup_name'),
-    description: t('stop_breakup_desc'),
-    delivery: t('stop_breakup_delivery'),
-    imageUrl: 'https://picsum.photos/400/300?random=4',
-    dataAiHint: 'sad couple'
-  },
-  {
-    key: 'custom_spell',
-    name: t('custom_spell_name'),
-    description: t('custom_spell_desc'),
-    delivery: t('custom_spell_delivery'),
-    imageUrl: 'https://picsum.photos/400/300?random=5',
-    dataAiHint: 'mystical abstract'
-  },
-];
+export const getMessages = async (locale: string) => {
+    try {
+        return (await import(`../../messages/${locale}.json`)).default;
+    } catch (e) {
+        return (await import(`../../messages/en.json`)).default;
+    }
+}
 
-export const getTestimonials = async (t: (key: string) => string): Promise<Testimonial[]> => [
-    {
-        quote: t('testimonial1_quote'),
-        name: t('testimonial1_name'),
-        location: t('testimonial1_location'),
-        avatar: "https://i.pravatar.cc/150?img=1",
-        rating: 5,
-        date: t('testimonial1_date'),
-    },
-    {
-        quote: t('testimonial2_quote'),
-        name: t('testimonial2_name'),
-        location: t('testimonial2_location'),
-        avatar: "https://i.pravatar.cc/150?img=2",
-        rating: 5,
-        date: t('testimonial2_date'),
-    },
-    {
-        quote: t('testimonial3_quote'),
-        name: t('testimonial3_name'),
-        location: t('testimonial3_location'),
-        avatar: "https://i.pravatar.cc/150?img=3",
-        rating: 4,
-        date: t('testimonial3_date'),
-    },
-    {
-        quote: t('testimonial4_quote'),
-        name: t('testimonial4_name'),
-        location: t('testimonial4_location'),
-        avatar: "https://i.pravatar.cc/150?img=4",
-        rating: 5,
-        date: t('testimonial4_date'),
-    },
-    {
-        quote: t('testimonial5_quote'),
-        name: t('testimonial5_name'),
-        location: t('testimonial5_location'),
-        avatar: "https://i.pravatar.cc/150?img=5",
-        rating: 5,
-        date: t('testimonial5_date'),
-    },
-    {
-        quote: t('testimonial6_quote'),
-        name: t('testimonial6_name'),
-        location: t('testimonial6_location'),
-        avatar: "https://i.pravatar.cc/150?img=6",
-        rating: 5,
-        date: t('testimonial6_date'),
-    },
-];
+const getNestedValue = (obj: any, key: string) => key.split('.').reduce((o, i) => (o ? o[i] : undefined), obj);
 
-export const getBlogPosts = async (t: any): Promise<BlogPost[]> => [
-    {
-        slug: '5-signs-you-need-a-love-spell',
-        title: t('post1_title'),
-        excerpt: t('post1_excerpt'),
-        content: t.rich('post1_content', {
-            p: (chunks: any) => `<p>${chunks}</p>`,
-            ol: (chunks: any) => `<ol>${chunks}</ol>`,
-            li: (chunks: any) => `<li>${chunks}</li>`,
-            strong: (chunks: any) => `<strong>${chunks}</strong>`,
-        }),
-        imageUrl: 'https://picsum.photos/800/600',
-        date: '2024-05-15T10:00:00Z',
-    },
-    {
-        slug: 'how-the-full-moon-affects-spell-energy',
-        title: t('post2_title'),
-        excerpt: t('post2_excerpt'),
-         content: t.rich('post2_content', {
-            p: (chunks: any) => `<p>${chunks}</p>`,
-            ul: (chunks: any) => `<ul>${chunks}</ul>`,
-            li: (chunks: any) => `<li>${chunks}</li>`,
-            strong: (chunks: any) => `<strong>${chunks}</strong>`,
-        }),
-        imageUrl: 'https://picsum.photos/800/600',
-        date: '2024-05-22T12:30:00Z',
-    },
-    {
-        slug: 'why-african-love-spells-are-so-powerful',
-        title: t('post3_title'),
-        excerpt: t('post3_excerpt'),
-        content: t.rich('post3_content', {
-            p: (chunks: any) => `<p>${chunks}</p>`,
-            ul: (chunks: any) => `<ul>${chunks}</ul>`,
-            li: (chunks: any) => `<li>${chunks}</li>`,
-            strong: (chunks: any) => `<strong>${chunks}</strong>`,
-        }),
-        imageUrl: 'https://picsum.photos/800/600',
-        date: '2024-06-01T09:00:00Z',
-    },
-    {
-        slug: 'truth-about-black-magic',
-        title: t('post4_title'),
-        excerpt: t('post4_excerpt'),
-        content: t.rich('post4_content', {
-            p: (chunks: any) => `<p>${chunks}</p>`,
-            ul: (chunks: any) => `<ul>${chunks}</ul>`,
-            li: (chunks: any) => `<li>${chunks}</li>`,
-            strong: (chunks: any) => `<strong>${chunks}</strong>`,
-        }),
-        imageUrl: 'https://picsum.photos/800/600',
-        date: '2024-06-10T15:00:00Z',
-    },
-];
 
-export const getFaqs = async (t: (key: string) => string): Promise<FaqItem[]> => [
-    {
-        question: t('faq1_question'),
-        answer: t('faq1_answer'),
-    },
-    {
-        question: t('faq2_question'),
-        answer: t('faq2_answer'),
-    },
-    {
-        question: t('faq3_question'),
-        answer: t('faq3_answer'),
-    },
-    {
-        question: t('faq4_question'),
-        answer: t('faq4_answer'),
-    },
-    {
-        question: t('faq5_question'),
-        answer: t('faq5_answer'),
-    },
-    {
-        question: t('faq6_question'),
-        answer: t('faq6_answer'),
-    },
-];
+export const getServices = async (locale: string): Promise<Service[]> => {
+    const t = await getMessages(locale);
+    const serviceKeys = ['reunite_lovers', 'attract_love', 'strengthen_relationship', 'stop_breakup', 'custom_spell'];
+    
+    return serviceKeys.map((key, index) => ({
+        key,
+        name: getNestedValue(t, `HomePage.Services.${key}_name`) || `Service ${index + 1}`,
+        description: getNestedValue(t, `HomePage.Services.${key}_desc`) || 'Description',
+        delivery: getNestedValue(t, `HomePage.Services.${key}_delivery`) || 'Delivery varies',
+        imageUrl: `https://picsum.photos/400/300?random=${index + 1}`,
+        dataAiHint: 'spiritual love'
+    }));
+};
+
+export const getTestimonials = async (locale: string): Promise<Testimonial[]> => {
+    const t = await getMessages(locale);
+    const testimonialKeys = ['testimonial1', 'testimonial2', 'testimonial3', 'testimonial4', 'testimonial5', 'testimonial6'];
+    
+    return testimonialKeys.map((key, index) => ({
+        quote: getNestedValue(t, `TestimonialsPage.${key}_quote`) || 'Great service!',
+        name: getNestedValue(t, `TestimonialsPage.${key}_name`) || `Client ${index + 1}`,
+        location: getNestedValue(t, `TestimonialsPage.${key}_location`) || 'Earth',
+        avatar: `https://i.pravatar.cc/150?img=${index + 1}`,
+        rating: 5,
+        date: getNestedValue(t, `TestimonialsPage.${key}_date`) || 'Recently',
+    }));
+};
+
+export const getBlogPosts = async (locale: string): Promise<BlogPost[]> => {
+     const t = await getMessages(locale);
+     const postKeys = ['post1', 'post2', 'post3', 'post4'];
+
+     return postKeys.map((key, index) => ({
+        slug: `slug-${key}`,
+        title: getNestedValue(t, `BlogPage.${key}_title`) || `Blog Post ${index + 1}`,
+        excerpt: getNestedValue(t, `BlogPage.${key}_excerpt`) || 'Excerpt...',
+        content: getNestedValue(t, `BlogPage.${key}_content`) || '<p>Content</p>',
+        imageUrl: `https://picsum.photos/800/600?random=${index + 10}`,
+        date: new Date(2024, 5, 15 - index * 5).toISOString(),
+     }));
+};
+
+export const getFaqs = async (locale: string): Promise<FaqItem[]> => {
+    const t = await getMessages(locale);
+    const faqKeys = ['faq1', 'faq2', 'faq3', 'faq4', 'faq5', 'faq6'];
+
+    return faqKeys.map((key, index) => ({
+        question: getNestedValue(t, `FaqPage.${key}_question`) || `Question ${index + 1}?`,
+        answer: getNestedValue(t, `FaqPage.${key}_answer`) || 'Answer.'
+    }));
+};

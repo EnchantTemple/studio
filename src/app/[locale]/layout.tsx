@@ -8,7 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import WhatsAppButton from '@/components/layout/WhatsAppButton';
 import {NextIntlClientProvider} from 'next-intl';
-import {getMessages, getTranslations} from 'next-intl/server';
+import {getMessages} from 'next-intl/server';
 import { navItems as navItemKeys } from '@/lib/data';
 import { TranslationProvider } from '@/context/TranslationContext';
 
@@ -35,45 +35,45 @@ export default async function RootLayout({
   params: {locale: string};
 }>) {
   const messages = await getMessages();
-  const t = await getTranslations('Navigation');
-  const tFooter = await getTranslations('Footer');
-
-  const navItems = navItemKeys.map(item => ({...item, label: t(item.label as any)}));
+  const navT = (key: string) => messages.Navigation[key as keyof typeof messages.Navigation] || key;
+  const footerT = (key: string) => messages.Footer[key as keyof typeof messages.Footer] || key;
+  
+  const navItems = navItemKeys.map(item => ({...item, label: navT(item.label)}));
   
   const footerTranslations = {
-    tagline: tFooter('tagline'),
-    quickLinks: tFooter('quickLinks'),
-    contactUs: tFooter('contactUs'),
-    whatsapp: tFooter('whatsapp'),
-    email: tFooter('email'),
-    workingHours: tFooter('workingHours'),
-    newsletter: tFooter('newsletter'),
-    newsletter_prompt: tFooter('newsletter_prompt'),
-    subscribe: tFooter('subscribe'),
-    copyright: tFooter('copyright', {year: new Date().getFullYear()}),
-    privacyPolicy: tFooter('privacyPolicy'),
-    refundPolicy: tFooter('refundPolicy'),
+    tagline: footerT('tagline'),
+    quickLinks: footerT('quickLinks'),
+    contactUs: footerT('contactUs'),
+    whatsapp: footerT('whatsapp'),
+    email: footerT('email'),
+    workingHours: footerT('workingHours'),
+    newsletter: footerT('newsletter'),
+    newsletter_prompt: footerT('newsletter_prompt'),
+    subscribe: footerT('subscribe'),
+    copyright: footerT('copyright').replace('{year}', new Date().getFullYear().toString()),
+    privacyPolicy: footerT('privacyPolicy'),
+    refundPolicy: footerT('refundPolicy'),
   };
 
   return (
     <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
       <body className={cn('antialiased font-body', alegreya.variable)}>
-        <TranslationProvider initialLocale={locale}>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-          <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-          >
-              <Header navItems={navItems} bookNowLabel={t('bookNow')} />
-              <main className="flex-grow">{children}</main>
-              <Footer navItems={navItems} translations={footerTranslations} />
-              <WhatsAppButton />
-              <Toaster />
-          </ThemeProvider>
-          </NextIntlClientProvider>
-        </TranslationProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <TranslationProvider initialLocale={locale}>
+            <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+            >
+                <Header navItems={navItems} bookNowLabel={navT('bookNow')} />
+                <main className="flex-grow">{children}</main>
+                <Footer navItems={navItems} translations={footerTranslations} />
+                <WhatsAppButton />
+                <Toaster />
+            </ThemeProvider>
+          </TranslationProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

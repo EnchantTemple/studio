@@ -1,44 +1,55 @@
 'use client';
 
 import React, { createContext, useState, useEffect, useCallback } from 'react';
-import { translateText } from '@/ai/flows/translate-flow';
+import { getTranslationsFromFirestore } from '@/lib/translations';
+import { getMessages } from '@/lib/data'; // We'll get the default messages from here
 
 interface TranslationContextType {
   language: string;
   setLanguage: (language: string) => void;
-  translate: (text: string) => Promise<string>;
+  translate: (key: string, defaultText: string) => string;
 }
 
 export const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
 
 export const TranslationProvider: React.FC<{ children: React.ReactNode; initialLocale: string }> = ({ children, initialLocale }) => {
   const [language, setLanguage] = useState(initialLocale);
-  const [cache, setCache] = useState<Record<string, string>>({});
+  const [translations, setTranslations] = useState<Record<string, any>>({});
+  const [defaultMessages, setDefaultMessages] = useState<Record<string, any>>({});
 
   useEffect(() => {
-    // When language changes, clear the cache.
-    setCache({});
-  }, [language]);
+    // Load default English messages on initial load
+    const loadDefaultMessages = async () => {
+        const messages = await getMessages('en');
+        setDefaultMessages(messages);
+        setTranslations(messages); // Start with English translations
+    };
+    loadDefaultMessages();
+  }, []);
 
-  const translate = useCallback(async (text: string): Promise<string> => {
-    if (language === 'en') {
-        return text;
-    }
+  useEffect(() => {
+    // Fetch translations from Firestore when language changes
+    const loadTranslations = async () => {
+      if (language === 'en') {
+        setTranslations(defaultMessages);
+        return;
+      }
+      
+      const firestoreTranslations = await getTranslationsFromFirestore(language);
+      // Merge Firestore translations with English defaults as a fallback
+      setTranslations({ ...defaultMessages, ...firestoreTranslations });
+    };
 
-    const cacheKey = `${language}:${text}`;
-    if (cache[cacheKey]) {
-      return cache[cacheKey];
+    if (language !== initialLocale || Object.keys(defaultMessages).length > 0) {
+        loadTranslations();
     }
+  }, [language, initialLocale, defaultMessages]);
+  
+  const translate = useCallback((key: string, defaultText: string): string => {
+      // Simple key lookup for now, can be expanded for nested keys
+      return translations[key] || defaultText;
+  }, [translations]);
 
-    try {
-      const translatedText = await translateText({ text, targetLanguage: language });
-      setCache(prev => ({ ...prev, [cacheKey]: translatedText }));
-      return translatedText;
-    } catch (error) {
-      console.error('Translation failed:', error);
-      return text; // Fallback to original text
-    }
-  }, [language, cache]);
 
   return (
     <TranslationContext.Provider value={{ language, setLanguage, translate }}>

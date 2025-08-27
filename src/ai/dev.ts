@@ -1,2 +1,2 @@
-// Flows will be imported for their side effects in this file.
-import './flows/translate-flow';
+// This file is used to register Genkit flows for development.
+// It is not intended for production use.

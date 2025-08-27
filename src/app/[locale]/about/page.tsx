@@ -6,86 +6,48 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useTranslation } from '@/hooks/useTranslation';
-import { useEffect, useState } from 'react';
-
-const useTranslatedContent = () => {
-    const t = useTranslations('AboutPage');
-    const { translate } = useTranslation();
-    const [content, setContent] = useState({
-        hero_title: t('hero_title'),
-        hero_subtitle: t('hero_subtitle'),
-        lineage_title: t('lineage_title'),
-        lineage_p1: t('lineage_p1'),
-        lineage_p2: t('lineage_p2'),
-        credentials_title: t('credentials_title'),
-        certifications_title: t('certifications_title'),
-        cert1_name: t('cert1_name'),
-        cert1_board: t('cert1_board'),
-        cert2_name: t('cert2_name'),
-        cert2_board: t('cert2_board'),
-        cert3_name: t('cert3_name'),
-        cert3_board: t('cert3_board'),
-        values_title: t('values_title'),
-        value1_name: t('value1_name'),
-        value1_desc: t('value1_desc'),
-        value2_name: t('value2_name'),
-        value2_desc: t('value2_desc'),
-        value3_name: t('value3_name'),
-        value3_desc: t('value3_desc'),
-        cta_title: t('cta_title'),
-        cta_p: t('cta_p'),
-        cta_button: t('cta_button'),
-    });
-
-    useEffect(() => {
-        const translateContent = async () => {
-            const translatedContent = {
-                hero_title: await translate(t('hero_title')),
-                hero_subtitle: await translate(t('hero_subtitle')),
-                lineage_title: await translate(t('lineage_title')),
-                lineage_p1: await translate(t('lineage_p1')),
-                lineage_p2: await translate(t('lineage_p2')),
-                credentials_title: await translate(t('credentials_title')),
-                certifications_title: await translate(t('certifications_title')),
-                cert1_name: await translate(t('cert1_name')),
-                cert1_board: await translate(t('cert1_board')),
-                cert2_name: await translate(t('cert2_name')),
-                cert2_board: await translate(t('cert2_board')),
-                cert3_name: await translate(t('cert3_name')),
-                cert3_board: await translate(t('cert3_board')),
-                values_title: await translate(t('values_title')),
-                value1_name: await translate(t('value1_name')),
-                value1_desc: await translate(t('value1_desc')),
-                value2_name: await translate(t('value2_name')),
-                value2_desc: await translate(t('value2_desc')),
-                value3_name: await translate(t('value3_name')),
-                value3_desc: await translate(t('value3_desc')),
-                cta_title: await translate(t('cta_title')),
-                cta_p: await translate(t('cta_p')),
-                cta_button: await translate(t('cta_button')),
-            };
-            setContent(translatedContent);
-        };
-        translateContent();
-    }, [translate, t]);
-
-    return content;
-}
 
 export default function AboutPage() {
-  const content = useTranslatedContent();
+    const t = useTranslations('AboutPage');
+    const { translate } = useTranslation();
 
-  const certifications = [
-    { name: content.cert1_name, board: content.cert1_board },
-    { name: content.cert2_name, board: content.cert2_board },
-    { name: content.cert3_name, board: content.cert3_board }
-  ];
+    const content = {
+        hero_title: translate('AboutPage.hero_title', t('hero_title')),
+        hero_subtitle: translate('AboutPage.hero_subtitle', t('hero_subtitle')),
+        lineage_title: translate('AboutPage.lineage_title', t('lineage_title')),
+        lineage_p1: translate('AboutPage.lineage_p1', t('lineage_p1')),
+        lineage_p2: translate('AboutPage.lineage_p2', t('lineage_p2')),
+        credentials_title: translate('AboutPage.credentials_title', t('credentials_title')),
+        certifications_title: translate('AboutPage.certifications_title', t('certifications_title')),
+        cert1_name: translate('AboutPage.cert1_name', t('cert1_name')),
+        cert1_board: translate('AboutPage.cert1_board', t('cert1_board')),
+        cert2_name: translate('AboutPage.cert2_name', t('cert2_name')),
+        cert2_board: translate('AboutPage.cert2_board', t('cert2_board')),
+        cert3_name: translate('AboutPage.cert3_name', t('cert3_name')),
+        cert3_board: translate('AboutPage.cert3_board', t('cert3_board')),
+        values_title: translate('AboutPage.values_title', t('values_title')),
+        value1_name: translate('AboutPage.value1_name', t('value1_name')),
+        value1_desc: translate('AboutPage.value1_desc', t('value1_desc')),
+        value2_name: translate('AboutPage.value2_name', t('value2_name')),
+        value2_desc: translate('AboutPage.value2_desc', t('value2_desc')),
+        value3_name: translate('AboutPage.value3_name', t('value3_name')),
+        value3_desc: translate('AboutPage.value3_desc', t('value3_desc')),
+        cta_title: translate('AboutPage.cta_title', t('cta_title')),
+        cta_p: translate('AboutPage.cta_p', t('cta_p')),
+        cta_button: translate('AboutPage.cta_button', t('cta_button')),
+    };
 
-  const coreValues = [
-    { name: content.value1_name, description: content.value1_desc },
-    { name: content.value2_name, description: content.value2_desc },
-    { name: content.value3_name, description: content.value3_desc }
-  ];
+    const certifications = [
+        { name: content.cert1_name, board: content.cert1_board },
+        { name: content.cert2_name, board: content.cert2_board },
+        { name: content.cert3_name, board: content.cert3_board }
+    ];
+
+    const coreValues = [
+        { name: content.value1_name, description: content.value1_desc },
+        { name: content.value2_name, description: content.value2_desc },
+        { name: content.value3_name, description: content.value3_desc }
+    ];
 
   return (
     <>
