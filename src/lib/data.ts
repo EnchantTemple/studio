@@ -10,53 +10,41 @@ export const navItems: NavItem[] = [
   { href: '/contact', label: 'contact' },
 ];
 
-export const getServices = (): Service[] => {
+export const getServices = (): Omit<Service, 'name'|'description'|'delivery'>[] => {
     const serviceKeys = ['reunite_lovers', 'attract_love', 'strengthen_relationship', 'stop_breakup', 'custom_spell'];
     
     return serviceKeys.map((key, index) => ({
         key,
-        name: `Service ${index + 1}`, // Placeholder, will be translated
-        description: 'Description', // Placeholder
-        delivery: 'Delivery varies', // Placeholder
         imageUrl: `https://picsum.photos/400/300?random=${index + 1}`,
         dataAiHint: 'spiritual love'
     }));
 };
 
-export const getTestimonials = (): Testimonial[] => {
+export const getTestimonials = (): Omit<Testimonial, 'quote'|'name'|'location'|'date'>[] => {
     const testimonialKeys = ['testimonial1', 'testimonial2', 'testimonial3', 'testimonial4', 'testimonial5', 'testimonial6'];
     
     return testimonialKeys.map((key, index) => ({
         key,
-        quote: 'Great service!', // Placeholder
-        name: `Client ${index + 1}`, // Placeholder
-        location: 'Earth', // Placeholder
         avatar: `https://i.pravatar.cc/150?img=${index + 1}`,
         rating: 5,
-        date: 'Recently', // Placeholder
     }));
 };
 
-export const getBlogPosts = (): BlogPost[] => {
+export const getBlogPosts = (): Omit<BlogPost, 'title'|'excerpt'|'content'>[] => {
      const postKeys = ['post1', 'post2', 'post3', 'post4'];
 
      return postKeys.map((key, index) => ({
         key,
         slug: `slug-${key}`,
-        title: `Blog Post ${index + 1}`, // Placeholder
-        excerpt: 'Excerpt...', // Placeholder
-        content: '<p>Content</p>', // Placeholder
         imageUrl: `https://picsum.photos/800/600?random=${index + 10}`,
         date: new Date(2024, 5, 15 - index * 5).toISOString(),
      }));
 };
 
-export const getFaqs = (): FaqItem[] => {
+export const getFaqs = (): Omit<FaqItem, 'question'|'answer'>[] => {
     const faqKeys = ['faq1', 'faq2', 'faq3', 'faq4', 'faq5', 'faq6'];
 
-    return faqKeys.map((key, index) => ({
+    return faqKeys.map((key) => ({
         key,
-        question: `Question ${index + 1}?`, // Placeholder
-        answer: 'Answer.' // Placeholder
     }));
 };

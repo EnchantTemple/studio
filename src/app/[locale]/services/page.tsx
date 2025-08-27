@@ -11,7 +11,7 @@ import { useTranslations, useLocale } from 'next-intl';
 
 
 export default function ServicesPage() {
-  const [services, setServices] = useState<Service[]>([]);
+  const [services, setServices] = useState<Omit<Service, 'name' | 'description' | 'delivery'>[]>([]);
   const t = useTranslations('ServicesPage');
   const tShared = useTranslations('HomePage.Services');
   const tNav = useTranslations('Navigation');

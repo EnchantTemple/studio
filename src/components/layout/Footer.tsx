@@ -4,10 +4,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { ShieldCheck, Mail, MessageCircle } from 'lucide-react';
-import Link from 'next/link';
+import {Link} from '@/navigation';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import type { NavItem } from '@/lib/types';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 interface FooterProps {
     navItems: NavItem[];
@@ -16,7 +16,6 @@ interface FooterProps {
 export function Footer({ navItems }: FooterProps) {
   const t = useTranslations('Footer');
   const tNav = useTranslations('Navigation');
-  const locale = useLocale();
   
   return (
     <footer className="bg-card text-card-foreground">
@@ -43,7 +42,7 @@ export function Footer({ navItems }: FooterProps) {
             <ul className="space-y-2">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <Link href={`/${locale}${item.href === '/' ? '' : item.href}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
                     {tNav(item.label)}
                   </Link>
                 </li>
@@ -85,10 +84,10 @@ export function Footer({ navItems }: FooterProps) {
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-sm text-muted-foreground">{t('copyright', { year: new Date().getFullYear() })}</p>
           <div className="flex items-center space-x-4">
-            <Link href={`/${locale}/privacy-policy`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               {t('privacyPolicy')}
             </Link>
-            <Link href={`/${locale}/refund-policy`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            <Link href="/refund-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               {t('refundPolicy')}
             </Link>
           </div>

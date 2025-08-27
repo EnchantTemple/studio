@@ -13,7 +13,7 @@ import type { FaqItem } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
 export default function FaqPage() {
-  const [faqs, setFaqs] = useState<FaqItem[]>([]);
+  const [faqs, setFaqs] = useState<Omit<FaqItem, 'question' | 'answer'>[]>([]);
   const t = useTranslations('FaqPage');
 
   useEffect(() => {

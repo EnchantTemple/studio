@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { Languages, ChevronDown } from 'lucide-react';
-import { locales, localeNames } from '@/navigation';
-import { usePathname, useRouter } from 'next/navigation';
+import { locales, localeNames, usePathname, useRouter } from '@/navigation';
 import { useLocale } from 'next-intl';
+import { useTransition } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -22,17 +22,19 @@ export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
     const router = useRouter();
     const pathname = usePathname();
     const locale = useLocale();
+    const [isPending, startTransition] = useTransition();
+
 
     const currentLanguageName = localeNames[locale as keyof typeof localeNames];
 
     const handleLanguageChange = (newLocale: (typeof locales)[number]) => {
-      // This will replace the current locale in the pathname with the new one
-      const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
-      router.push(newPath);
+        startTransition(() => {
+            router.replace(pathname, {locale: newLocale});
+        });
     };
 
     const renderMenuItem = (lang: (typeof locales)[number]) => (
-       <DropdownMenuItem key={lang} onSelect={() => handleLanguageChange(lang)}>
+       <DropdownMenuItem key={lang} onSelect={() => handleLanguageChange(lang)} disabled={isPending}>
           {localeNames[lang]}
        </DropdownMenuItem>
     )
@@ -42,7 +44,7 @@ export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
              <div className="pt-2">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="text-sm justify-start p-0 h-auto font-normal text-muted-foreground hover:text-primary transition-colors hover:bg-transparent">
+                        <Button variant="ghost" className="text-sm justify-start p-0 h-auto font-normal text-muted-foreground hover:text-primary transition-colors hover:bg-transparent" disabled={isPending}>
                             {currentLanguageName}
                             <ChevronDown className="w-4 h-4 ml-1" />
                         </Button>
@@ -59,7 +61,7 @@ export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" disabled={isPending}>
                     <Languages className="h-[1.2rem] w-[1.2rem]" />
                     <span className="sr-only">Change language</span>
                 </Button>

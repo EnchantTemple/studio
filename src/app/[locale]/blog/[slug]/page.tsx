@@ -16,8 +16,8 @@ type Props = {
 };
 
 export default function BlogPostPage({ params }: Props) {
-  const [post, setPost] = useState<BlogPost | undefined>(undefined);
-  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+  const [post, setPost] = useState<Omit<BlogPost, 'title'|'excerpt'|'content'> | undefined>(undefined);
+  const [relatedPosts, setRelatedPosts] = useState<Omit<BlogPost, 'title'|'excerpt'|'content'>[]>([]);
   const t = useTranslations('BlogPage');
   const locale = useLocale();
 

@@ -1,4 +1,7 @@
 import type {NextConfig} from 'next';
+import createWithNextIntl from 'next-intl/plugin';
+
+const withNextIntl = createWithNextIntl();
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -22,8 +25,14 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.pravatar.cc',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

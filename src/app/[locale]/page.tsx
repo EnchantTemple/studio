@@ -14,9 +14,9 @@ import type { Service, Testimonial, FaqItem } from '@/lib/types';
 import { useTranslations, useLocale } from 'next-intl';
 
 export default function Home() {
-  const [highlightedServices, setHighlightedServices] = useState<Service[]>([]);
-  const [highlightedTestimonials, setHighlightedTestimonials] = useState<Testimonial[]>([]);
-  const [faqs, setFaqs] = useState<FaqItem[]>([]);
+  const [highlightedServices, setHighlightedServices] = useState<Omit<Service, 'name' | 'description' | 'delivery'>[]>([]);
+  const [highlightedTestimonials, setHighlightedTestimonials] = useState<Omit<Testimonial, 'quote'|'name'|'location'|'date'>[]>([]);
+  const [faqs, setFaqs] = useState<Omit<FaqItem, 'question' | 'answer'>[]>([]);
 
   const locale = useLocale();
   const t = useTranslations('HomePage');
@@ -110,7 +110,7 @@ export default function Home() {
                 <Card key={service.key} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                   <Image
                     src={service.imageUrl}
-                    alt={service.name}
+                    alt={t(`Services.${service.key}_name`)}
                     data-ai-hint={service.dataAiHint}
                     width={400}
                     height={300}
@@ -153,12 +153,12 @@ export default function Home() {
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-4 mb-4">
                       <Avatar>
-                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                        <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                        <AvatarImage src={testimonial.avatar} alt={t(`../TestimonialsPage.${testimonial.key}_name`)} />
+                        <AvatarFallback>{t(`../TestimonialsPage.${testimonial.key}_name`).charAt(0)}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-semibold">{t(`TestimonialsPage.${testimonial.key}_name`)}</p>
-                        <p className="text-sm text-muted-foreground">{t(`TestimonialsPage.${testimonial.key}_location`)}</p>
+                        <p className="font-semibold">{t(`../TestimonialsPage.${testimonial.key}_name`)}</p>
+                        <p className="text-sm text-muted-foreground">{t(`../TestimonialsPage.${testimonial.key}_location`)}</p>
                       </div>
                     </div>
                     <div className="flex mb-2">
@@ -166,7 +166,7 @@ export default function Home() {
                         <Star key={i} className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-gray-300'}`} />
                       ))}
                     </div>
-                    <blockquote className="text-lg italic text-foreground">&quot;{t(`TestimonialsPage.${testimonial.key}_quote`)}&quot;</blockquote>
+                    <blockquote className="text-lg italic text-foreground">&quot;{t(`../TestimonialsPage.${testimonial.key}_quote`)}&quot;</blockquote>
                   </CardContent>
                 </Card>
               ))}
@@ -191,10 +191,10 @@ export default function Home() {
               {faqs.map((faq, index) => (
                 <AccordionItem value={`item-${index}`} key={faq.key}>
                   <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
-                    {t(`FaqPage.${faq.key}_question`)}
+                    {t(`../FaqPage.${faq.key}_question`)}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                    {t(`FaqPage.${faq.key}_answer`)}
+                    {t(`../FaqPage.${faq.key}_answer`)}
                   </AccordionContent>
                 </AccordionItem>
               ))}

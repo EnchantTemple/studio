@@ -9,7 +9,7 @@ import type { Testimonial } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 
 export default function TestimonialsPage() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [testimonials, setTestimonials] = useState<Omit<Testimonial, 'quote'|'name'|'location'|'date'>[]>([]);
   const t = useTranslations('TestimonialsPage');
   
   useEffect(() => {

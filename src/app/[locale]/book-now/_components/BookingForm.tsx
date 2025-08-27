@@ -25,10 +25,11 @@ import { useTranslations, useLocale } from 'next-intl';
 export function BookingForm() {
   const { toast } = useToast();
   
-  const [services, setServices] = useState<Service[]>([]);
+  const [services, setServices] = useState<Omit<Service, 'name' | 'description' | 'delivery'>[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const t = useTranslations('BookNowPage');
+  const tServices = useTranslations('HomePage.Services');
   const locale = useLocale();
 
   useEffect(() => {
@@ -146,8 +147,8 @@ export function BookingForm() {
                       </FormControl>
                       <SelectContent>
                         {services.map((service) => (
-                          <SelectItem key={service.key} value={service.name}>
-                            {t(`../HomePage.Services.${service.key}_name`)}
+                          <SelectItem key={service.key} value={tServices(`${service.key}_name`)}>
+                            {tServices(`${service.key}_name`)}
                           </SelectItem>
                         ))}
                       </SelectContent>

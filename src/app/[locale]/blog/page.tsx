@@ -10,7 +10,7 @@ import type { BlogPost } from '@/lib/types';
 import { useTranslations, useLocale } from 'next-intl';
 
 export default function BlogPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [posts, setPosts] = useState<Omit<BlogPost, 'title'|'excerpt'|'content'>[]>([]);
   const t = useTranslations('BlogPage');
   const locale = useLocale();
 
