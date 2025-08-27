@@ -20,46 +20,19 @@ import { Link } from '@/navigation';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import type { Service } from '@/lib/types';
+import { submitBooking } from '../actions';
 
-
-// We define the server action here as it cannot be in a separate 'use client' file.
-async function submitBooking(data: BookingFormValues) {
-  'use server';
-  
-  const validationResult = bookingSchema.safeParse(data);
-
-  if (!validationResult.success) {
-    // This is a basic error handling. In a real app, you'd want to
-    // return the detailed error messages to the form.
-    return {
-      success: false,
-      errors: validationResult.error.flatten().fieldErrors,
-    };
-  }
-
-  // The data is valid. You can now process it.
-  // e.g., send it to your database, an email service, etc.
-  console.log('Booking submitted:', validationResult.data);
-
-  // Simulate an API call
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  
-  // Return a success response
-  return {
-    success: true,
-    message: "Booking Sent!",
-  };
-}
 
 const TermsField = () => {
     const t = useTranslations('BookNowPage');
-    const { id } = useFormField();
+    const { id, field } = useFormField();
     return (
         <FormItem className="flex flex-row items-start space-x-3 space-y-0">
             <FormControl>
                 <Checkbox
-                    checked={useFormField().field.value}
-                    onCheckedChange={useFormField().field.onChange}
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    id={id}
                 />
             </FormControl>
             <div className="space-y-1 leading-none">
@@ -256,7 +229,7 @@ export function BookingForm() {
               <FormField
                 control={form.control}
                 name="termsAccepted"
-                render={() => <TermsField />}
+                render={({ field }) => <TermsField />}
               />
                <div className="text-xs text-muted-foreground">
                   {t.rich('recaptcha', {
@@ -295,4 +268,3 @@ export function BookingForm() {
     </>
   );
 }
-
