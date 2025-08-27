@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { bookingSchema, type BookingFormValues } from '@/lib/schemas';
 import { services } from '@/lib/data';
-import { submitBooking } from '../actions';
 import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -18,6 +17,29 @@ import { Loader2, CheckCircle, X } from 'lucide-react';
 import Link from 'next/link';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
+
+async function submitBooking(data: BookingFormValues) {
+  'use server';
+
+  const validationResult = bookingSchema.safeParse(data);
+
+  if (!validationResult.success) {
+    return {
+      success: false,
+      errors: validationResult.error.flatten().fieldErrors,
+    };
+  }
+  
+  console.log('Booking submitted:', validationResult.data);
+
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  
+  return {
+    success: true,
+    message: "Booking Sent!",
+  };
+}
+
 
 export function BookingForm() {
   const { toast } = useToast();
@@ -122,7 +144,7 @@ export function BookingForm() {
                       </FormControl>
                       <SelectContent>
                         {services.map((service) => (
-                          <SelectItem key={service.name} value={service.name}>
+                          <SelectItem key={service.key} value={service.name}>
                             {service.name}
                           </SelectItem>
                         ))}
@@ -245,31 +267,4 @@ export function BookingForm() {
   );
 }
 
-// Add this to your dialog component if you want to control the close button visibility via a prop
-// in src/components/ui/dialog.tsx
-/*
-const DialogContent = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { hideCloseButton?: boolean }
->(({ className, children, hideCloseButton = false, ...props }, ref) => (
-  <DialogPortal>
-    <DialogOverlay />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={cn(
-        "...",
-        className
-      )}
-      {...props}
-    >
-      {children}
-      {!hideCloseButton && (
-        <DialogPrimitive.Close className="...">
-          <X className="h-4 w-4" />
-          <span className="sr-only">Close</span>
-        </DialogPrimitive.Close>
-      )}
-    </DialogPrimitive.Content>
-  </DialogPortal>
-))
-*/
+    

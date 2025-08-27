@@ -136,7 +136,7 @@ export const services: Service[] = [
     key: 'reunite_lovers',
     name: 'Reunite Lovers Spell',
     description: 'Bring back an ex-lover or reconnect emotionally.',
-    delivery: 'Within 3 days',
+    delivery: 'Delivery: Within 3 days',
     imageUrl: 'https://picsum.photos/400/300?random=1',
     dataAiHint: 'reuniting couple'
   },
@@ -144,7 +144,7 @@ export const services: Service[] = [
     key: 'attract_love',
     name: 'Attract New Love Spell',
     description: 'Manifest a soulmate or serious partner.',
-    delivery: 'Within 5 days',
+    delivery: 'Delivery: Within 5 days',
     imageUrl: 'https://picsum.photos/400/300?random=2',
     dataAiHint: 'happy couple'
   },
@@ -152,23 +152,23 @@ export const services: Service[] = [
     key: 'strengthen_relationship',
     name: 'Strengthen Relationship Spell',
     description: 'Eliminate third parties, restore peace.',
-    delivery: 'Within 48 hours',
+    delivery: 'Delivery: Within 48 hours',
     imageUrl: 'https://picsum.photos/400/300?random=3',
     dataAiHint: 'holding hands'
   },
   {
-    name: 'Stop Break-Up / Divorce Spell',
     key: 'stop_breakup',
+    name: 'Stop Break-Up / Divorce Spell',
     description: 'Protect your marriage from falling apart.',
-    delivery: 'Within 2–4 days',
+    delivery: 'Delivery: Within 2–4 days',
     imageUrl: 'https://picsum.photos/400/300?random=4',
     dataAiHint: 'sad couple'
   },
   {
-    name: 'Custom Spell Work',
     key: 'custom_spell',
+    name: 'Custom Spell Work',
     description: 'Tailored to your unique love situation.',
-    delivery: 'Time varies',
+    delivery: 'Delivery: Time varies',
     imageUrl: 'https://picsum.photos/400/300?random=5',
     dataAiHint: 'mystical abstract'
   },
@@ -206,3 +206,5 @@ export const faqs: FaqItem[] = [
       'Yes, 100%. Your privacy is my top priority. All consultations, contact details, and personal information are strictly confidential and will never be shared with anyone. Please see our Privacy Policy for more details.',
   },
 ];
+
+    
