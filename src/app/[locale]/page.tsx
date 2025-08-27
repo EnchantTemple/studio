@@ -86,22 +86,24 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
-              {highlightedServices.map((service) => (
+              {highlightedServices.map((service) => {
+                const serviceKey = service.name.toLowerCase().replace(/ /g, '_');
+                return (
                 <Card key={service.name} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                   <Image
                     src={service.imageUrl}
-                    alt={t(`Services.${service.name.toLowerCase().replace(/ /g, '_')}_name` as any)}
+                    alt={t(`Services.${serviceKey}_name` as any)}
                     data-ai-hint={service.dataAiHint}
                     width={400}
                     height={300}
                     className="w-full h-48 object-cover"
                   />
                   <CardHeader>
-                    <CardTitle className="font-headline">{t(`Services.${service.name.toLowerCase().replace(/ /g, '_')}_name` as any)}</CardTitle>
+                    <CardTitle className="font-headline">{t(`Services.${serviceKey}_name` as any)}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2 flex-grow">
-                    <p className="text-muted-foreground">{t(`Services.${service.name.toLowerCase().replace(/ /g, '_')}_desc` as any)}</p>
-                    <p className="text-sm font-semibold text-primary">{t(`Services.${service.name.toLowerCase().replace(/ /g, '_')}_delivery` as any)}</p>
+                    <p className="text-muted-foreground">{t(`Services.${serviceKey}_desc` as any)}</p>
+                    <p className="text-sm font-semibold text-primary">{t(`Services.${serviceKey}_delivery` as any)}</p>
                   </CardContent>
                    <CardFooter>
                     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
@@ -109,7 +111,7 @@ export default function Home() {
                     </Button>
                   </CardFooter>
                 </Card>
-              ))}
+              )})}
             </div>
             <div className="flex justify-center">
               <Button asChild variant="outline">
@@ -190,5 +192,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
