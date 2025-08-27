@@ -1,7 +1,6 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next-intl/client';
+import { Link, usePathname } from '@/navigation';
 import { Menu, Sparkles, X } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
@@ -35,8 +34,7 @@ export function Header({ navItems }: HeaderProps) {
         </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           {navItems.map((item) => {
-            const itemPath = `/${locale}${item.href === '/' ? '' : item.href}`;
-            const isActive = item.href === '/' ? currentPath === '' : currentPath.startsWith(item.href);
+            const isActive = item.href === '/' ? currentPath === '/' : currentPath.startsWith(item.href);
             return (
               <Link
                 key={item.href}
@@ -80,7 +78,7 @@ export function Header({ navItems }: HeaderProps) {
               </Link>
               <div className="flex flex-col space-y-3">
                 {navItems.map((item) => {
-                  const isActive = item.href === '/' ? currentPath === '' : currentPath.startsWith(item.href);
+                  const isActive = item.href === '/' ? currentPath === '/' : currentPath.startsWith(item.href);
                   return (
                     <Link
                       key={item.href}
