@@ -1,4 +1,3 @@
-
 {
   "Navigation": {
     "home": "首页",
@@ -51,7 +50,16 @@
     "Testimonials": {
       "title": "深受全球灵魂信赖",
       "subtitle": "阅读我的客户对他们经历的评价。",
-      "readMoreButton": "阅读更多评价"
+      "readMoreButton": "阅读更多评价",
+      "testimonial1_quote": "SolutionTemple 在短短 4 天内就帮我挽回了我的未婚夫。我喜极而泣！谢谢你，SolutionTemple。",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "英国",
+      "testimonial2_quote": "我男朋友在沉默了 2 周后又开始给我发短信了。法术起作用了——简直就是奇迹。",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "尼日利亚",
+      "testimonial3_quote": "我曾经怀疑法术，但 SolutionTemple 的仪式是用爱和道德完成的。他们真的很有天赋。",
+      "testimonial3_name": "Mike",
+      "testimonial3_location": "加拿大"
     },
     "FAQ": {
       "title": "常见问题解答",

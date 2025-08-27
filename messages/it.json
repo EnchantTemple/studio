@@ -1,4 +1,3 @@
-
 {
   "Navigation": {
     "home": "Home",
@@ -51,7 +50,16 @@
     "Testimonials": {
       "title": "Scelto da Anime in Tutto il Mondo",
       "subtitle": "Leggi cosa dicono i miei clienti delle loro esperienze.",
-      "readMoreButton": "Leggi Altre Testimonianze"
+      "readMoreButton": "Leggi Altre Testimonianze",
+      "testimonial1_quote": "SolutionTemple mi ha aiutato a riportare indietro il mio fidanzato in soli 4 giorni. Sto piangendo di gioia! Grazie, SolutionTemple.",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "Regno Unito",
+      "testimonial2_quote": "Il mio ragazzo ha ricominciato a scrivermi dopo 2 settimane di silenzio. L'incantesimo ha funzionato, è come un miracolo.",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "Nigeria",
+      "testimonial3_quote": "Ero solito dubitare degli incantesimi, ma i rituali di SolutionTemple sono fatti con amore ed etica. Sono veramente dotati.",
+      "testimonial3_name": "Mike",
+      "testimonial3_location": "Canada"
     },
     "FAQ": {
       "title": "Domande Frequenti",
@@ -257,7 +265,7 @@
     "testimonial3_quote": "Ero solito dubitare degli incantesimi, ma i rituali di SolutionTemple sono fatti con amore ed etica. Sono veramente dotati.",
     "testimonial3_name": "Mike",
     "testimonial3_location": "Canada",
-    "testimonial3_date": "3 settimane fa",
+    "testimonial3_date": "3 weeks ago",
     "testimonial4_quote": "L'incantesimo per rafforzare la relazione ha fatto miracoli. Le continue discussioni sono cessate e ci sentiamo più vicini che mai.",
     "testimonial4_name": "Sophia",
     "testimonial4_location": "Stati Uniti",

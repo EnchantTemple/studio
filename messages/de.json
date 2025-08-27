@@ -1,4 +1,3 @@
-
 {
   "Navigation": {
     "home": "Startseite",
@@ -51,7 +50,16 @@
     "Testimonials": {
       "title": "Vertraut von Seelen weltweit",
       "subtitle": "Lesen Sie, was meine Kunden über ihre Erfahrungen sagen.",
-      "readMoreButton": "Weitere Erfahrungsberichte lesen"
+      "readMoreButton": "Weitere Erfahrungsberichte lesen",
+      "testimonial1_quote": "SolutionTemple hat mir geholfen, meinen Verlobten in nur 4 Tagen zurückzubringen. Ich weine vor Freude! Danke, SolutionTemple.",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "Großbritannien",
+      "testimonial2_quote": "Mein Freund hat mir nach 2 Wochen Schweigen wieder geschrieben. Der Zauber hat gewirkt - es ist wie ein Wunder.",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "Nigeria",
+      "testimonial3_quote": "Früher habe ich an Zaubersprüchen gezweifelt, aber die Rituale von SolutionTemple werden mit Liebe und Ethik durchgeführt. Sie sind wirklich begabt.",
+      "testimonial3_name": "Mike",
+      "testimonial3_location": "Kanada"
     },
     "FAQ": {
       "title": "Häufig gestellte Fragen",
@@ -100,7 +108,7 @@
     "post3_content": "<p>Afrikanische spirituelle Praktiken gehören zu den ältesten und mächtigsten der Welt. Sie sind tief mit der Erde, den Ahnen und dem natürlichen Energiefluss verbunden. Deshalb sind Liebeszauber aus diesen Traditionen so wirksam:</p><ul><li><strong>Ahnenweisheit:</strong> Diese Rituale wurden über Generationen weitergegeben, verfeinert und über Jahrhunderte perfektioniert. Sie tragen das Gewicht und die Weisheit unzähliger Heiler.</li><li><strong>Natürliche Zutaten:</strong> Afrikanische Zauberarbeit verwendet wirksame Kräuter, Wurzeln und natürliche Elemente, die jeweils spezifische energetische Eigenschaften haben, die mit der Absicht des Zaubers übereinstimmen.</li><li><strong>Ganzheitlicher Ansatz:</strong> Der Fokus liegt nicht nur auf dem Ergebnis, sondern auf der Heilung der eigentlichen Ursache des Problems. Es geht darum, das Gleichgewicht und die Harmonie innerhalb der Individuen und der Beziehung wiederherzustellen.</li></ul><p>Die Wahl eines Praktizierenden aus einer authentischen afrikanischen Linie stellt sicher, dass Sie einen Dienst erhalten, der nicht nur kraftvoll, sondern auch ethisch und zutiefst respektvoll gegenüber den spirituellen Kräften ist.</p>",
     "post4_title": "Die Wahrheit über schwarze Magie: Was ich niemals tun werde",
     "post4_excerpt": "Der Begriff „schwarze Magie“ ruft oft Angst hervor. Ein wahrer spiritueller Heiler arbeitet nur mit positiver Energie. Verstehen Sie die ethischen Grundsätze, die unsere Arbeit leiten.",
-    "post4_content": "<p>Es ist entscheidend, den Unterschied zwischen ethischer, lichtbasierter spiritueller Arbeit und manipulativen, schädlichen Praktiken, die oft als „schwarze Magie“ bezeichnet werden, zu verstehen. Meine Arbeit basiert auf einem Fundament aus Licht, Liebe und dem universellen Gesetz „tue niemandem Schaden“.</p><p>Folgendes werde ich niemals tun:</p><ul><li><strong>Freien Willen erzwingen:</strong> Meine Zauber wirken, um Hindernisse zu beseitigen und bestehende Verbindungen zu stärken; sie zwingen niemanden, gegen seinen eigenen freien Willen zu handeln. Wahre Liebe kann nicht erzwungen werden.</li><li><strong>Schaden verursachen:</strong> Ich werde niemals einen Zauber wirken, der darauf abzielt, einer anderen Person zu schaden, eine glückliche Beziehung zu zerstören oder Leid zu verursachen. Alle Rituale werden mit positiven Absichten zum höchsten Wohl aller Beteiligten durchgeführt.</li><li><strong>Negative Energien verwenden:</strong> Meine Praxis wurzelt darin, positive, natürliche und angestammte Energien zu nutzen. In wahrer Heilarbeit gibt es keinen Platz für Dunkelheit oder Bosheit.</li></ul><p>Wenn Sie spirituelle Hilfe suchen, stellen Sie immer sicher, dass Ihr Praktizierender sich an einen strengen Ethikkodex hält. Ihre Sicherheit und das Wohlergehen aller Beteiligten sollten oberste Priorität haben.</p>"
+    "post4_content": "<p>Es ist entscheidend, den Unterschied zwischen ethischer, lichtbasierter spiritueller Arbeit und manipulativen, schädlichen Praktiken, die oft als „schwarze Magie“ bezeichnet werden, zu verstehen. Meine Arbeit basiert auf einem Fundament aus Licht, Liebe und dem universellen Gesetz „tue niemandem Schaden“.</p><p>Folgendes werde ich niemals tun:</p><ul><li><strong>Freien Willen erzwingen:</strong> Meine Zauber wirken, um Hindernisse zu beseitigen und bestehende Verbindungen zu stärken; sie zwingen niemanden, gegen seinen eigenen freien Willen zu handeln. Wahre Liebe kann nicht erzwungen werden.</li><li><strong>Schaden verursachen:</strong> Ich werde niemals einen Zauber wirken, der darauf abzielt, einer anderer Person zu schaden, eine glückliche Beziehung zu zerstören oder Leid zu verursachen. Alle Rituale werden mit positiven Absichten zum höchsten Wohl aller Beteiligten durchgeführt.</li><li><strong>Negative Energien verwenden:</strong> Meine Praxis wurzelt darin, positive, natürliche und angestammte Energien zu nutzen. In wahrer Heilarbeit gibt es keinen Platz für Dunkelheit oder Bosheit.</li></ul><p>Wenn Sie spirituelle Hilfe suchen, stellen Sie immer sicher, dass Ihr Praktizierender sich an einen strengen Ethikkodex hält. Ihre Sicherheit und das Wohlergehen aller Beteiligten sollten oberste Priorität haben.</p>"
   },
   "BookNowPage": {
     "hero_title": "Buchen Sie Ihren Zauber",

@@ -1,4 +1,3 @@
-
 {
   "Navigation": {
     "home": "Início",
@@ -51,7 +50,16 @@
     "Testimonials": {
       "title": "Confiado por Almas em Todo o Mundo",
       "subtitle": "Leia o que meus clientes têm a dizer sobre suas experiências.",
-      "readMoreButton": "Ler Mais Depoimentos"
+      "readMoreButton": "Ler Mais Depoimentos",
+      "testimonial1_quote": "O SolutionTemple me ajudou a trazer meu noivo de volta em apenas 4 dias. Estou em lágrimas de alegria! Obrigado, SolutionTemple.",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "Reino Unido",
+      "testimonial2_quote": "Meu namorado começou a me mandar mensagens novamente após 2 semanas de silêncio. O feitiço funcionou - é como um milagre.",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "Nigéria",
+      "testimonial3_quote": "Eu costumava duvidar de feitiços, mas os rituais do SolutionTemple são feitos com amor e ética. Eles são verdadeiramente talentosos.",
+      "testimonial3_name": "Mike",
+      "testimonial3_location": "Canadá"
     },
     "FAQ": {
       "title": "Perguntas Frequentes",
@@ -230,11 +238,11 @@
     "hero_title": "Nossos Serviços Espirituais",
     "hero_subtitle": "Feitiços éticos e poderosos adaptados à sua situação amorosa única.",
     "includes_title": "O que Cada Feitiço Inclui",
-    "includes_p": "Para garantir os melhores resultados, cada lançamento de feitiço é um serviço espiritual abrangente.",
+    "includes_p": "Para garantir os melhores resultados, cada lançamento de feitiço é um serviço spiritual abrangente.",
     "include1_title": "Consulta Personalizada",
     "include1_desc": "Começamos com um mergulho profundo em sua situação para entender as energias em jogo.",
     "include2_title": "Ritual Personalizado",
-    "include2_desc": "Seu feitiço é realizado com seu nome e foto, focando a intenção diretamente em suas necessidades.",
+    "include2_desc": "Seu feitiço é realizado com seu name e foto, focando a intenção diretamente em suas necessidades.",
     "include3_title": "Suporte Pós-Feitiço",
     "include3_desc": "Fornecemos suporte de acompanhamento para guiá-lo enquanto a energia do feitiço se manifesta.",
     "cta_title": "Comece Sua Jornada para a Felicidade",

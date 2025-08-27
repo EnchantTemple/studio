@@ -20,6 +20,7 @@ export default function Home() {
 
   const locale = useLocale();
   const t = useTranslations('HomePage');
+  const tFaq = useTranslations('FaqPage');
 
   useEffect(() => {
     const fetchAndSetData = () => {
@@ -27,7 +28,7 @@ export default function Home() {
       setHighlightedServices(allServices.slice(0, 3));
       
       const allTestimonials = getTestimonials();
-      setHighlightedTestimonials(allTestimonials.slice(0, 2));
+      setHighlightedTestimonials(allTestimonials.slice(0, 3));
 
       const allFaqs = getFaqs();
       setFaqs(allFaqs.slice(0, 5));
@@ -153,12 +154,12 @@ export default function Home() {
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-4 mb-4">
                       <Avatar>
-                        <AvatarImage src={testimonial.avatar} alt={t(`../TestimonialsPage.${testimonial.key}_name`)} />
-                        <AvatarFallback>{t(`../TestimonialsPage.${testimonial.key}_name`).charAt(0)}</AvatarFallback>
+                        <AvatarImage src={testimonial.avatar} alt={t(`Testimonials.${testimonial.key}_name`)} />
+                        <AvatarFallback>{t(`Testimonials.${testimonial.key}_name`).charAt(0)}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-semibold">{t(`../TestimonialsPage.${testimonial.key}_name`)}</p>
-                        <p className="text-sm text-muted-foreground">{t(`../TestimonialsPage.${testimonial.key}_location`)}</p>
+                        <p className="font-semibold">{t(`Testimonials.${testimonial.key}_name`)}</p>
+                        <p className="text-sm text-muted-foreground">{t(`Testimonials.${testimonial.key}_location`)}</p>
                       </div>
                     </div>
                     <div className="flex mb-2">
@@ -166,7 +167,7 @@ export default function Home() {
                         <Star key={i} className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-gray-300'}`} />
                       ))}
                     </div>
-                    <blockquote className="text-lg italic text-foreground">&quot;{t(`../TestimonialsPage.${testimonial.key}_quote`)}&quot;</blockquote>
+                    <blockquote className="text-lg italic text-foreground">&quot;{t(`Testimonials.${testimonial.key}_quote`)}&quot;</blockquote>
                   </CardContent>
                 </Card>
               ))}
@@ -191,10 +192,10 @@ export default function Home() {
               {faqs.map((faq, index) => (
                 <AccordionItem value={`item-${index}`} key={faq.key}>
                   <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
-                    {t(`../FaqPage.${faq.key}_question`)}
+                    {tFaq(`${faq.key}_question`)}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                    {t(`../FaqPage.${faq.key}_answer`)}
+                    {tFaq(`${faq.key}_answer`)}
                   </AccordionContent>
                 </AccordionItem>
               ))}

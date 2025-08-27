@@ -50,7 +50,16 @@
     "Testimonials": {
       "title": "Trusted by Souls Worldwide",
       "subtitle": "Read what my clients have to say about their experiences.",
-      "readMoreButton": "Read More Testimonials"
+      "readMoreButton": "Read More Testimonials",
+      "testimonial1_quote": "SolutionTemple helped me bring back my fiancé in just 4 days. I’m in tears of joy! Thank you, SolutionTemple.",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "UK",
+      "testimonial2_quote": "My boyfriend started texting me again after 2 weeks of silence. The spell worked — it’s like a miracle.",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "Nigeria",
+      "testimonial3_quote": "I used to doubt spells, but the rituals from SolutionTemple are done with love and ethics. They are truly gifted.",
+      "testimonial3_name": "Mike",
+      "testimonial3_location": "Canada"
     },
     "FAQ": {
       "title": "Frequently Asked Questions",
