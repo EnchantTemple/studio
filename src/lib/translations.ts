@@ -1,6 +1,6 @@
 'use client';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { app }_from '@/lib/firebase';
+import { app } from '@/lib/firebase';
 import type { AbstractIntlMessages } from 'next-intl';
 
 const db = getFirestore(app);
@@ -28,7 +28,15 @@ export async function getTranslationsFromFirestore(
       console.warn(
         `No translation document found for locale '${locale}' in Firestore. Falling back to defaults.`
       );
-      return {};
+      // Fallback to local messages if Firestore doc doesn't exist
+      try {
+        const localMessages = (await import(`../../messages/${locale}.json`)).default;
+        translationsCache.set(locale, localMessages);
+        return localMessages;
+      } catch (e) {
+        console.warn(`No local translation file found for ${locale}.`);
+        return {};
+      }
     }
   } catch (error) {
     console.error(
@@ -44,7 +52,6 @@ export async function getTranslationsFromFirestore(
         '*****************************************************************'
       );
     // Return an empty object on error to prevent the app from crashing.
-    // The default messages from the JSON file will be used instead.
     return {};
   }
 }
