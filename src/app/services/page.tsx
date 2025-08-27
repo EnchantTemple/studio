@@ -5,9 +5,14 @@ import { services } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Sparkles } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 
 export default function ServicesPage() {
+  const t = useTranslations('HomePage.Services');
+  const tNav = useTranslations('Navigation');
+
+
   return (
     <>
       <section className="bg-primary text-primary-foreground py-20 text-center">
@@ -23,25 +28,25 @@ export default function ServicesPage() {
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service) => (
-              <Card key={service.name} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
+              <Card key={service.key} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                  <Image
                     src={service.imageUrl}
-                    alt={service.name}
+                    alt={t(`${service.key}_name` as any)}
                     data-ai-hint={service.dataAiHint}
                     width={400}
                     height={300}
                     className="w-full h-48 object-cover"
                   />
                 <CardHeader>
-                  <CardTitle className="font-headline">{service.name}</CardTitle>
-                  <CardDescription>Delivery: <span className="font-semibold text-primary">{service.delivery}</span></CardDescription>
+                  <CardTitle className="font-headline">{t(`${service.key}_name` as any)}</CardTitle>
+                  <CardDescription>{t(`${service.key}_delivery` as any)}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <p className="text-muted-foreground">{service.description}</p>
+                  <p className="text-muted-foreground">{t(`${service.key}_desc` as any)}</p>
                 </CardContent>
                 <CardFooter>
                   <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                    <Link href="/book-now">Book This Spell</Link>
+                    <Link href="/book-now">{t('button')}</Link>
                   </Button>
                 </CardFooter>
               </Card>
@@ -86,7 +91,7 @@ export default function ServicesPage() {
             Choose the spell that resonates with your heart's desire and let us help you find peace and love.
           </p>
           <Button asChild size="lg" className="mt-8 rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/book-now">Book Your Spell Now</Link>
+            <Link href="/book-now">{tNav('bookNow')}</Link>
           </Button>
         </div>
       </section>
