@@ -10,6 +10,7 @@ import WhatsAppButton from '@/components/layout/WhatsAppButton';
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages, getTranslations} from 'next-intl/server';
 import { navItems as navItemKeys } from '@/lib/data';
+import { TranslationProvider } from '@/context/TranslationContext';
 
 
 const alegreya = Alegreya({
@@ -57,20 +58,22 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
       <body className={cn('antialiased font-body', alegreya.variable)}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-        >
-            <Header navItems={navItems} bookNowLabel={t('bookNow')} />
-            <main className="flex-grow">{children}</main>
-            <Footer navItems={navItems} translations={footerTranslations} />
-            <WhatsAppButton />
-            <Toaster />
-        </ThemeProvider>
-        </NextIntlClientProvider>
+        <TranslationProvider initialLocale={locale}>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+          <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+          >
+              <Header navItems={navItems} bookNowLabel={t('bookNow')} />
+              <main className="flex-grow">{children}</main>
+              <Footer navItems={navItems} translations={footerTranslations} />
+              <WhatsAppButton />
+              <Toaster />
+          </ThemeProvider>
+          </NextIntlClientProvider>
+        </TranslationProvider>
       </body>
     </html>
   );

@@ -1,10 +1,9 @@
-
 'use client';
 
 import * as React from 'react';
 import { Languages, ChevronDown } from 'lucide-react';
-import { usePathname, locales, localeNames } from '@/navigation';
-import { useLocale } from 'next-intl';
+import { locales, localeNames } from '@/navigation';
+import { useTranslation } from '@/hooks/useTranslation';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -19,14 +18,13 @@ interface LanguageSwitcherProps {
 }
 
 export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
-    const pathname = usePathname();
-    const currentLocale = useLocale();
+    const { setLanguage, language } = useTranslation();
 
-    const currentLanguageName = localeNames[currentLocale as keyof typeof localeNames];
+    const currentLanguageName = localeNames[language as keyof typeof localeNames];
 
     const renderMenuItem = (lang: (typeof locales)[number]) => (
-       <DropdownMenuItem key={lang} asChild>
-          <a href={`/${lang}${pathname}`}>{localeNames[lang]}</a>
+       <DropdownMenuItem key={lang} onSelect={() => setLanguage(lang)}>
+          {localeNames[lang]}
        </DropdownMenuItem>
     )
 
