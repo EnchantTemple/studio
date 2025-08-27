@@ -7,8 +7,8 @@ import { Footer } from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import WhatsAppButton from '@/components/layout/WhatsAppButton';
-import {NextIntlClientProvider, useMessages} from 'next-intl';
-import {getLocale, getMessages, getTranslations} from 'next-intl/server';
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages, getTranslations} from 'next-intl/server';
 import { navItems as navItemKeys } from '@/lib/data';
 
 
@@ -34,8 +34,8 @@ export default async function RootLayout({
   params: {locale: string};
 }>) {
   const messages = await getMessages();
-  const t = await getTranslations({locale, namespace: 'Navigation'});
-  const tFooter = await getTranslations({locale, namespace: 'Footer'});
+  const t = await getTranslations('Navigation');
+  const tFooter = await getTranslations('Footer');
 
   const navItems = navItemKeys.map(item => ({...item, label: t(item.label as any)}));
   

@@ -12,4 +12,4 @@ export const localeNames: Record<(typeof locales)[number], string> = {
 };
 
 export const {Link, redirect, usePathname, useRouter} =
-  createSharedPathnamesNavigation({locales});
+  createSharedPathnamesNavigation({locales, localePrefix: 'always'});
