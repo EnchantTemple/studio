@@ -1,0 +1,76 @@
+
+{
+  "Navigation": {
+    "home": "Home",
+    "about": "Chi Siamo",
+    "services": "Servizi",
+    "testimonials": "Testimonianze",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contatti",
+    "bookNow": "Prenota il Tuo Incantesimo Ora"
+  },
+  "HomePage": {
+    "Hero": {
+      "title": "Ripristina il Tuo Amore Oggi 🌹",
+      "subtitle": "Un santuario dove amore, energia e intenzione si allineano per riunirti al tuo vero partner.",
+      "button": "Prenota il Tuo Incantesimo Ora"
+    },
+    "Intro": {
+      "title": "Benvenuto a SolutionTemple",
+      "description": "Sono un consulente spirituale autorizzato con oltre 12 anni di esperienza nell'aiutare le anime a riunirsi con i loro veri partner attraverso incantesimi antichi, etici e naturali.",
+      "stat1_value": "1200+",
+      "stat1_label": "Clienti Felici",
+      "stat2_value": "20+",
+      "stat2_label": "Paesi Serviti",
+      "stat3_value": "24/7",
+      "stat3_label": "Supporto WhatsApp"
+    },
+    "Services": {
+      "badge": "I Nostri Servizi",
+      "title": "Incantesimi per Ogni Esigenza del Cuore",
+      "subtitle": "Ogni rituale viene eseguito con la massima cura, personalizzato per la tua situazione unica.",
+      "button": "Prenota Questo Incantesimo",
+      "viewAllButton": "Vedi Tutti i Servizi",
+      "reunite_lovers_name": "Incantesimo per Riunire gli Amanti",
+      "reunite_lovers_desc": "Riporta un ex amante o riconnettiti emotivamente.",
+      "reunite_lovers_delivery": "Consegna: Entro 3 giorni",
+      "attract_love_name": "Incantesimo per Attrarre Nuovo Amore",
+      "attract_love_desc": "Manifesta un'anima gemella o un partner serio.",
+      "attract_love_delivery": "Consegna: Entro 5 giorni",
+      "strengthen_relationship_name": "Incantesimo per Rafforzare la Relazione",
+      "strengthen_relationship_desc": "Elimina terze parti, ripristina la pace.",
+      "strengthen_relationship_delivery": "Consegna: Entro 48 ore"
+    },
+    "Testimonials": {
+      "title": "Scelto da Anime in Tutto il Mondo",
+      "subtitle": "Leggi cosa dicono i miei clienti delle loro esperienze.",
+      "readMoreButton": "Leggi Altre Testimonianze",
+      "testimonial1_quote": "SolutionTemple mi ha aiutato a riportare indietro il mio fidanzato in soli 4 giorni. Sto piangendo di gioia! Grazie, SolutionTemple.",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "Regno Unito",
+      "testimonial2_quote": "Il mio ragazzo ha ricominciato a scrivermi dopo 2 settimane di silenzio. L'incantesimo ha funzionato, è come un miracolo.",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "Nigeria"
+    },
+    "FAQ": {
+      "title": "Domande Frequenti",
+      "subtitle": "Trova risposte rapide alle domande comuni sui nostri servizi spirituali.",
+      "moreQuestionsButton": "Altre Domande?"
+    }
+  },
+  "Footer": {
+    "tagline": "Un santuario dove amore, energia e intenzione si allineano per il tuo benessere spirituale.",
+    "quickLinks": "Link Rapidi",
+    "contactUs": "Contattaci",
+    "whatsapp": "Chat Live su WhatsApp",
+    "email": "hello@solutiontemple.com",
+    "workingHours": "Lavoro di Incantesimi a Distanza 24/7",
+    "newsletter": "Newsletter",
+    "newsletter_prompt": "Iscriviti per ricevere approfondimenti spirituali e offerte.",
+    "subscribe": "Iscriviti",
+    "copyright": "© {year} SolutionTemple. Tutti i Diritti Riservati.",
+    "privacyPolicy": "Informativa sulla Privacy",
+    "refundPolicy": "Politica di Rimborso"
+  }
+}

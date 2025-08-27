@@ -1,0 +1,76 @@
+
+{
+  "Navigation": {
+    "home": "Início",
+    "about": "Sobre",
+    "services": "Serviços",
+    "testimonials": "Depoimentos",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contato",
+    "bookNow": "Agende Seu Feitiço Agora"
+  },
+  "HomePage": {
+    "Hero": {
+      "title": "Restaure Seu Amor Hoje 🌹",
+      "subtitle": "Um santuário onde amor, energia e intenção se alinham para reuni-lo com seu verdadeiro parceiro.",
+      "button": "Agende Seu Feitiço Agora"
+    },
+    "Intro": {
+      "title": "Bem-vindo ao SolutionTemple",
+      "description": "Sou um consultor espiritual licenciado com mais de 12 anos de experiência ajudando almas a se reunirem com seus verdadeiros parceiros através de feitiços antigos, éticos e naturais.",
+      "stat1_value": "1200+",
+      "stat1_label": "Clientes Felizes",
+      "stat2_value": "20+",
+      "stat2_label": "Países Atendidos",
+      "stat3_value": "24/7",
+      "stat3_label": "Suporte via WhatsApp"
+    },
+    "Services": {
+      "badge": "Nossos Serviços",
+      "title": "Feitiços para Todas as Necessidades do Coração",
+      "subtitle": "Cada ritual é realizado com o máximo cuidado, personalizado para a sua situação única.",
+      "button": "Agendar Este Feitiço",
+      "viewAllButton": "Ver Todos os Serviços",
+      "reunite_lovers_name": "Feitiço para Reunir Amantes",
+      "reunite_lovers_desc": "Traga de volta um ex-amor ou reconecte-se emocionalmente.",
+      "reunite_lovers_delivery": "Entrega: Em 3 dias",
+      "attract_love_name": "Feitiço para Atrair Novo Amor",
+      "attract_love_desc": "Manifeste uma alma gêmea ou um parceiro sério.",
+      "attract_love_delivery": "Entrega: Em 5 dias",
+      "strengthen_relationship_name": "Feitiço para Fortalecer Relacionamento",
+      "strengthen_relationship_desc": "Elimine terceiros, restaure a paz.",
+      "strengthen_relationship_delivery": "Entrega: Em 48 horas"
+    },
+    "Testimonials": {
+      "title": "Confiado por Almas em Todo o Mundo",
+      "subtitle": "Leia o que meus clientes têm a dizer sobre suas experiências.",
+      "readMoreButton": "Ler Mais Depoimentos",
+      "testimonial1_quote": "O SolutionTemple me ajudou a trazer meu noivo de volta em apenas 4 dias. Estou em lágrimas de alegria! Obrigado, SolutionTemple.",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "Reino Unido",
+      "testimonial2_quote": "Meu namorado começou a me mandar mensagens novamente após 2 semanas de silêncio. O feitiço funcionou - é como um milagre.",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "Nigéria"
+    },
+    "FAQ": {
+      "title": "Perguntas Frequentes",
+      "subtitle": "Encontre respostas rápidas para perguntas comuns sobre nossos serviços espirituais.",
+      "moreQuestionsButton": "Mais Perguntas?"
+    }
+  },
+  "Footer": {
+    "tagline": "Um santuário onde amor, energia e intenção se alinham para o seu bem-estar espiritual.",
+    "quickLinks": "Links Rápidos",
+    "contactUs": "Contate-nos",
+    "whatsapp": "Chat ao Vivo no WhatsApp",
+    "email": "hello@solutiontemple.com",
+    "workingHours": "Trabalho de Feitiço Remoto 24/7",
+    "newsletter": "Boletim Informativo",
+    "newsletter_prompt": "Inscreva-se para obter insights espirituais e ofertas.",
+    "subscribe": "Inscrever-se",
+    "copyright": "© {year} SolutionTemple. Todos os Direitos Reservados.",
+    "privacyPolicy": "Política de Privacidade",
+    "refundPolicy": "Política de Reembolso"
+  }
+}

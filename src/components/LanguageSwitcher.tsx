@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Languages, ChevronDown } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter, locales, localeNames } from '@/navigation';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -11,35 +11,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useLocale } from 'next-intl';
 
-const languages = [
-    { code: 'en', name: 'English' },
-    { code: 'es', name: 'Spanish' },
-    { code: 'pt', name: 'Portuguese (Brazil)' },
-    { code: 'it', name: 'Italian' },
-    { code: 'fr', name: 'French' },
-    { code: 'de', name: 'German' },
-    { code: 'zh-CN', name: 'Chinese' },
-];
 
 interface LanguageSwitcherProps {
   location: 'header' | 'footer';
 }
 
 export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
+    const router = useRouter();
     const pathname = usePathname();
+    const currentLocale = useLocale();
 
-    const handleLanguageChange = (langCode: string) => {
-        // Basic implementation detail:
-        // In a real-world scenario, this would integrate with a library like 'next-intl'
-        // or trigger a client-side translation service.
-        // For this prototype, we can alert the user of the selection.
-        alert(`Language selected: ${langCode}. Translation integration is required to see changes.`);
-        console.log(`Switching language to ${langCode}`);
+    const handleLanguageChange = (nextLocale: string) => {
+        router.push(pathname, {locale: nextLocale});
     };
 
-    // In a real app, you'd get this from your i18n solution
-    const [currentLanguage, setCurrentLanguage] = React.useState(languages[0]); 
+    const currentLanguageName = localeNames[currentLocale as keyof typeof localeNames];
 
     if (location === 'footer') {
         return (
@@ -47,17 +35,14 @@ export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="ghost" className="text-sm justify-start p-0 h-auto font-normal text-muted-foreground hover:text-primary transition-colors hover:bg-transparent">
-                            {currentLanguage.name}
+                            {currentLanguageName}
                             <ChevronDown className="w-4 h-4 ml-1" />
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="start">
-                        {languages.map((lang) => (
-                            <DropdownMenuItem key={lang.code} onClick={() => {
-                                handleLanguageChange(lang.code);
-                                setCurrentLanguage(lang);
-                            }}>
-                                {lang.name}
+                        {locales.map((lang) => (
+                            <DropdownMenuItem key={lang} onClick={() => handleLanguageChange(lang)}>
+                                {localeNames[lang]}
                             </DropdownMenuItem>
                         ))}
                     </DropdownMenuContent>
@@ -76,12 +61,9 @@ export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                {languages.map((lang) => (
-                    <DropdownMenuItem key={lang.code} onClick={() => {
-                        handleLanguageChange(lang.code)
-                        setCurrentLanguage(languages.find(l => l.code === lang.code) || languages[0]);
-                    }}>
-                        {lang.name}
+                {locales.map((lang) => (
+                    <DropdownMenuItem key={lang} onClick={() => handleLanguageChange(lang)}>
+                         {localeNames[lang]}
                     </DropdownMenuItem>
                 ))}
             </DropdownMenuContent>

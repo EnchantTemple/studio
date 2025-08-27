@@ -1,0 +1,76 @@
+
+{
+  "Navigation": {
+    "home": "首页",
+    "about": "关于我们",
+    "services": "服务",
+    "testimonials": "客户评价",
+    "blog": "博客",
+    "faq": "常见问题",
+    "contact": "联系我们",
+    "bookNow": "立即预订您的法术"
+  },
+  "HomePage": {
+    "Hero": {
+      "title": "今天就恢复您的爱情🌹",
+      "subtitle": "一个爱、能量和意图在此融合，让您与真爱重逢的圣殿。",
+      "button": "立即预订您的法术"
+    },
+    "Intro": {
+      "title": "欢迎来到SolutionTemple",
+      "description": "我是一名持牌精神顾问，拥有超过12年的经验，通过古老、道德和自然的施法帮助灵魂与他们的真爱重逢。",
+      "stat1_value": "1200+",
+      "stat1_label": "满意客户",
+      "stat2_value": "20+",
+      "stat2_label": "服务国家",
+      "stat3_value": "24/7",
+      "stat3_label": "WhatsApp支持"
+    },
+    "Services": {
+      "badge": "我们的服务",
+      "title": "满足各种心灵需求的法术",
+      "subtitle": "每个仪式都经过精心执行，根据您的独特情况量身定制。",
+      "button": "预订此法术",
+      "viewAllButton": "查看所有服务",
+      "reunite_lovers_name": "重聚爱人法术",
+      "reunite_lovers_desc": "让前任爱人回头或重新建立情感联系。",
+      "reunite_lovers_delivery": "交付：3天内",
+      "attract_love_name": "吸引新爱法术",
+      "attract_love_desc": "显化一个灵魂伴侣或认真的伴侣。",
+      "attract_love_delivery": "交付：5天内",
+      "strengthen_relationship_name": "巩固关系法术",
+      "strengthen_relationship_desc": "消除第三方，恢复和平。",
+      "strengthen_relationship_delivery": "交付：48小时内"
+    },
+    "Testimonials": {
+      "title": "深受全球灵魂信赖",
+      "subtitle": "阅读我的客户对他们经历的评价。",
+      "readMoreButton": "阅读更多评价",
+      "testimonial1_quote": "SolutionTemple在短短4天内就帮我挽回了我的未婚夫。我喜极而泣！谢谢你，SolutionTemple。",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "英国",
+      "testimonial2_quote": "我男朋友在沉默了2周后又开始给我发短信了。法术起作用了——简直就是奇迹。",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "尼日利亚"
+    },
+    "FAQ": {
+      "title": "常见问题解答",
+      "subtitle": "查找关于我们精神服务的常见问题的快速答案。",
+      "moreQuestionsButton": "更多问题？"
+    }
+  },
+  "Footer": {
+    "tagline": "一个爱、能量和意图在此融合，为您精神福祉服务的圣殿。",
+    "quickLinks": "快速链接",
+    "contactUs": "联系我们",
+    "whatsapp": "WhatsApp在线聊天",
+    "email": "hello@solutiontemple.com",
+    "workingHours": "24/7远程法术工作",
+    "newsletter": "新闻通讯",
+    "newsletter_prompt": "订阅以获取精神见解和优惠。",
+    "subscribe": "订阅",
+    "copyright": "© {year} SolutionTemple. 版权所有。",
+    "privacyPolicy": "隐私政策",
+    "refundPolicy": "退款政策"
+  }
+}

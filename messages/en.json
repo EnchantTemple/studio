@@ -1,0 +1,76 @@
+
+{
+  "Navigation": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "testimonials": "Testimonials",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "bookNow": "Book Your Spell Now"
+  },
+  "HomePage": {
+    "Hero": {
+      "title": "Restore Your Love Today 🌹",
+      "subtitle": "A sanctuary where love, energy, and intention align to reunite you with your true partner.",
+      "button": "Book Your Spell Now"
+    },
+    "Intro": {
+      "title": "Welcome to SolutionTemple",
+      "description": "I’m a licensed spiritual consultant with over 12 years of experience helping souls reunite with their true partners through ancient, ethical, and natural spell casting.",
+      "stat1_value": "1200+",
+      "stat1_label": "Happy Clients",
+      "stat2_value": "20+",
+      "stat2_label": "Countries Served",
+      "stat3_value": "24/7",
+      "stat3_label": "WhatsApp Support"
+    },
+    "Services": {
+      "badge": "Our Services",
+      "title": "Spells for Every Heart's Need",
+      "subtitle": "Each ritual is performed with utmost care, personalized to your unique situation.",
+      "button": "Book This Spell",
+      "viewAllButton": "View All Services",
+      "reunite_lovers_name": "Reunite Lovers Spell",
+      "reunite_lovers_desc": "Bring back an ex-lover or reconnect emotionally.",
+      "reunite_lovers_delivery": "Delivery: Within 3 days",
+      "attract_love_name": "Attract New Love Spell",
+      "attract_love_desc": "Manifest a soulmate or serious partner.",
+      "attract_love_delivery": "Delivery: Within 5 days",
+      "strengthen_relationship_name": "Strengthen Relationship Spell",
+      "strengthen_relationship_desc": "Eliminate third parties, restore peace.",
+      "strengthen_relationship_delivery": "Delivery: Within 48 hours"
+    },
+    "Testimonials": {
+      "title": "Trusted by Souls Worldwide",
+      "subtitle": "Read what my clients have to say about their experiences.",
+      "readMoreButton": "Read More Testimonials",
+      "testimonial1_quote": "SolutionTemple helped me bring back my fiancé in just 4 days. I’m in tears of joy! Thank you, SolutionTemple.",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "UK",
+      "testimonial2_quote": "My boyfriend started texting me again after 2 weeks of silence. The spell worked — it’s like a miracle.",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "Nigeria"
+    },
+    "FAQ": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find quick answers to common questions about our spiritual services.",
+      "moreQuestionsButton": "More Questions?"
+    }
+  },
+  "Footer": {
+    "tagline": "A sanctuary where love, energy, and intention align for your spiritual well-being.",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "whatsapp": "WhatsApp Live Chat",
+    "email": "hello@solutiontemple.com",
+    "workingHours": "24/7 Remote Spell Work",
+    "newsletter": "Newsletter",
+    "newsletter_prompt": "Subscribe for spiritual insights and offers.",
+    "subscribe": "Subscribe",
+    "copyright": "© {year} SolutionTemple. All Rights Reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "refundPolicy": "Refund Policy"
+  }
+}

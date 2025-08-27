@@ -1,0 +1,76 @@
+
+{
+  "Navigation": {
+    "home": "Inicio",
+    "about": "Sobre Nosotros",
+    "services": "Servicios",
+    "testimonials": "Testimonios",
+    "blog": "Blog",
+    "faq": "Preguntas Frecuentes",
+    "contact": "Contacto",
+    "bookNow": "Reserva Tu Hechizo Ahora"
+  },
+  "HomePage": {
+    "Hero": {
+      "title": "Restaura Tu Amor Hoy 🌹",
+      "subtitle": "Un santuario donde el amor, la energía y la intención se alinean para reunirte con tu verdadera pareja.",
+      "button": "Reserva Tu Hechizo Ahora"
+    },
+    "Intro": {
+      "title": "Bienvenido a SolutionTemple",
+      "description": "Soy un consultor espiritual licenciado con más de 12 años de experiencia ayudando a las almas a reunirse con sus verdaderas parejas a través de hechizos antiguos, éticos y naturales.",
+      "stat1_value": "1200+",
+      "stat1_label": "Clientes Felices",
+      "stat2_value": "20+",
+      "stat2_label": "Países Atendidos",
+      "stat3_value": "24/7",
+      "stat3_label": "Soporte por WhatsApp"
+    },
+    "Services": {
+      "badge": "Nuestros Servicios",
+      "title": "Hechizos para Cada Necesidad del Corazón",
+      "subtitle": "Cada ritual se realiza con el máximo cuidado, personalizado para tu situación única.",
+      "button": "Reservar Este Hechizo",
+      "viewAllButton": "Ver Todos los Servicios",
+      "reunite_lovers_name": "Hechizo para Reunir Amantes",
+      "reunite_lovers_desc": "Trae de vuelta a un ex-amante o reconecta emocionalmente.",
+      "reunite_lovers_delivery": "Entrega: En 3 días",
+      "attract_love_name": "Hechizo para Atraer Nuevo Amor",
+      "attract_love_desc": "Manifiesta un alma gemela o una pareja seria.",
+      "attract_love_delivery": "Entrega: En 5 días",
+      "strengthen_relationship_name": "Hechizo para Fortalecer la Relación",
+      "strengthen_relationship_desc": "Elimina a terceros, restaura la paz.",
+      "strengthen_relationship_delivery": "Entrega: En 48 horas"
+    },
+    "Testimonials": {
+      "title": "Confiado por Almas de Todo el Mundo",
+      "subtitle": "Lee lo que mis clientes tienen que decir sobre sus experiencias.",
+      "readMoreButton": "Leer Más Testimonios",
+      "testimonial1_quote": "SolutionTemple me ayudó a traer de vuelta a mi prometido en solo 4 días. ¡Estoy llorando de alegría! Gracias, SolutionTemple.",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "Reino Unido",
+      "testimonial2_quote": "Mi novio empezó a escribirme de nuevo después de 2 semanas de silencio. El hechizo funcionó, es como un milagro.",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "Nigeria"
+    },
+    "FAQ": {
+      "title": "Preguntas Frecuentes",
+      "subtitle": "Encuentra respuestas rápidas a preguntas comunes sobre nuestros servicios espirituales.",
+      "moreQuestionsButton": "¿Más Preguntas?"
+    }
+  },
+  "Footer": {
+    "tagline": "Un santuario donde el amor, la energía y la intención se alinean para tu bienestar espiritual.",
+    "quickLinks": "Enlaces Rápidos",
+    "contactUs": "Contáctanos",
+    "whatsapp": "Chat en Vivo de WhatsApp",
+    "email": "hello@solutiontemple.com",
+    "workingHours": "Trabajo de Hechizos Remoto 24/7",
+    "newsletter": "Boletín Informativo",
+    "newsletter_prompt": "Suscríbete para recibir ideas espirituales y ofertas.",
+    "subscribe": "Suscribirse",
+    "copyright": "© {year} SolutionTemple. Todos los Derechos Reservados.",
+    "privacyPolicy": "Política de Privacidad",
+    "refundPolicy": "Política de Reembolso"
+  }
+}

@@ -1,0 +1,76 @@
+
+{
+  "Navigation": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "services": "Services",
+    "testimonials": "Témoignages",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "bookNow": "Réservez Votre Sortilège Maintenant"
+  },
+  "HomePage": {
+    "Hero": {
+      "title": "Restaurez Votre Amour Aujourd'hui 🌹",
+      "subtitle": "Un sanctuaire où l'amour, l'énergie et l'intention s'alignent pour vous réunir avec votre véritable partenaire.",
+      "button": "Réservez Votre Sortilège Maintenant"
+    },
+    "Intro": {
+      "title": "Bienvenue chez SolutionTemple",
+      "description": "Je suis un consultant spirituel agréé avec plus de 12 ans d'expérience, aidant les âmes à retrouver leurs vrais partenaires grâce à des sortilèges anciens, éthiques et naturels.",
+      "stat1_value": "1200+",
+      "stat1_label": "Clients Satisfaits",
+      "stat2_value": "20+",
+      "stat2_label": "Pays Desservis",
+      "stat3_value": "24/7",
+      "stat3_label": "Support WhatsApp"
+    },
+    "Services": {
+      "badge": "Nos Services",
+      "title": "Des Sortilèges pour Chaque Besoin du Cœur",
+      "subtitle": "Chaque rituel est effectué avec le plus grand soin, personnalisé pour votre situation unique.",
+      "button": "Réserver Ce Sortilège",
+      "viewAllButton": "Voir Tous les Services",
+      "reunite_lovers_name": "Sortilège pour Réunir les Amoureux",
+      "reunite_lovers_desc": "Ramenez un ex-amoureux ou reconnectez-vous émotionnellement.",
+      "reunite_lovers_delivery": "Livraison : En 3 jours",
+      "attract_love_name": "Sortilège pour Attirer un Nouvel Amour",
+      "attract_love_desc": "Manifestez une âme sœur ou un partenaire sérieux.",
+      "attract_love_delivery": "Livraison : En 5 jours",
+      "strengthen_relationship_name": "Sortilège pour Renforcer la Relation",
+      "strengthen_relationship_desc": "Éliminez les tierces parties, restaurez la paix.",
+      "strengthen_relationship_delivery": "Livraison : En 48 heures"
+    },
+    "Testimonials": {
+      "title": "Approuvé par des Âmes du Monde Entier",
+      "subtitle": "Lisez ce que mes clients disent de leurs expériences.",
+      "readMoreButton": "Lire Plus de Témoignages",
+      "testimonial1_quote": "SolutionTemple m'a aidé à ramener mon fiancé en seulement 4 jours. Je pleure de joie ! Merci, SolutionTemple.",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "Royaume-Uni",
+      "testimonial2_quote": "Mon copain a recommencé à m'envoyer des messages après 2 semaines de silence. Le sortilège a fonctionné, c'est comme un miracle.",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "Nigéria"
+    },
+    "FAQ": {
+      "title": "Questions Fréquemment Posées",
+      "subtitle": "Trouvez des réponses rapides aux questions courantes sur nos services spirituels.",
+      "moreQuestionsButton": "Plus de Questions ?"
+    }
+  },
+  "Footer": {
+    "tagline": "Un sanctuaire où l'amour, l'énergie et l'intention s'alignent pour votre bien-être spirituel.",
+    "quickLinks": "Liens Rapides",
+    "contactUs": "Contactez-Nous",
+    "whatsapp": "Chat en Direct sur WhatsApp",
+    "email": "hello@solutiontemple.com",
+    "workingHours": "Travail de Sortilèges à Distance 24/7",
+    "newsletter": "Newsletter",
+    "newsletter_prompt": "Abonnez-vous pour des conseils spirituels et des offres.",
+    "subscribe": "S'abonner",
+    "copyright": "© {year} SolutionTemple. Tous Droits Réservés.",
+    "privacyPolicy": "Politique de Confidentialité",
+    "refundPolicy": "Politique de Remboursement"
+  }
+}

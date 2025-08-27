@@ -1,13 +1,13 @@
-import type { NavItem, Service, Testimonial, BlogPost } from '@/lib/types';
+import type { NavItem, Service, Testimonial, BlogPost, FaqItem } from '@/lib/types';
 
 export const navItems: NavItem[] = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
-  { href: '/testimonials', label: 'Testimonials' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/', label: 'home' },
+  { href: '/about', label: 'about' },
+  { href: '/services', label: 'services' },
+  { href: '/testimonials', label: 'testimonials' },
+  { href: '/blog', label: 'blog' },
+  { href: '/faq', label: 'faq' },
+  { href: '/contact', label: 'contact' },
 ];
 
 export const testimonials: Testimonial[] = [
@@ -169,7 +169,7 @@ export const services: Service[] = [
   },
 ];
 
-export const faqs = [
+export const faqs: FaqItem[] = [
   {
     question: 'Are your spells safe? Do they have any side effects?',
     answer:

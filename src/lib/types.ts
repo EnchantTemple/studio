@@ -28,3 +28,8 @@ export type BlogPost = {
   imageUrl: string;
   date: string;
 };
+
+export type FaqItem = {
+  question: string;
+  answer: string;
+};

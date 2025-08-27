@@ -1,0 +1,76 @@
+
+{
+  "Navigation": {
+    "home": "Startseite",
+    "about": "Über Uns",
+    "services": "Dienstleistungen",
+    "testimonials": "Erfahrungsberichte",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Kontakt",
+    "bookNow": "Buchen Sie Ihren Zauber jetzt"
+  },
+  "HomePage": {
+    "Hero": {
+      "title": "Stellen Sie Ihre Liebe heute wieder her 🌹",
+      "subtitle": "Ein Heiligtum, in dem Liebe, Energie und Absicht sich vereinen, um Sie mit Ihrem wahren Partner wieder zu vereinen.",
+      "button": "Buchen Sie Ihren Zauber jetzt"
+    },
+    "Intro": {
+      "title": "Willkommen bei SolutionTemple",
+      "description": "Ich bin ein lizenzierter spiritueller Berater mit über 12 Jahren Erfahrung darin, Seelen dabei zu helfen, durch alte, ethische und natürliche Zaubersprüche wieder mit ihren wahren Partnern zusammenzukommen.",
+      "stat1_value": "1200+",
+      "stat1_label": "Zufriedene Kunden",
+      "stat2_value": "20+",
+      "stat2_label": "Länder bedient",
+      "stat3_value": "24/7",
+      "stat3_label": "WhatsApp-Support"
+    },
+    "Services": {
+      "badge": "Unsere Dienstleistungen",
+      "title": "Zauber für jedes Herzensbedürfnis",
+      "subtitle": "Jedes Ritual wird mit größter Sorgfalt durchgeführt und auf Ihre einzigartige Situation zugeschnitten.",
+      "button": "Diesen Zauber buchen",
+      "viewAllButton": "Alle Dienstleistungen anzeigen",
+      "reunite_lovers_name": "Liebende Wiedervereinen Zauber",
+      "reunite_lovers_desc": "Bringen Sie einen Ex-Liebhaber zurück oder verbinden Sie sich emotional wieder.",
+      "reunite_lovers_delivery": "Lieferung: Innerhalb von 3 Tagen",
+      "attract_love_name": "Neue Liebe Anziehen Zauber",
+      "attract_love_desc": "Manifestieren Sie einen Seelenverwandten oder ernsthaften Partner.",
+      "attract_love_delivery": "Lieferung: Innerhalb von 5 Tagen",
+      "strengthen_relationship_name": "Beziehung Stärken Zauber",
+      "strengthen_relationship_desc": "Beseitigen Sie Dritte, stellen Sie den Frieden wieder her.",
+      "strengthen_relationship_delivery": "Lieferung: Innerhalb von 48 Stunden"
+    },
+    "Testimonials": {
+      "title": "Vertraut von Seelen weltweit",
+      "subtitle": "Lesen Sie, was meine Kunden über ihre Erfahrungen sagen.",
+      "readMoreButton": "Weitere Erfahrungsberichte lesen",
+      "testimonial1_quote": "SolutionTemple hat mir geholfen, meinen Verlobten in nur 4 Tagen zurückzubringen. Ich weine vor Freude! Danke, SolutionTemple.",
+      "testimonial1_name": "Esther",
+      "testimonial1_location": "Großbritannien",
+      "testimonial2_quote": "Mein Freund hat mir nach 2 Wochen Schweigen wieder geschrieben. Der Zauber hat gewirkt - es ist wie ein Wunder.",
+      "testimonial2_name": "Joy",
+      "testimonial2_location": "Nigeria"
+    },
+    "FAQ": {
+      "title": "Häufig gestellte Fragen",
+      "subtitle": "Finden Sie schnelle Antworten auf häufig gestellte Fragen zu unseren spirituellen Dienstleistungen.",
+      "moreQuestionsButton": "Weitere Fragen?"
+    }
+  },
+  "Footer": {
+    "tagline": "Ein Heiligtum, in dem Liebe, Energie und Absicht sich für Ihr spirituelles Wohlbefinden vereinen.",
+    "quickLinks": "Schnelllinks",
+    "contactUs": "Kontaktieren Sie uns",
+    "whatsapp": "WhatsApp Live-Chat",
+    "email": "hello@solutiontemple.com",
+    "workingHours": "24/7 Fernzauberarbeit",
+    "newsletter": "Newsletter",
+    "newsletter_prompt": "Abonnieren Sie für spirituelle Einblicke und Angebote.",
+    "subscribe": "Abonnieren",
+    "copyright": "© {year} SolutionTemple. Alle Rechte vorbehalten.",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "refundPolicy": "Rückerstattungsrichtlinie"
+  }
+}

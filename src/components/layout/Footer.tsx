@@ -1,13 +1,18 @@
-import { navItems } from '@/lib/data';
+import { navItems as navItemKeys } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { ShieldCheck, Mail, MessageCircle } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { LanguageSwitcher } from '../LanguageSwitcher';
+import { useTranslations } from 'next-intl';
 
 export function Footer() {
+  const t = useTranslations('Footer');
+  const tNav = useTranslations('Navigation');
+  const navItems = navItemKeys.map(item => ({...item, label: tNav(item.label as any)}));
+  
   return (
     <footer className="bg-card text-card-foreground">
       <div className="container py-12">
@@ -15,7 +20,7 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="text-lg font-headline font-semibold">SolutionTemple</h3>
             <p className="text-sm text-muted-foreground">
-              A sanctuary where love, energy, and intention align for your spiritual well-being.
+              {t('tagline')}
             </p>
             <LanguageSwitcher location="footer" />
             <div className="flex space-x-2 pt-2">
@@ -29,7 +34,7 @@ export function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-semibold font-headline">Quick Links</h4>
+            <h4 className="font-semibold font-headline">{t('quickLinks')}</h4>
             <ul className="space-y-2">
               {navItems.map((item) => (
                 <li key={item.label}>
@@ -42,30 +47,30 @@ export function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-semibold font-headline">Contact Us</h4>
+            <h4 className="font-semibold font-headline">{t('contactUs')}</h4>
              <ul className="space-y-2">
               <li>
                 <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                   <MessageCircle className="w-4 h-4" />
-                  <span>WhatsApp Live Chat</span>
+                  <span>{t('whatsapp')}</span>
                 </a>
               </li>
                <li>
                 <a href="mailto:hello@solutiontemple.com" className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                   <Mail className="w-4 h-4" />
-                  <span>hello@solutiontemple.com</span>
+                  <span>{t('email')}</span>
                 </a>
               </li>
             </ul>
-            <p className="text-sm text-muted-foreground">24/7 Remote Spell Work</p>
+            <p className="text-sm text-muted-foreground">{t('workingHours')}</p>
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-semibold font-headline">Newsletter</h4>
-            <p className="text-sm text-muted-foreground">Subscribe for spiritual insights and offers.</p>
+            <h4 className="font-semibold font-headline">{t('newsletter')}</h4>
+            <p className="text-sm text-muted-foreground">{t('newsletter_prompt')}</p>
             <form className="flex space-x-2">
               <Input type="email" placeholder="Your email" className="flex-1" />
-              <Button type="submit" variant="secondary">Subscribe</Button>
+              <Button type="submit" variant="secondary">{t('subscribe')}</Button>
             </form>
           </div>
         </div>
@@ -73,13 +78,13 @@ export function Footer() {
         <Separator className="my-8" />
         
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} SolutionTemple. All Rights Reserved.</p>
+          <p className="text-sm text-muted-foreground">{t('copyright', {year: new Date().getFullYear()})}</p>
           <div className="flex items-center space-x-4">
             <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Privacy Policy
+              {t('privacyPolicy')}
             </Link>
             <Link href="/refund-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Refund Policy
+              {t('refundPolicy')}
             </Link>
           </div>
         </div>
