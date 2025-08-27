@@ -1,5 +1,5 @@
 'use client';
-import { Link } from '@/navigation';
+import Link from 'next/link';
 import Image from 'next/image';
 import { getBlogPosts } from '@/lib/data';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,7 +11,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
-  const { translate } = useTranslation();
+  const { translate, language } = useTranslation();
   const [content, setContent] = useState({
       hero_title: 'Spiritual Insights',
       hero_subtitle: 'Explore articles on love, energy, and the art of ethical spell casting.',
@@ -54,7 +54,7 @@ export default function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
               <Card key={post.slug} className="flex flex-col overflow-hidden">
-                <Link href={`/blog/${post.slug}`} className="block">
+                <Link href={`/${language}/blog/${post.slug}`} className="block">
                   <Image
                     src={`${post.imageUrl}?${post.slug}`}
                     alt={post.title}
@@ -66,7 +66,7 @@ export default function BlogPage() {
                 </Link>
                 <CardHeader>
                   <CardTitle className="font-headline text-xl">
-                    <Link href={`/blog/${post.slug}`}>{translate(`BlogPage.${post.key}_title`, post.title)}</Link>
+                    <Link href={`/${language}/blog/${post.slug}`}>{translate(`BlogPage.${post.key}_title`, post.title)}</Link>
                   </CardTitle>
                   <CardDescription>
                     <time dateTime={post.date}>
@@ -79,7 +79,7 @@ export default function BlogPage() {
                 </CardContent>
                 <CardFooter>
                   <Button asChild variant="link" className="p-0">
-                    <Link href={`/blog/${post.slug}`}>{content.read_more}</Link>
+                    <Link href={`/${language}/blog/${post.slug}`}>{content.read_more}</Link>
                   </Button>
                 </CardFooter>
               </Card>

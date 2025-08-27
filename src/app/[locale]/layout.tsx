@@ -10,6 +10,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import WhatsAppButton from '@/components/layout/WhatsAppButton';
 import { navItems } from '@/lib/data';
 import { TranslationProvider } from '@/context/TranslationContext';
+import { getTranslationsFromFirestore } from '@/lib/translations';
 
 const alegreya = Alegreya({
   subsets: ['latin'],
@@ -32,18 +33,19 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params: { locale },
 }: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
 }>) {
+  const messages = await getTranslationsFromFirestore(locale);
 
   return (
     <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
       <body className={cn('antialiased font-body', alegreya.variable)}>
-          <TranslationProvider initialLocale={locale}>
+          <TranslationProvider initialLocale={locale} messages={messages}>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"

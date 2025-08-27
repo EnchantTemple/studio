@@ -1,3 +1,4 @@
+
 'use client';
 import { getTestimonials } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
@@ -20,7 +21,7 @@ export default function TestimonialsPage() {
   });
   
   useEffect(() => {
-    const fetchTestimonials = async () => {
+    const fetchTestimonials = () => {
       const allTestimonials = getTestimonials();
       setTestimonials(allTestimonials);
     };
@@ -32,7 +33,7 @@ export default function TestimonialsPage() {
     : '5.0';
 
   useEffect(() => {
-    const translateContent = async () => {
+    const translateContent = () => {
         setContent({
             hero_title: translate('TestimonialsPage.hero_title', 'Words of Gratitude'),
             hero_subtitle: translate('TestimonialsPage.hero_subtitle', "Discover how we've helped others find love and happiness."),
@@ -71,7 +72,7 @@ export default function TestimonialsPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="flex flex-col">
+              <Card key={testimonial.key} className="flex flex-col">
                 <CardContent className="p-6 flex flex-col flex-grow">
                   <div className="flex-grow">
                     <div className="flex mb-2">

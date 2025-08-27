@@ -2,12 +2,12 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, MessageCircle, Clock } from 'lucide-react';
-import { Link } from '@/navigation';
+import Link from 'next/link';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useEffect, useState } from 'react';
 
 export default function ContactPage() {
-  const { translate } = useTranslation();
+  const { translate, language } = useTranslation();
   const [content, setContent] = useState({
       hero_title: 'Get in Touch',
       hero_subtitle: 'We are here for you 24/7. Your journey to healing starts with a simple message.',
@@ -110,7 +110,7 @@ export default function ContactPage() {
            {content.cta_p}
           </p>
           <Button asChild size="lg" className="mt-8 rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/book-now">{content.cta_button}</Link>
+            <Link href={`/${language}/book-now`}>{content.cta_button}</Link>
           </Button>
         </div>
       </section>

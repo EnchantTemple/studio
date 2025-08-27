@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { ShieldCheck, Mail, MessageCircle } from 'lucide-react';
-import { Link } from '@/navigation';
+import Link from 'next/link';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import type { NavItem } from '@/lib/types';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -14,7 +14,7 @@ interface FooterProps {
 }
 
 export function Footer({ navItems }: FooterProps) {
-  const { translate } = useTranslation();
+  const { translate, language } = useTranslation();
   
   return (
     <footer className="bg-card text-card-foreground">
@@ -41,7 +41,7 @@ export function Footer({ navItems }: FooterProps) {
             <ul className="space-y-2">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <Link href={`/${language}${item.href === '/' ? '' : item.href}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
                     {translate(`Navigation.${item.label}`, item.label)}
                   </Link>
                 </li>
@@ -83,10 +83,10 @@ export function Footer({ navItems }: FooterProps) {
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-sm text-muted-foreground">{translate('Footer.copyright', `© ${new Date().getFullYear()} SolutionTemple. All Rights Reserved.`).replace('{year}', new Date().getFullYear().toString())}</p>
           <div className="flex items-center space-x-4">
-            <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            <Link href={`/${language}/privacy-policy`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
               {translate('Footer.privacyPolicy', 'Privacy Policy')}
             </Link>
-            <Link href="/refund-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            <Link href={`/${language}/refund-policy`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
               {translate('Footer.refundPolicy', 'Refund Policy')}
             </Link>
           </div>

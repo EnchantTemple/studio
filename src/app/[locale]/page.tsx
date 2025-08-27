@@ -1,7 +1,8 @@
+
 'use client';
 
 import Image from 'next/image';
-import { Link } from '@/navigation';
+import Link from 'next/link';
 import { CheckCircle, Globe, MessageCircle, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -19,7 +20,7 @@ export default function Home() {
   const [highlightedTestimonials, setHighlightedTestimonials] = useState<Testimonial[]>([]);
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
 
-  const { translate } = useTranslation();
+  const { translate, language } = useTranslation();
   const [content, setContent] = useState({
       Hero: {
           title: 'Restore Your Love Today 🌹',
@@ -71,7 +72,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const translateContent = async () => {
+    const translateContent = () => {
         const translatedContent = {
             Hero: {
                 title: translate('HomePage.Hero.title', 'Restore Your Love Today 🌹'),
@@ -132,7 +133,7 @@ export default function Home() {
               {content.Hero.subtitle}
             </p>
             <Button asChild size="lg" className="mt-8 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg transform hover:scale-105 transition-transform">
-              <Link href="/book-now">{content.Hero.button}</Link>
+              <Link href={`/${language}/book-now`}>{content.Hero.button}</Link>
             </Button>
           </div>
         </section>
@@ -200,7 +201,7 @@ export default function Home() {
                   </CardContent>
                    <CardFooter>
                     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                      <Link href="/book-now">{content.Services.button}</Link>
+                      <Link href={`/${language}/book-now`}>{content.Services.button}</Link>
                     </Button>
                   </CardFooter>
                 </Card>
@@ -208,7 +209,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center">
               <Button asChild variant="outline">
-                <Link href="/services">{content.Services.viewAllButton}</Link>
+                <Link href={`/${language}/services`}>{content.Services.viewAllButton}</Link>
               </Button>
             </div>
           </div>
@@ -224,7 +225,7 @@ export default function Home() {
             </div>
             <div className="mx-auto grid max-w-5xl grid-cols-1 lg:grid-cols-2 gap-8">
               {highlightedTestimonials.map((testimonial, index) => (
-                <Card key={index}>
+                <Card key={testimonial.key}>
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-4 mb-4">
                       <Avatar>
@@ -248,7 +249,7 @@ export default function Home() {
             </div>
              <div className="mt-8">
               <Button asChild>
-                <Link href="/testimonials">{content.Testimonials.readMoreButton}</Link>
+                <Link href={`/${language}/testimonials`}>{content.Testimonials.readMoreButton}</Link>
               </Button>
             </div>
           </div>
@@ -264,7 +265,7 @@ export default function Home() {
             </div>
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
-                <AccordionItem value={`item-${index}`} key={index}>
+                <AccordionItem value={`item-${index}`} key={faq.key}>
                   <AccordionTrigger className="text-left font-headline text-lg hover:no-underline">
                     {translate(`FaqPage.faq${index+1}_question`, faq.question)}
                   </AccordionTrigger>
@@ -276,7 +277,7 @@ export default function Home() {
             </Accordion>
             <div className="text-center mt-12">
               <Button asChild variant="outline">
-                <Link href="/faq">{content.FAQ.moreQuestionsButton}</Link>
+                <Link href={`/${language}/faq`}>{content.FAQ.moreQuestionsButton}</Link>
               </Button>
             </div>
           </div>

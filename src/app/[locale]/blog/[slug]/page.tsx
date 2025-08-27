@@ -1,7 +1,7 @@
 'use client';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { Link } from '@/navigation';
+import Link from 'next/link';
 import { getBlogPosts } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -18,7 +18,7 @@ type Props = {
 export default function BlogPostPage({ params }: Props) {
   const [post, setPost] = useState<BlogPost | undefined>(undefined);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
-  const { translate } = useTranslation();
+  const { translate, language } = useTranslation();
   const [content, setContent] = useState({
       related_articles: 'Related Articles',
   });
@@ -96,7 +96,7 @@ export default function BlogPostPage({ params }: Props) {
               <Card key={relatedPost.slug}>
                 <CardHeader>
                   <CardTitle className="font-headline text-xl">
-                    <Link href={`/blog/${relatedPost.slug}`}>{translate(`BlogPage.${relatedPost.key}_title`, relatedPost.title)}</Link>
+                    <Link href={`/${language}/blog/${relatedPost.slug}`}>{translate(`BlogPage.${relatedPost.key}_title`, relatedPost.title)}</Link>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>

@@ -1,5 +1,5 @@
-'use client';
-import { Link } from '@/navigation';
+'use-client';
+import Link from 'next/link';
 import Image from 'next/image';
 import { getServices } from '@/lib/data';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 
 export default function ServicesPage() {
   const [services, setServices] = useState<Service[]>([]);
-  const { translate } = useTranslation();
+  const { translate, language } = useTranslation();
     const [content, setContent] = useState({
     hero_title: 'Our Spiritual Services',
     hero_subtitle: 'Ethical and powerful spells tailored to your unique love situation.',
@@ -94,7 +94,7 @@ export default function ServicesPage() {
                 </CardContent>
                 <CardFooter>
                   <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                    <Link href="/book-now">{content.book_this_spell}</Link>
+                    <Link href={`/${language}/book-now`}>{content.book_this_spell}</Link>
                   </Button>
                 </CardFooter>
               </Card>
@@ -139,7 +139,7 @@ export default function ServicesPage() {
             {content.cta_p}
           </p>
           <Button asChild size="lg" className="mt-8 rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/book-now">{content.cta_button}</Link>
+            <Link href={`/${language}/book-now`}>{content.cta_button}</Link>
           </Button>
         </div>
       </section>

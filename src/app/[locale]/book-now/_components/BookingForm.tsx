@@ -14,7 +14,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, CheckCircle, X } from 'lucide-react';
-import { Link } from '@/navigation';
+import Link from 'next/link';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import type { Service } from '@/lib/types';
@@ -28,7 +28,7 @@ export function BookingForm() {
   const [services, setServices] = useState<Service[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const { translate } = useTranslation();
+  const { translate, language } = useTranslation();
 
   const [content, setContent] = useState({
     form_title: 'Your Confidential Information',
@@ -289,7 +289,7 @@ export function BookingForm() {
                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         {content.terms_label.replace('{termsLink}', '')}
-                        <Link href="/privacy-policy" className="underline hover:text-primary">{content.terms_link_text}</Link>
+                        <Link href={`/${language}/privacy-policy`} className="underline hover:text-primary">{content.terms_link_text}</Link>
                       </label>
                       <FormDescription>
                         {content.terms_desc}

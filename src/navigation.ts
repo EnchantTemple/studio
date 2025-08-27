@@ -1,6 +1,7 @@
-import {createSharedPathnamesNavigation} from 'next-intl/navigation';
- 
+// This file defines the supported locales for the application.
+
 export const locales = ['en', 'es', 'pt', 'it', 'fr', 'de', 'zh-CN'] as const;
+
 export const localeNames: Record<(typeof locales)[number], string> = {
     'en': 'English',
     'es': 'Spanish',
@@ -10,6 +11,3 @@ export const localeNames: Record<(typeof locales)[number], string> = {
     'de': 'German',
     'zh-CN': 'Chinese'
 };
-
-export const {Link, redirect, usePathname, useRouter} =
-  createSharedPathnamesNavigation({locales, localePrefix: 'always'});

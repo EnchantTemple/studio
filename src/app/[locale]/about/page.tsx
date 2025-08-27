@@ -3,12 +3,12 @@ import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check, Shield, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from '@/navigation';
+import Link from 'next/link';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useEffect, useState } from 'react';
 
 export default function AboutPage() {
-    const { translate } = useTranslation();
+    const { translate, language } = useTranslation();
     const [content, setContent] = useState({
         hero_title: 'Our Sacred Heritage',
         hero_subtitle: 'A legacy of healing passed down through five generations.',
@@ -166,7 +166,7 @@ export default function AboutPage() {
             {content.cta_p}
           </p>
           <Button asChild size="lg" className="mt-8 rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/book-now">{content.cta_button}</Link>
+            <Link href={`/${language}/book-now`}>{content.cta_button}</Link>
           </Button>
         </div>
       </section>
