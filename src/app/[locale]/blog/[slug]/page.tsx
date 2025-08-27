@@ -10,6 +10,7 @@ import { format, parseISO } from 'date-fns';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import type { BlogPost } from '@/lib/types';
+import { useTranslation } from '@/hooks/useTranslation';
 
 type Props = {
   params: { slug: string };
@@ -19,6 +20,10 @@ export default function BlogPostPage({ params }: Props) {
   const t = useTranslations('BlogPage');
   const [post, setPost] = useState<BlogPost | undefined>(undefined);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+  const { translate } = useTranslation();
+  const [content, setContent] = useState({
+      related_articles: t('related_articles'),
+  });
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -36,6 +41,16 @@ export default function BlogPostPage({ params }: Props) {
     };
     fetchPosts();
   }, [params.slug, t]);
+  
+  useEffect(() => {
+      const translateContent = async () => {
+          const translated = {
+              related_articles: await translate(t('related_articles')),
+          };
+          setContent(translated);
+      };
+      translateContent();
+  }, [translate, t]);
 
   if (!post) {
     return null; // or a loading spinner
@@ -72,7 +87,7 @@ export default function BlogPostPage({ params }: Props) {
         <Separator className="my-12 md:my-16" />
 
         <div className="text-center">
-          <h2 className="text-3xl font-bold font-headline mb-8">{t('related_articles')}</h2>
+          <h2 className="text-3xl font-bold font-headline mb-8">{content.related_articles}</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {relatedPosts.map((relatedPost) => (
               <Card key={relatedPost.slug}>

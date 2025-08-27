@@ -12,6 +12,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
 import type { Service, Testimonial, FaqItem } from '@/lib/types';
+import { useTranslation } from '@/hooks/useTranslation';
 
 
 export default function Home() {
@@ -23,6 +24,42 @@ export default function Home() {
   const [highlightedServices, setHighlightedServices] = useState<Service[]>([]);
   const [highlightedTestimonials, setHighlightedTestimonials] = useState<Testimonial[]>([]);
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
+
+  const { translate } = useTranslation();
+  const [content, setContent] = useState({
+      Hero: {
+          title: t('Hero.title'),
+          subtitle: t('Hero.subtitle'),
+          button: t('Hero.button')
+      },
+      Intro: {
+          title: t('Intro.title'),
+          description: t('Intro.description'),
+          stat1_value: t('Intro.stat1_value'),
+          stat1_label: t('Intro.stat1_label'),
+          stat2_value: t('Intro.stat2_value'),
+          stat2_label: t('Intro.stat2_label'),
+          stat3_value: t('Intro.stat3_value'),
+          stat3_label: t('Intro.stat3_label')
+      },
+      Services: {
+          badge: t('Services.badge'),
+          title: t('Services.title'),
+          subtitle: t('Services.subtitle'),
+          button: t('Services.button'),
+          viewAllButton: t('Services.viewAllButton')
+      },
+      Testimonials: {
+          title: t('Testimonials.title'),
+          subtitle: t('Testimonials.subtitle'),
+          readMoreButton: t('Testimonials.readMoreButton')
+      },
+      FAQ: {
+          title: t('FAQ.title'),
+          subtitle: t('FAQ.subtitle'),
+          moreQuestionsButton: t('FAQ.moreQuestionsButton')
+      }
+  });
 
   useEffect(() => {
     const fetchAndSetData = async () => {
@@ -39,6 +76,46 @@ export default function Home() {
     fetchAndSetData();
   }, [tServices, tTestimonials, tFaqs]);
 
+  useEffect(() => {
+    const translateContent = async () => {
+        const translatedContent = {
+            Hero: {
+                title: await translate(t('Hero.title')),
+                subtitle: await translate(t('Hero.subtitle')),
+                button: await translate(t('Hero.button'))
+            },
+            Intro: {
+                title: await translate(t('Intro.title')),
+                description: await translate(t('Intro.description')),
+                stat1_value: await translate(t('Intro.stat1_value')),
+                stat1_label: await translate(t('Intro.stat1_label')),
+                stat2_value: await translate(t('Intro.stat2_value')),
+                stat2_label: await translate(t('Intro.stat2_label')),
+                stat3_value: await translate(t('Intro.stat3_value')),
+                stat3_label: await translate(t('Intro.stat3_label'))
+            },
+            Services: {
+                badge: await translate(t('Services.badge')),
+                title: await translate(t('Services.title')),
+                subtitle: await translate(t('Services.subtitle')),
+                button: await translate(t('Services.button')),
+                viewAllButton: await translate(t('Services.viewAllButton'))
+            },
+            Testimonials: {
+                title: await translate(t('Testimonials.title')),
+                subtitle: await translate(t('Testimonials.subtitle')),
+                readMoreButton: await translate(t('Testimonials.readMoreButton'))
+            },
+            FAQ: {
+                title: await translate(t('FAQ.title')),
+                subtitle: await translate(t('FAQ.subtitle')),
+                moreQuestionsButton: await translate(t('FAQ.moreQuestionsButton'))
+            }
+        };
+        setContent(translatedContent);
+    };
+    translateContent();
+  }, [translate, t]);
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
@@ -55,13 +132,13 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/60 -z-10" />
           <div className="container px-4 md:px-6 z-10 animate-fade-in-up">
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl font-headline text-shadow-lg">
-              {t('Hero.title')}
+              {content.Hero.title}
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-200 text-shadow">
-              {t('Hero.subtitle')}
+              {content.Hero.subtitle}
             </p>
             <Button asChild size="lg" className="mt-8 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg transform hover:scale-105 transition-transform">
-              <Link href="/book-now">{t('Hero.button')}</Link>
+              <Link href="/book-now">{content.Hero.button}</Link>
             </Button>
           </div>
         </section>
@@ -71,27 +148,27 @@ export default function Home() {
             <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline text-primary">
-                  {t('Intro.title')}
+                  {content.Intro.title}
                 </h2>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  {t('Intro.description')}
+                  {content.Intro.description}
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div className="flex flex-col items-center justify-center space-y-2 p-4 border rounded-lg shadow-sm">
                   <CheckCircle className="w-10 h-10 text-accent" />
-                  <p className="text-3xl font-bold">{t('Intro.stat1_value')}</p>
-                  <p className="text-sm text-muted-foreground">{t('Intro.stat1_label')}</p>
+                  <p className="text-3xl font-bold">{content.Intro.stat1_value}</p>
+                  <p className="text-sm text-muted-foreground">{content.Intro.stat1_label}</p>
                 </div>
                 <div className="flex flex-col items-center justify-center space-y-2 p-4 border rounded-lg shadow-sm">
                   <Globe className="w-10 h-10 text-accent" />
-                  <p className="text-3xl font-bold">{t('Intro.stat2_value')}</p>
-                  <p className="text-sm text-muted-foreground">{t('Intro.stat2_label')}</p>
+                  <p className="text-3xl font-bold">{content.Intro.stat2_value}</p>
+                  <p className="text-sm text-muted-foreground">{content.Intro.stat2_label}</p>
                 </div>
                 <div className="flex flex-col items-center justify-center space-y-2 p-4 border rounded-lg shadow-sm">
                   <MessageCircle className="w-10 h-10 text-accent" />
-                  <p className="text-3xl font-bold">{t('Intro.stat3_value')}</p>
-                  <p className="text-sm text-muted-foreground">{t('Intro.stat3_label')}</p>
+                  <p className="text-3xl font-bold">{content.Intro.stat3_value}</p>
+                  <p className="text-sm text-muted-foreground">{content.Intro.stat3_label}</p>
                 </div>
               </div>
             </div>
@@ -102,10 +179,10 @@ export default function Home() {
           <div className="container space-y-12 px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <Badge variant="outline" className="text-primary border-primary">{t('Services.badge')}</Badge>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">{t('Services.title')}</h2>
+                <Badge variant="outline" className="text-primary border-primary">{content.Services.badge}</Badge>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">{content.Services.title}</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  {t('Services.subtitle')}
+                  {content.Services.subtitle}
                 </p>
               </div>
             </div>
@@ -129,7 +206,7 @@ export default function Home() {
                   </CardContent>
                    <CardFooter>
                     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                      <Link href="/book-now">{t('Services.button')}</Link>
+                      <Link href="/book-now">{content.Services.button}</Link>
                     </Button>
                   </CardFooter>
                 </Card>
@@ -137,7 +214,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center">
               <Button asChild variant="outline">
-                <Link href="/services">{t('Services.viewAllButton')}</Link>
+                <Link href="/services">{content.Services.viewAllButton}</Link>
               </Button>
             </div>
           </div>
@@ -146,9 +223,9 @@ export default function Home() {
         <section id="testimonials" className="w-full py-12 md:py-24 lg:py-32 bg-card">
           <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
             <div className="space-y-3">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight font-headline">{t('Testimonials.title')}</h2>
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight font-headline">{content.Testimonials.title}</h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                {t('Testimonials.subtitle')}
+                {content.Testimonials.subtitle}
               </p>
             </div>
             <div className="mx-auto grid max-w-5xl grid-cols-1 lg:grid-cols-2 gap-8">
@@ -177,7 +254,7 @@ export default function Home() {
             </div>
              <div className="mt-8">
               <Button asChild>
-                <Link href="/testimonials">{t('Testimonials.readMoreButton')}</Link>
+                <Link href="/testimonials">{content.Testimonials.readMoreButton}</Link>
               </Button>
             </div>
           </div>
@@ -186,9 +263,9 @@ export default function Home() {
         <section id="faq" className="w-full py-12 md:py-24 lg:py-32">
           <div className="container max-w-4xl mx-auto px-4 md:px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">{t('FAQ.title')}</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">{content.FAQ.title}</h2>
               <p className="mt-4 max-w-[900px] mx-auto text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                {t('FAQ.subtitle')}
+                {content.FAQ.subtitle}
               </p>
             </div>
             <Accordion type="single" collapsible className="w-full">
@@ -205,7 +282,7 @@ export default function Home() {
             </Accordion>
             <div className="text-center mt-12">
               <Button asChild variant="outline">
-                <Link href="/faq">{t('FAQ.moreQuestionsButton')}</Link>
+                <Link href="/faq">{content.FAQ.moreQuestionsButton}</Link>
               </Button>
             </div>
           </div>

@@ -4,15 +4,21 @@ import Image from 'next/image';
 import { getBlogPosts } from '@/lib/data';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { format, parseISO } from 'date-fns';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import type { BlogPost } from '@/lib/types';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function BlogPage() {
   const t = useTranslations('BlogPage');
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const { translate } = useTranslation();
+  const [content, setContent] = useState({
+      hero_title: t('hero_title'),
+      hero_subtitle: t('hero_subtitle'),
+      read_more: t('read_more'),
+  });
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -22,14 +28,26 @@ export default function BlogPage() {
     fetchPosts();
   }, [t]);
 
+  useEffect(() => {
+      const translateContent = async () => {
+          const translated = {
+              hero_title: await translate(t('hero_title')),
+              hero_subtitle: await translate(t('hero_subtitle')),
+              read_more: await translate(t('read_more')),
+          };
+          setContent(translated);
+      };
+      translateContent();
+  }, [translate, t]);
+
 
   return (
     <>
       <section className="bg-primary text-primary-foreground py-20 text-center">
         <div className="container">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline">{t('hero_title')}</h1>
+          <h1 className="text-4xl md:text-6xl font-bold font-headline">{content.hero_title}</h1>
           <p className="mt-4 text-xl max-w-3xl mx-auto">
-            {t('hero_subtitle')}
+            {content.hero_subtitle}
           </p>
         </div>
       </section>
@@ -64,7 +82,7 @@ export default function BlogPage() {
                 </CardContent>
                 <CardFooter>
                   <Button asChild variant="link" className="p-0">
-                    <Link href={`/blog/${post.slug}`}>{t('read_more')}</Link>
+                    <Link href={`/blog/${post.slug}`}>{content.read_more}</Link>
                   </Button>
                 </CardFooter>
               </Card>

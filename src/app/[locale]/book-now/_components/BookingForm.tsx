@@ -21,7 +21,7 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import type { Service } from '@/lib/types';
 import { submitBooking } from '../actions';
-import { useFormField } from "@/components/ui/form"
+import { useTranslation } from '@/hooks/useTranslation';
 
 
 export function BookingForm() {
@@ -32,6 +32,72 @@ export function BookingForm() {
   const [services, setServices] = useState<Service[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const { translate } = useTranslation();
+
+  const [content, setContent] = useState({
+    form_title: t('form_title'),
+    form_desc: t('form_desc'),
+    fullName_label: t('fullName_label'),
+    fullName_placeholder: t('fullName_placeholder'),
+    whatsapp_label: t('whatsapp_label'),
+    whatsapp_placeholder: t('whatsapp_placeholder'),
+    email_label: t('email_label'),
+    email_placeholder: t('email_placeholder'),
+    spellType_label: t('spellType_label'),
+    spellType_placeholder: t('spellType_placeholder'),
+    targetName_label: t('targetName_label'),
+    targetName_placeholder: t('targetName_placeholder'),
+    photo_label: t('photo_label'),
+    photo_desc: t('photo_desc'),
+    situation_label: t('situation_label'),
+    situation_placeholder: t('situation_placeholder'),
+    terms_label: t.raw('terms_label'),
+    terms_link_text: t('terms_link_text'),
+    terms_desc: t('terms_desc'),
+    recaptcha: t.raw('recaptcha'),
+    submitting: t('submitting'),
+    submit_button: t('submit_button'),
+    success_title: t('success_title'),
+    success_desc: t('success_desc'),
+    error_title: t('error_title'),
+    error_desc: t('error_desc'),
+  });
+
+  useEffect(() => {
+    const translateContent = async () => {
+      const translated = {
+        form_title: await translate(t('form_title')),
+        form_desc: await translate(t('form_desc')),
+        fullName_label: await translate(t('fullName_label')),
+        fullName_placeholder: await translate(t('fullName_placeholder')),
+        whatsapp_label: await translate(t('whatsapp_label')),
+        whatsapp_placeholder: await translate(t('whatsapp_placeholder')),
+        email_label: await translate(t('email_label')),
+        email_placeholder: await translate(t('email_placeholder')),
+        spellType_label: await translate(t('spellType_label')),
+        spellType_placeholder: await translate(t('spellType_placeholder')),
+        targetName_label: await translate(t('targetName_label')),
+        targetName_placeholder: await translate(t('targetName_placeholder')),
+        photo_label: await translate(t('photo_label')),
+        photo_desc: await translate(t('photo_desc')),
+        situation_label: await translate(t('situation_label')),
+        situation_placeholder: await translate(t('situation_placeholder')),
+        terms_label: await translate(t.raw('terms_label')),
+        terms_link_text: await translate(t('terms_link_text')),
+        terms_desc: await translate(t('terms_desc')),
+        recaptcha: await translate(t.raw('recaptcha')),
+        submitting: await translate(t('submitting')),
+        submit_button: await translate(t('submit_button')),
+        success_title: await translate(t('success_title')),
+        success_desc: await translate(t('success_desc')),
+        error_title: await translate(t('error_title')),
+        error_desc: await translate(t('error_desc')),
+      };
+      setContent(translated);
+    };
+    translateContent();
+  }, [translate, t]);
+
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -65,8 +131,8 @@ export function BookingForm() {
       form.reset();
     } else {
       toast({
-        title: t('error_title'),
-        description: result.message || t('error_desc'),
+        title: content.error_title,
+        description: result.message || content.error_desc,
         variant: 'destructive',
       });
     }
@@ -76,8 +142,8 @@ export function BookingForm() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle className="font-headline text-2xl">{t('form_title')}</CardTitle>
-          <CardDescription>{t('form_desc')}</CardDescription>
+          <CardTitle className="font-headline text-2xl">{content.form_title}</CardTitle>
+          <CardDescription>{content.form_desc}</CardDescription>
         </CardHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -88,9 +154,9 @@ export function BookingForm() {
                   name="fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{t('fullName_label')}</FormLabel>
+                      <FormLabel>{content.fullName_label}</FormLabel>
                       <FormControl>
-                        <Input placeholder={t('fullName_placeholder')} {...field} />
+                        <Input placeholder={content.fullName_placeholder} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -101,9 +167,9 @@ export function BookingForm() {
                   name="whatsappNumber"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{t('whatsapp_label')}</FormLabel>
+                      <FormLabel>{content.whatsapp_label}</FormLabel>
                       <FormControl>
-                        <Input placeholder={t('whatsapp_placeholder')} {...field} />
+                        <Input placeholder={content.whatsapp_placeholder} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -116,9 +182,9 @@ export function BookingForm() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('email_label')}</FormLabel>
+                    <FormLabel>{content.email_label}</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder={t('email_placeholder')} {...field} />
+                      <Input type="email" placeholder={content.email_placeholder} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -130,11 +196,11 @@ export function BookingForm() {
                 name="spellType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('spellType_label')}</FormLabel>
+                    <FormLabel>{content.spellType_label}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder={t('spellType_placeholder')} />
+                          <SelectValue placeholder={content.spellType_placeholder} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -155,9 +221,9 @@ export function BookingForm() {
                 name="targetPersonName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('targetName_label')}</FormLabel>
+                    <FormLabel>{content.targetName_label}</FormLabel>
                     <FormControl>
-                      <Input placeholder={t('targetName_placeholder')} {...field} />
+                      <Input placeholder={content.targetName_placeholder} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -169,12 +235,12 @@ export function BookingForm() {
                 name="photo"
                 render={({ field: { onChange, value, ...rest } }) => (
                   <FormItem>
-                    <FormLabel>{t('photo_label')}</FormLabel>
+                    <FormLabel>{content.photo_label}</FormLabel>
                     <FormControl>
                       <Input type="file" onChange={(e) => onChange(e.target.files)} {...rest} />
                     </FormControl>
                      <FormDescription>
-                      {t('photo_desc')}
+                      {content.photo_desc}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -186,10 +252,10 @@ export function BookingForm() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('situation_label')}</FormLabel>
+                    <FormLabel>{content.situation_label}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={t('situation_placeholder')}
+                        placeholder={content.situation_placeholder}
                         className="resize-y min-h-[120px]"
                         {...field}
                       />
@@ -220,7 +286,7 @@ export function BookingForm() {
                         })}
                       </label>
                       <FormDescription>
-                        {t('terms_desc')}
+                        {content.terms_desc}
                       </FormDescription>
                        <FormMessage />
                     </div>
@@ -240,10 +306,10 @@ export function BookingForm() {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    {t('submitting')}
+                    {content.submitting}
                   </>
                 ) : (
-                  t('submit_button')
+                  content.submit_button
                 )}
               </Button>
             </CardFooter>
@@ -257,8 +323,8 @@ export function BookingForm() {
           </button>
           <div className="flex flex-col items-center">
             <CheckCircle className="w-20 h-20 text-green-500 mb-4" />
-            <h2 className="text-2xl font-bold font-headline mb-2">{t('success_title')}</h2>
-            <p className="text-muted-foreground">{t('success_desc')}</p>
+            <h2 className="text-2xl font-bold font-headline mb-2">{content.success_title}</h2>
+            <p className="text-muted-foreground">{content.success_desc}</p>
           </div>
         </DialogContent>
       </Dialog>

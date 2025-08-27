@@ -7,11 +7,19 @@ import { Badge } from '@/components/ui/badge';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import type { Testimonial } from '@/lib/types';
+import { useTranslation } from '@/hooks/useTranslation';
 
 
 export default function TestimonialsPage() {
   const t = useTranslations('TestimonialsPage');
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const { translate } = useTranslation();
+  const [content, setContent] = useState({
+      hero_title: t('hero_title'),
+      hero_subtitle: t('hero_subtitle'),
+      success_title: t('success_title'),
+      rating_text: t('rating_text', {rating: '5.0'}),
+  });
   
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -25,13 +33,26 @@ export default function TestimonialsPage() {
     ? (testimonials.reduce((acc, t) => acc + t.rating, 0) / testimonials.length).toFixed(1)
     : '5.0';
 
+  useEffect(() => {
+    const translateContent = async () => {
+        const translated = {
+            hero_title: await translate(t('hero_title')),
+            hero_subtitle: await translate(t('hero_subtitle')),
+            success_title: await translate(t('success_title')),
+            rating_text: await translate(t('rating_text', {rating: averageRating})),
+        };
+        setContent(translated);
+    }
+    translateContent();
+  }, [translate, t, averageRating]);
+
   return (
     <>
       <section className="bg-primary text-primary-foreground py-20 text-center">
         <div className="container">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline">{t('hero_title')}</h1>
+          <h1 className="text-4xl md:text-6xl font-bold font-headline">{content.hero_title}</h1>
           <p className="mt-4 text-xl max-w-3xl mx-auto">
-            {t('hero_subtitle')}
+            {content.hero_subtitle}
           </p>
         </div>
       </section>
@@ -39,7 +60,7 @@ export default function TestimonialsPage() {
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="flex flex-col items-center text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline">{t('success_title')}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-headline">{content.success_title}</h2>
             <div className="flex items-center gap-2 mt-4">
               <div className="flex">
                 <Star className="w-6 h-6 text-accent fill-accent" />
@@ -48,7 +69,7 @@ export default function TestimonialsPage() {
                 <Star className="w-6 h-6 text-accent fill-accent" />
                 <Star className="w-6 h-6 text-accent fill-accent" />
               </div>
-              <p className="font-semibold text-lg">{t('rating_text', {rating: averageRating})}</p>
+              <p className="font-semibold text-lg">{content.rating_text}</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
