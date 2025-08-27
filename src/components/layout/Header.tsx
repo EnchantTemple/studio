@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, Sparkles, X } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -11,7 +12,6 @@ import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import type { NavItem } from '@/lib/types';
-import { useTranslation } from '@/hooks/useTranslation';
 
 
 interface HeaderProps {
@@ -21,12 +21,13 @@ interface HeaderProps {
 export function Header({ navItems }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const currentPath = usePathname();
-  const { translate, language } = useTranslation();
+  const locale = useLocale();
+  const t = useTranslations('Navigation');
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center">
-        <Link href={`/${language}`} className="mr-6 flex items-center space-x-2">
+        <Link href={`/${locale}`} className="mr-6 flex items-center space-x-2">
           <Sparkles className="h-6 w-6 text-primary" />
           <span className="font-bold inline-block font-headline text-lg">
             SolutionTemple
@@ -34,7 +35,7 @@ export function Header({ navItems }: HeaderProps) {
         </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           {navItems.map((item) => {
-            const itemPath = `/${language}${item.href === '/' ? '' : item.href}`;
+            const itemPath = `/${locale}${item.href === '/' ? '' : item.href}`;
             return (
               <Link
                 key={item.href}
@@ -44,7 +45,7 @@ export function Header({ navItems }: HeaderProps) {
                   currentPath === itemPath ? 'text-primary' : 'text-foreground/60'
                 )}
               >
-                {translate(`Navigation.${item.label}`, item.label)}
+                {t(item.label)}
               </Link>
             )
           })}
@@ -53,7 +54,7 @@ export function Header({ navItems }: HeaderProps) {
           <LanguageSwitcher location="header" />
           <ThemeToggle />
           <Button asChild className="hidden md:inline-flex rounded-full bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href={`/${language}/book-now`}>{translate('Navigation.bookNow', 'Book Now')}</Link>
+            <Link href={`/${locale}/book-now`}>{t('bookNow')}</Link>
           </Button>
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
@@ -67,7 +68,7 @@ export function Header({ navItems }: HeaderProps) {
             </SheetTrigger>
             <SheetContent side="left" className="pr-0">
               <Link
-                href={`/${language}`}
+                href={`/${locale}`}
                 className="mr-6 flex items-center space-x-2 mb-6"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -78,7 +79,7 @@ export function Header({ navItems }: HeaderProps) {
               </Link>
               <div className="flex flex-col space-y-3">
                 {navItems.map((item) => {
-                  const itemPath = `/${language}${item.href === '/' ? '' : item.href}`;
+                  const itemPath = `/${locale}${item.href === '/' ? '' : item.href}`;
                   return (
                     <Link
                       key={item.href}
@@ -89,13 +90,13 @@ export function Header({ navItems }: HeaderProps) {
                           currentPath === itemPath ? "text-primary font-semibold" : "text-foreground/70"
                       )}
                     >
-                      {translate(`Navigation.${item.label}`, item.label)}
+                      {t(item.label)}
                     </Link>
                   )
                 })}
               </div>
                <Button asChild className="mt-6 w-full rounded-full bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => setIsMenuOpen(false)}>
-                 <Link href={`/${language}/book-now`}>{translate('Navigation.bookNow', 'Book Now')}</Link>
+                 <Link href={`/${locale}/book-now`}>{t('bookNow')}</Link>
                </Button>
             </SheetContent>
           </Sheet>

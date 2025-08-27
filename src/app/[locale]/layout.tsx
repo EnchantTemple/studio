@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import { Alegreya } from 'next/font/google';
 import '../globals.css';
@@ -9,7 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import WhatsAppButton from '@/components/layout/WhatsAppButton';
 import { navItems } from '@/lib/data';
-import { TranslationProvider } from '@/context/TranslationContext';
+import { NextIntlClientProvider, useMessages } from 'next-intl';
 
 const alegreya = Alegreya({
   subsets: ['latin'],
@@ -32,31 +31,32 @@ export const metadata: Metadata = {
   ],
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
   params: { locale },
 }: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
 }>) {
+  const messages = useMessages();
 
   return (
     <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
       <body className={cn('antialiased font-body', alegreya.variable)}>
-          <TranslationProvider initialLocale={locale}>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <Header navItems={navItems} />
-              <main className="flex-grow">{children}</main>
-              <Footer navItems={navItems} />
-              <WhatsAppButton />
-              <Toaster />
-            </ThemeProvider>
-          </TranslationProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header navItems={navItems} />
+            <main className="flex-grow">{children}</main>
+            <Footer navItems={navItems} />
+            <WhatsAppButton />
+            <Toaster />
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

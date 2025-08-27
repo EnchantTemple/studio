@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { Languages, ChevronDown } from 'lucide-react';
 import { locales, localeNames } from '@/navigation';
-import { useTranslation } from '@/hooks/useTranslation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -18,12 +19,16 @@ interface LanguageSwitcherProps {
 }
 
 export function LanguageSwitcher({ location }: LanguageSwitcherProps) {
-    const { setLanguage, language } = useTranslation();
+    const router = useRouter();
+    const pathname = usePathname();
+    const locale = useLocale();
 
-    const currentLanguageName = localeNames[language as keyof typeof localeNames];
+    const currentLanguageName = localeNames[locale as keyof typeof localeNames];
 
-    const handleLanguageChange = (lang: (typeof locales)[number]) => {
-      setLanguage(lang);
+    const handleLanguageChange = (newLocale: (typeof locales)[number]) => {
+      // This will replace the current locale in the pathname with the new one
+      const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
+      router.push(newPath);
     };
 
     const renderMenuItem = (lang: (typeof locales)[number]) => (
