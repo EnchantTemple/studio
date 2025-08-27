@@ -17,7 +17,23 @@ export default function Home() {
   const tServices = useTranslations('HomePage.Services');
   const tTestimonials = useTranslations('HomePage.Testimonials');
 
-  const highlightedServices = ['reunite_lovers', 'attract_love', 'strengthen_relationship'];
+  const highlightedServices = [
+    { 
+      key: 'reunite_lovers', 
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgE_WSybYD84lVeJQfR3n40WjG3UEH5gyQj6Hag2s2H7kKDIF7VvtK1iX6pJjNbMt2ico&usqp=CAU',
+      dataAiHint: 'spiritual love'
+    },
+    { 
+      key: 'attract_love', 
+      imageUrl: 'https://picsum.photos/400/300?random=2',
+      dataAiHint: 'spiritual love'
+    },
+    { 
+      key: 'strengthen_relationship', 
+      imageUrl: 'https://picsum.photos/400/300?random=3',
+      dataAiHint: 'spiritual love'
+    }
+  ];
   const highlightedTestimonials = ['testimonial1', 'testimonial2', 'testimonial3'];
   const faqs = ['faq1', 'faq2', 'faq3', 'faq4', 'faq5'];
 
@@ -90,22 +106,22 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
-              {highlightedServices.map((serviceKey, index) => (
-                <Card key={serviceKey} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
+              {highlightedServices.map((service) => (
+                <Card key={service.key} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                   <Image
-                    src={`https://picsum.photos/400/300?random=${index + 1}`}
-                    alt={tServices(`${serviceKey}_name`)}
-                    data-ai-hint="spiritual love"
+                    src={service.imageUrl}
+                    alt={tServices(`${service.key}_name`)}
+                    data-ai-hint={service.dataAiHint}
                     width={400}
                     height={300}
                     className="w-full h-48 object-cover"
                   />
                   <CardHeader>
-                    <CardTitle className="font-headline">{tServices(`${serviceKey}_name`)}</CardTitle>
+                    <CardTitle className="font-headline">{tServices(`${service.key}_name`)}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2 flex-grow">
-                    <p className="text-muted-foreground">{tServices(`${serviceKey}_desc`)}</p>
-                    <p className="text-sm font-semibold text-primary">{tServices(`${serviceKey}_delivery`)}</p>
+                    <p className="text-muted-foreground">{tServices(`${service.key}_desc`)}</p>
+                    <p className="text-sm font-semibold text-primary">{tServices(`${service.key}_delivery`)}</p>
                   </CardContent>
                    <CardFooter>
                     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
