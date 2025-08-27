@@ -4,6 +4,7 @@
 import * as React from 'react';
 import { Languages, ChevronDown } from 'lucide-react';
 import { usePathname, locales, localeNames } from '@/navigation';
+import { useLocale } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -12,7 +13,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useLocale } from 'next-intl';
 
 interface LanguageSwitcherProps {
   location: 'header' | 'footer';
